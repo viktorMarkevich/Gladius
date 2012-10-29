@@ -1,0 +1,20 @@
+login: &login
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: username
+  password: userpassword
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *login
+  database: youappname_development
+
+test:
+  <<: *login
+  database: youappname_test
+
+production:
+  <<: *login
+  database: youappname_production
