@@ -1,20 +1,18 @@
 login: &login
-  adapter: mysql2
+  adapter: postgres
   encoding: utf8
   reconnect: false
-  pool: 5
   username: username
   password: userpassword
-  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *login
-  database: youappname_development
+  database: youappdatabasename_development
 
 test:
   <<: *login
-  database: youappname_test
+  database: youappdatabasename_gladius_test
 
 production:
   <<: *login
-  database: youappname_production
+  database: youappdatabasename_production

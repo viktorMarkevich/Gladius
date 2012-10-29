@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'sqlite3'
+gem "pg", "~> 0.14.1"
 gem 'jquery-rails'
 
 group :assets do
