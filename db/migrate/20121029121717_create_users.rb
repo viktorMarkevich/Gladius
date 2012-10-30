@@ -14,6 +14,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :address
       t.text :about
       t.integer :group_id
+      t.integer :list_registration_id
 
       t.timestamps
     end

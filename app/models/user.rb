@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
   has_many :schools, :through => :user_school_relations
   has_many :contact_infos, :as => :info_for
   belongs_to :group
-
+  belongs_to :list_registration
+  has_many :honors, :as => :item
 end

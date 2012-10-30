@@ -5,4 +5,5 @@ class School < ActiveRecord::Base
   has_many :users, :through => :user_school_relations
   has_many :contact_infos, :as => :info_for
   has_many :training_places
+  has_many :honors, :as => :item
 end
