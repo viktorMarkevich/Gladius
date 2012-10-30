@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   attr_accessible :info, :name, :status
 
-  belongs_to :hall
+  has_many :timetables
+  has_many :halls, :through => :timetables
   has_many :users
 end

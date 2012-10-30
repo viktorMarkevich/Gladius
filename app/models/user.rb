@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :user_school_relations
   has_many :schools, :through => :user_school_relations
-  has_many :contact_infos, :as => :info_for, :dependent => :delete_all
+  has_many :contact_infos, :as => :info_for
   belongs_to :group
 
 end

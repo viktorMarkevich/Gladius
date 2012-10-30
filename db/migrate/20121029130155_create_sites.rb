@@ -2,6 +2,7 @@ class CreateSites < ActiveRecord::Migration
   def change
     create_table :sites do |t|
       t.string :name
+      t.integer :contact_info_id
 
       t.timestamps
     end

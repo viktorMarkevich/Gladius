@@ -13,6 +13,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :city
       t.string :address
       t.text :about
+      t.integer :group_id
 
       t.timestamps
     end

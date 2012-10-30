@@ -5,6 +5,7 @@ class CreateHalls < ActiveRecord::Migration
       t.text :about
       t.float :room_area
       t.string :status
+      t.integer :training_place_id
 
       t.timestamps
     end

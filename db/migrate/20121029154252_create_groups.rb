@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :name
       t.string :status
       t.text :info
+      t.integer :hall_id
 
       t.timestamps
     end

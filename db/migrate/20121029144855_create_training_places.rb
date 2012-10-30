@@ -7,6 +7,7 @@ class CreateTrainingPlaces < ActiveRecord::Migration
       t.string :address
       t.string :status
       t.text :about
+      t.integer :school_id
 
       t.timestamps
     end
