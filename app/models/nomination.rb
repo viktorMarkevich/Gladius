@@ -5,4 +5,5 @@ class Nomination < ActiveRecord::Base
   belongs_to :type_nomination
   belongs_to :params_nomination
   has_many :honors
+  belongs_to :list_registration
 end

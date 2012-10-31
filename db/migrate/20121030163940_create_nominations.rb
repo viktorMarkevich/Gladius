@@ -4,6 +4,7 @@ class CreateNominations < ActiveRecord::Migration
       t.integer :tournament_id
       t.integer :type_nomination_id
       t.integer :params_nomination_id
+      t.integer :list_registration_id
 
       t.timestamps
     end
