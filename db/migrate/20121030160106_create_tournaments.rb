@@ -7,6 +7,8 @@ class CreateTournaments < ActiveRecord::Migration
       t.string :address
       t.string :status
       t.string :status_competition
+      t.datetime :start_tournament
+      t.datetime :end_tournament
       t.text :info
 
       t.timestamps

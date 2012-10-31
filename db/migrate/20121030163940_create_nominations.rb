@@ -5,6 +5,8 @@ class CreateNominations < ActiveRecord::Migration
       t.integer :type_nomination_id
       t.integer :params_nomination_id
       t.integer :list_registration_id
+      t.time :start_time_nomination
+      t.time :end_time_nomination
 
       t.timestamps
     end
