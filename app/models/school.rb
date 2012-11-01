@@ -6,4 +6,5 @@ class School < ActiveRecord::Base
   has_many :contact_infos, :as => :info_for
   has_many :training_places
   has_many :honors, :as => :item
+  belongs_to :fighting_art
 end

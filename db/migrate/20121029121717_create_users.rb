@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      t.string :title
       t.string :first_name
       t.string :second_name
       t.string :last_name
@@ -15,6 +16,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :about
       t.integer :group_id
       t.integer :list_registration_id
+      t.integer :team_id
 
       t.timestamps
     end

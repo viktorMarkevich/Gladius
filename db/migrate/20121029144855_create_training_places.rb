@@ -1,7 +1,7 @@
 class CreateTrainingPlaces < ActiveRecord::Migration
   def change
     create_table :training_places do |t|
-      t.string :type
+      t.string :title
       t.string :name
       t.string :city
       t.string :address

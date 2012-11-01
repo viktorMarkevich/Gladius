@@ -1,6 +1,11 @@
 class Duel < ActiveRecord::Base
-  attr_accessible :title, :user_left, :user_right
+  attr_accessible :title
 
-  belongs_to :side_left, :foreign_key => "user_left", :class_name => "User"
-  belongs_to :side_right, :foreign_key => "user_right", :class_name => "User"
+  belongs_to :fighter, :polymorphic => true, :foreign_key => :item_left
+  belongs_to :fighter, :polymorphic => true, :foreign_key => :item_right
+
+  belongs_to :type_part
+  belongs_to :nomination
+
+  has_one :protocol
 end
