@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
   belongs_to :group
   belongs_to :list_registration
   has_many :honors, :as => :item
+  has_many :duels, :as => :fighter
+
+  belongs_to :team
 end

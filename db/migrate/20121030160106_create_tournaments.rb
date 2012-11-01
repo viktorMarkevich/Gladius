@@ -2,6 +2,7 @@ class CreateTournaments < ActiveRecord::Migration
   def change
     create_table :tournaments do |t|
       t.string :title
+      t.string :name
       t.string :country
       t.string :city
       t.string :address
