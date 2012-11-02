@@ -17,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :group_id
       t.integer :list_registration_id
       t.integer :team_id
+      t.integer :role_id
 
       t.timestamps
     end
