@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -33,4 +33,18 @@ class User < ActiveRecord::Base
       self.login = self.email
     end
   end
+
+  def self.find_for_database_authentication(conditions)
+    self.where(:login => conditions[:login]).first || self.where(:email => conditions[:email]).first
+  end
+
+  #def self.find_first_by_auth_conditions(warden_conditions)
+  #  puts "ya tut blya!!!!!!!!!!!!!!!11"
+  #  conditions = warden_conditions.dup
+  #  if login = conditions.delete(:login)
+  #    where(conditions).where(["lower(login) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+  #  else
+  #    where(conditions).first
+  #  end
+  #end
 end
