@@ -6,6 +6,7 @@ gem "haml-rails", "~> 0.3.5"
 gem "twitter-bootstrap-rails", "~> 2.1.5"
 gem "less-rails", "~> 2.2.3"
 gem "therubyracer", "~> 0.10.2", :platforms => :ruby
+gem "devise", "~> 2.1.2"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
