@@ -1,5 +1,5 @@
 class ContactInfo < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :info_for_id, :info_for_type
 
   belongs_to :info_for, :polymorphic => true
 

@@ -1,6 +1,18 @@
 %p#notice= notice
 
 
+
+%table.table.table-striped
+  %tbody
+    %tr
+      %th ФИО:
+      %td=@user.full_name
+    %tr
+      %th Email:
+      %td=@user.contact_infos.emails
+      -#= link_to 'Редактировать ПК', edit_admin_desktop_path(desktop), :class => "btn"
+
+
 = link_to 'Edit', edit_user_path(@user)
 \|
 = link_to 'Back', users_path
