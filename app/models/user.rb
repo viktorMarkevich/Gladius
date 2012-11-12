@@ -29,9 +29,13 @@ class User < ActiveRecord::Base
 
   before_create :create_login
 
-
   def full_name
-    "#{second_name} #{first_name} #{last_name}"
+    "#{last_name} #{first_name} #{second_name}"
+  end
+
+  def user_contact_info(info)
+    contact_infos.first.send(info).pluck(:body).join(', ')  #выгребает для одного пользователя
+    #Email.where("contact_info_id = ?", ContactInfo.find(User.first.contact_infos)).pluck(:body) #выгребает для всех пользователей
   end
 
   protected
@@ -49,8 +53,5 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(conditions)
     self.where(:login => conditions[:login]).first || self.where(:email => conditions[:email]).first
   end
-
-  #Email.where(:contact_info_id => 1).pluck(:name)
-  #Email.where("contact_info_id = ?", ContactInfo.where(:info_for_id => 3, :info_for_type => "User").first.id).pluck(:name)
 end
 

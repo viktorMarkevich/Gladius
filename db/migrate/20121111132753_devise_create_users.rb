@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :second_name
       t.string :last_name
       t.date :birthday
-      t.boolean :sex
+      t.boolean :sex,               :default => false
       t.float :weight
       t.integer :level
       t.string :status

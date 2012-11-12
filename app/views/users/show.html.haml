@@ -8,8 +8,48 @@
       %th ФИО:
       %td=@user.full_name
     %tr
-      %th Email:
-      %td=@user.contact_infos.emails
+      %th Emails:
+      %td=@user.user_contact_info('emails')
+    %tr
+      %th Sites:
+      %td=@user.user_contact_info('sites')
+    %tr
+      %th Skypes:
+      %td=@user.user_contact_info('skypes')
+    %tr
+      %th Phones:
+      %td=@user.user_contact_info('phones')
+    %tr
+      %th День рождния:
+      %td=@user.birthday
+    %tr
+      %th Пол:
+      %td=@user.sex ? "Женский" : "Мужской"
+    %tr
+      %th Weight:
+      %td=@user.weight
+    %tr
+      %th Level:
+      %td=@user.level
+    %tr
+      %th Status:
+      %td=@user.status
+    %tr
+      %th Country:
+      %td=@user.country
+    %tr
+      %th City:
+      %td=@user.city
+    %tr
+      %th Address:
+      %td=@user.address
+    %tr
+      %th About:
+      %td=@user.about
+      -#t.integer  "group_id"
+      -#t.integer  "list_registration_id"
+      -#t.integer  "team_id"
+      -#t.integer  "role_id"
       -#= link_to 'Редактировать ПК', edit_admin_desktop_path(desktop), :class => "btn"
 
 

@@ -1,7 +1,7 @@
 class CreateSkypes < ActiveRecord::Migration
   def change
     create_table :skypes do |t|
-      t.string :name
+      t.string :body
       t.integer :contact_info_id
 
       t.timestamps

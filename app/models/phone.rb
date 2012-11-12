@@ -1,5 +1,5 @@
 class Phone < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :body
 
   belongs_to :contact_info
 end
