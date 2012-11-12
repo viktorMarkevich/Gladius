@@ -42,11 +42,11 @@
       .control-group
         = f.label :level, 'Level', :class => 'control-label'
         .controls
-          = f.text_field :level, :class => 'input-xlarge'
+          = f.select :level, User::LEVEL, {:prompt => 'Select Level' , :include_blank => true}
       .control-group
         = f.label :status, 'Status', :class => 'control-label'
         .controls
-          = f.text_field :status, :class => 'input-xlarge'
+          = f.select :status, User::STATUS, {:prompt => 'Select Status' , :include_blank => true}
       .control-group
         = f.label :country, 'Country', :class => 'control-label'
         .controls
@@ -63,6 +63,5 @@
         = f.label :about, 'About', :class => 'control-label'
         .controls
           = f.text_field :about, :class => 'input-xlarge'
-
 
     = f.submit 'Save'

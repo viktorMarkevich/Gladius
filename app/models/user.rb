@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
 
   before_create :create_login
 
+  STATUS = %w(student sifu trainer)
+  LEVEL = %w(0 1 2 3 4 5 6) # это частный случай
+
   def full_name
     "#{last_name} #{first_name} #{second_name}"
   end
