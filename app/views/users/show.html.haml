@@ -9,7 +9,7 @@
       %td=@user.full_name
     %tr
       %th Emails:
-      %td=@user.user_contact_info('emails')
+      %td=("#{@user.email}" ? "#{@user.email}" ", " "#{@user.user_contact_info('emails')}" : "#{@user.user_contact_info('emails')}")
     %tr
       %th Sites:
       %td=@user.user_contact_info('sites')
