@@ -2,7 +2,17 @@ Gladius::Application.routes.draw do
 
 
 
-  devise_for :users
+  get "contact_infos/new"
+
+  get "contact_infos/edit"
+
+  get "contact_infos/create"
+
+  get "contact_infos/update"
+
+  get "contact_infos/destroy"
+
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
 
   root :to => 'users#index'
 

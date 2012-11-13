@@ -2,14 +2,22 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, 
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :about, :address, :birthday, :city, :country, :first_name,
                   :last_name, :level, :second_name, :sex, :status, :weight,
-                  :login
+                  :login, :contact_info_attributes
 
   belongs_to :group
   belongs_to :list_registration
@@ -18,11 +26,13 @@ class User < ActiveRecord::Base
 
   has_many :user_school_relations
   has_many :schools, :through => :user_school_relations
-  has_many :contact_infos, :as => :info_for
+  has_one :contact_info, :as => :info_for
   has_many :honors, :as => :item
   has_many :duels, :as => :fighter
   has_many :comments
   has_many :posts
+
+  accepts_nested_attributes_for :contact_info
 
   validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
             :if => "self.login.present?"
@@ -37,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def user_contact_info(info)
-    contact_infos.first.send(info).pluck(:body).join(', ')  #выгребает для одного пользователя
+    contact_info.send(info).pluck(:body).join(', ') rescue ""  #выгребает для одного пользователя
     #Email.where("contact_info_id = ?", ContactInfo.find(User.first.contact_infos)).pluck(:body) #выгребает для всех пользователей
   end
 

@@ -24,6 +24,43 @@
         = f.label :email, 'Email', :class => 'control-label'
         .controls
           = f.email_field :email, :class => 'input-xlarge'
+
+        = f.fields_for :contact_info do |c|
+          = c.fields_for :sites do |s|
+            .control-group
+              = s.label :body, 'sites', :class => 'control-label'
+              .controls
+                = s.text_field :body, :class => 'input-xlarge'
+          = c.fields_for :phones do |p|
+            .control-group
+              = p.label :body, 'phones', :class => 'control-label'
+              .controls
+                = p.text_field :body, :class => 'input-xlarge'
+          = c.fields_for :skypes do |sk|
+            .control-group
+              = sk.label :body, 'phones', :class => 'control-label'
+              .controls
+                = sk.text_field :body, :class => 'input-xlarge'
+          = c.fields_for :emails do |e|
+            .control-group
+              = e.label :body, 'phones', :class => 'control-label'
+              .controls
+                = e.text_field :body, :class => 'input-xlarge'
+
+      -#.control-group
+      -#  = f.label :site, 'sites', :class => 'control-label'
+      -#  .controls
+      -#    = f.text_field :site, :class => 'input-xlarge'
+      -#.control-group
+      -#  = f.label :skype, 'Skype', :class => 'control-label'
+      -#  .controls
+      -#    = f.text_field :skype, :class => 'input-xlarge'
+      -#.control-group
+      -#  = f.label :phone, 'Phone', :class => 'control-label'
+      -#  .controls
+      -#    = f.phone_field :phone, :class => 'input-xlarge'
+
+
       .control-group
         = f.label :birthday, 'Birthday', :class => 'control-label'
         .controls
