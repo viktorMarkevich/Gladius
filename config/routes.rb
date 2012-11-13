@@ -2,6 +2,10 @@ Gladius::Application.routes.draw do
 
 
 
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   get "contact_infos/new"
 
   get "contact_infos/edit"
