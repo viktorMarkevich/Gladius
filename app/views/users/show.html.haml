@@ -8,18 +8,6 @@
       %th ФИО:
       %td=@user.full_name
     %tr
-      %th Emails:
-      %td=@user.user_contact_info('emails')
-    %tr
-      %th Sites:
-      %td=@user.user_contact_info('sites')
-    %tr
-      %th Skypes:
-      %td=@user.user_contact_info('skypes')
-    %tr
-      %th Phones:
-      %td=@user.user_contact_info('phones')
-    %tr
       %th День рождния:
       %td=@user.birthday
     %tr
@@ -35,23 +23,29 @@
       %th Status:
       %td=@user.status
     %tr
+      %th Emails:
+      %td=(@user.user_contact_info('emails').blank? ? @user.email : "#{@user.email}, #{@user.user_contact_info('emails')}")
+    %tr
+      %th Sites:
+      %td=@user.user_contact_info('sites')
+    %tr
+      %th Skypes:
+      %td=@user.user_contact_info('skypes')
+    %tr
+      %th Phones:
+      %td=@user.user_contact_info('phones')
+    %tr
       %th Country:
-      %td=@user.country
+      %td=@user.contact_info.country
     %tr
       %th City:
-      %td=@user.city
+      %td=@user.contact_info.city
     %tr
       %th Address:
-      %td=@user.address
+      %td=@user.contact_info.address
     %tr
       %th About:
       %td=@user.about
-      -#t.integer  "group_id"
-      -#t.integer  "list_registration_id"
-      -#t.integer  "team_id"
-      -#t.integer  "role_id"
-      -#= link_to 'Редактировать ПК', edit_admin_desktop_path(desktop), :class => "btn"
-
 
 = link_to 'Edit', edit_user_path(@user)
 \|
