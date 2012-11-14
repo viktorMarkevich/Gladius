@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def user_contact_info(info)
-    contact_info.send(info).pluck(:body).join(', ') rescue ""
+    contact_info.send(info).pluck(:body).join(', ')
   end
 
   protected
