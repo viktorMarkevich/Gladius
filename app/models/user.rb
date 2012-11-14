@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   has_many :user_school_relations
   has_many :schools, :through => :user_school_relations
-  has_one :contact_info, :as => :info_for
+  has_one  :contact_info, :as => :info_for
   has_many :honors, :as => :item
   has_many :duels, :as => :fighter
   has_many :comments
@@ -39,8 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def user_contact_info(info)
-    contact_info.send(info).pluck(:body).join(', ') rescue ""  #выгребает для одного пользователя
-    #Email.where("contact_info_id = ?", ContactInfo.find(User.first.contact_infos)).pluck(:body) #выгребает для всех пользователей
+    contact_info.send(info).pluck(:body).join(', ') rescue ""
   end
 
   protected
