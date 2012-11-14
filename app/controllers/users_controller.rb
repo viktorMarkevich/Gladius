@@ -57,16 +57,9 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-    #contact_info = params[:user].delete(:contact_info_attributes)
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        #contact_info.each do |elem_attributes|
-        #  f = elem_attributes[0][0..-12]
-        #  @user.contact_info.send(f).find(params[:id]).update_attributes(params[:body]) if @user.contact_info.respond_to? f
-        #  i = 0
-        #end
-        #i = 0
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else

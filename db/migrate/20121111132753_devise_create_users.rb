@@ -43,9 +43,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.float :weight
       t.integer :level
       t.string :status
-      t.string :country
-      t.string :city
-      t.string :address
       t.text :about
       t.integer :group_id
       t.integer :list_registration_id
