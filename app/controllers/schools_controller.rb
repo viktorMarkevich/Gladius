@@ -28,4 +28,17 @@ class SchoolsController < ApplicationController
       end
     end
   end
+
+  def update
+    @school = School.find(params[:id])
+    respond_to do |format|
+      if @school.update_attributes(params[:school])
+        format.html { redirect_to @school, notice: 'School was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @school.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end
