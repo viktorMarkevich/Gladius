@@ -7,7 +7,9 @@ gem "twitter-bootstrap-rails", "~> 2.1.5"
 gem "less-rails", "~> 2.2.3"
 gem "therubyracer", "~> 0.10.2", :platforms => :ruby
 gem "devise", "~> 2.1.2"
-gem 'activeadmin'
+gem "activeadmin", "~> 0.5.0"
+gem "paperclip", "~> 3.3.1"
+gem "rmagick", "~> 2.13.1"
 
 
 group :assets do
