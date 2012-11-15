@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :get_school, :only => [:edit]
   def index
     @users = User.all
 
@@ -77,5 +78,11 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def get_school
+    @schools = School.all
   end
 end

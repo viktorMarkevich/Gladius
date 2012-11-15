@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :about, :birthday, :first_name, :last_name, :level, :second_name,
-                  :sex, :status, :weight, :login, :contact_info_attributes, :avatar
+                  :sex, :status, :weight, :login, :contact_info_attributes, :avatar, :school_id
 
   has_attached_file :avatar, :styles => { :medium => "200x250>", :thumb => "100x125>", :large => "50x63>"},
                     :default_url => '/assets/DefaultImage_:style.png'
@@ -17,9 +17,8 @@ class User < ActiveRecord::Base
   belongs_to :list_registration
   belongs_to :role
   belongs_to :team
+  belongs_to :school, :counter_cache => true
 
-  has_many :user_school_relations
-  has_many :schools, :through => :user_school_relations
   has_one  :contact_info, :as => :info_for
   has_many :honors, :as => :item
   has_many :duels, :as => :fighter
