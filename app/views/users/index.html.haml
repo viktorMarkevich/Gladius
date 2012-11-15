@@ -1,17 +1,17 @@
 %h1 Listing users
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @users.each do |user|
+.well
+  %table.table.table-striped.pretty
     %tr
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+      %th ID
+      %th ФИО
+      %th Status
 
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= link_to_if( user == current_user, user.full_name, user_path(current_user))
+        %td= user.status
 %br
 
 = link_to 'New User', new_user_path
