@@ -1,0 +1,15 @@
+%h1 Listing schols
+
+.well
+  %table.table.table-striped.pretty
+    %tr
+      %th ID
+      %th Название школы
+      %th Количество учеников
+
+    - @schools.each do |school|
+      %tr
+        %td= school.id
+        %td= link_to school.school_name || "Не заполненно", school_path(school)
+        %td= school.users.count
+%br
