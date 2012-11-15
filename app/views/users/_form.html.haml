@@ -33,6 +33,10 @@
         .controls
           = f.label :sex, "Женский"
       .control-group
+        = f.label :school_id, 'Школа', :class => 'control-label'
+        .controls
+          = f.collection_select :school_id, @schools, :id, :school_name, {:include_blank => '---'}, :class => 'input-xlarge'
+      .control-group
         = f.label :weight, 'Weight', :class => 'control-label'
         .controls
           = f.text_field :weight, :class => 'input-xlarge'
