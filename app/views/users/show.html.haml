@@ -25,6 +25,9 @@
       %th Status:
       %td=@user.status
     %tr
+      %th Role:
+      %td=@user.role
+    %tr
       %th Emails:
       %td=(@user.user_contact_info('emails').blank? ? @user.email : "#{@user.email}, #{@user.user_contact_info('emails')}")
     %tr
@@ -50,6 +53,5 @@
       %td=@user.about
 
 
-= link_to 'Edit', edit_user_path(@user) if @user == current_user
-
+= link_to 'Edit', edit_user_path(@user) if (can? :manage, @user) || @user == current_user
 = link_to 'Back', users_path
