@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
-  before_filter :get_school, :only => [:edit]
+  before_filter :get_school, :only => [:edit, :new, :update]
   def index
     @users = User.all
 
