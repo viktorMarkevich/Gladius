@@ -10,6 +10,7 @@ gem "devise", "~> 2.1.2"
 gem "activeadmin", "~> 0.5.0"
 gem "paperclip", "~> 3.3.1"
 gem "rmagick", "~> 2.13.1"
+gem "cancan"
 
 
 group :assets do
