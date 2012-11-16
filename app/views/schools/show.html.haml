@@ -8,6 +8,10 @@
       %th Название школы:
       %td=@school.school_name
 
+
+
+= link_to 'Добавить Нового участника школы', new_user_path(@user)
+
 = link_to 'Edit', edit_school_path(@school)
 
 = link_to 'Back', schools_path
