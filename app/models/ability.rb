@@ -13,7 +13,7 @@ class Ability
       #can :manage, School.where(:id => user.school_id)
       can :manage, User.where(:role => "pupil")
       cannot :manage, User.where(:role => ["manager", "moderator"])
-
+      can :do_this, :for_moderator
     end
 
     if user.role? :pupil

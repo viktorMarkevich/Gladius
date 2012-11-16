@@ -38,11 +38,11 @@
           = f.collection_select :school_id, @schools, :id, :school_name, {:include_blank => '---'}, :class => 'input-xlarge'
 
       - if can? :manage, @user
-
-        .control-group
-          = f.label :role, 'Роль', :class => 'control-label'
-          .controls
-            = f.collection_select :role, User::ROLES, :to_s, :humanize
+        -if cannot? :do_this, :for_moderator
+          .control-group
+            = f.label :role, 'Роль', :class => 'control-label'
+            .controls
+              = f.collection_select :role, User::ROLES, :to_s, :humanize
         .control-group
           = f.label :level, 'Level', :class => 'control-label'
           .controls
