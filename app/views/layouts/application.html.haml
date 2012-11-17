@@ -48,7 +48,7 @@
               %h3 Sidebar
               %ul.nav.nav-list
                 %li.nav-header Sidebar
-                %li= link_to "Создать школу", new_school_path
+                %li= link_to "Создать школу", new_school_path if can? :create, @user
                 %li= link_to "Все школы", schools_path
                 %li= link_to "Редактировать мой профиль", edit_user_path(current_user) if  user_signed_in?
                 %li= link_to "Все пользователи", users_path
