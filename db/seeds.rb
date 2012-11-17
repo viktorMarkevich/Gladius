@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+(0..10).each do |i|
+  @contact = User.create(email:"user#{i}@ma.ru", :password => "123456", :password_confirmation => "123456", role: "manager").build_contact_info
+  if @contact.save
+    ["emails", "skypes", "sites", "phones"].each do |contact_type|
+      @contact.send(contact_type).create
+    end
+  end
+end

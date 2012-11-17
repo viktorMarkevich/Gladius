@@ -2,9 +2,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
-    #user ||= User.new
-
     if user.role? :manager
       #can :manage, School.where(:id => user.school_id)
       #can :manage, User.where(:school_id => user.school_id)
