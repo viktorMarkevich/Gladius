@@ -10,9 +10,12 @@ class Ability
 
     if user.role? :moderator
       can :create, School
+      can :destroy, User.where(:role => "pupil")
+      can :create, User
       can :update, User.where(:role => "pupil")
       cannot :update, User.where(:role => ["manager", "moderator"])
       can :do_this, :for_moderator
+      cannot :create, :for_moderator
     end
 
     if user.role? :pupil

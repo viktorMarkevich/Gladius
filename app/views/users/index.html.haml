@@ -7,6 +7,8 @@
       %th Photo
       %th ФИО
       %th Status
+      %th Редактировать профиль
+      %th Удалить профиль
 
     - @users.each do |user|
       %tr
@@ -14,3 +16,5 @@
         %td= image_tag user.avatar.url(:large)
         %td= link_to user.full_name, user_path(user)
         %td= user.status
+        %td= link_to_if((can? :update, @user), "Edit", edit_user_path(user))
+        %td= link_to_if((can? :destroy, @user), "Delete", user_path(user), :method => :DELETE)

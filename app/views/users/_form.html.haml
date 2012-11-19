@@ -38,7 +38,7 @@
           = f.collection_select :school_id, @schools, :id, :school_name, {:include_blank => '---'}, :class => 'input-xlarge'
 
       - if can? :update, @user
-        -if cannot? :do_this, :for_moderator
+        - if current_user.role == :moderator
           .control-group
             = f.label :role, 'Роль', :class => 'control-label'
             .controls
