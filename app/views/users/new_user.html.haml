@@ -1,0 +1,60 @@
+= form_for @user, :url => add_user_users_path do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    %fieldset
+      .control-group
+        = f.label :last_name, 'Фамилия', :class => 'control-label'
+        .controls
+          = f.text_field :last_name, :class => 'input-xlarge'
+      .control-group
+        = f.label :first_name, 'Имя', :class => 'control-label'
+        .controls
+          = f.text_field :first_name, :class => 'input-xlarge'
+      .control-group
+        = f.label :second_name, 'Отчество', :class => 'control-label'
+        .controls
+          = f.text_field :second_name, :class => 'input-xlarge'
+      .control-group
+        = f.label :birthday, 'Birthday', :class => 'control-label'
+        .controls
+          = f.date_select(:birthday, :start_year => 1900, :order => [:day, :month, :year], :class => 'input-xlarge')
+      .control-group
+        = f.radio_button :sex, false
+        .controls
+          = f.label :sex, "Мужской"
+        = f.radio_button :sex, true
+        .controls
+          = f.label :sex, "Женский"
+      .control-group
+        = f.label :school_id, 'Школа', :class => 'control-label'
+        .controls
+          = f.select :school_id, School.all.collect {|s| [ s.school_name, s.id ] }, { :include_blank => true }, :class => 'input-xlarge'
+      .control-group
+        = f.label :role, 'Роль', :class => 'control-label'
+        .controls
+          = f.collection_select :role, User::ROLES, :to_s, :humanize
+      .control-group
+        = f.label :level, 'Level', :class => 'control-label'
+        .controls
+          = f.select :level, User::LEVEL, {:prompt => 'Select Level' , :include_blank => true}
+      .control-group
+        = f.label :status, 'Status', :class => 'control-label'
+        .controls
+          = f.select :status, User::STATUS, {:prompt => 'Select Status' , :include_blank => true}
+
+      .control-group
+        = f.label :weight, 'Weight', :class => 'control-label'
+        .controls
+          = f.text_field :weight, :class => 'input-xlarge'
+      .control-group
+        = f.label :email, 'Email', :class => 'control-label'
+        .controls
+          = f.email_field :email, :class => 'input-xlarge'
+
+    = f.submit 'Save'

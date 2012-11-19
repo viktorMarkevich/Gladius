@@ -21,7 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
   def update
     super
   end
