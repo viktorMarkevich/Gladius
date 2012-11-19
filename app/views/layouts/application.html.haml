@@ -48,10 +48,12 @@
               %h3 Sidebar
               %ul.nav.nav-list
                 %li.nav-header Sidebar
-                %li= link_to "Создать школу", new_school_path
-                %li= link_to "Все школы", schools_path
-                %li= link_to "Редактировать мой профиль", edit_user_path(current_user) if  user_signed_in?
-                %li= link_to "Все пользователи", users_path
+                - if user_signed_in?
+                  %li= link_to "Создать школу", new_school_path if can? :create, current_user
+                  %li= link_to "Все школы", schools_path
+                  %li= link_to "Редактировать мой профиль", edit_user_path(current_user)
+                  %li= link_to "Все пользователи", users_path
+                  %li= link_to "Создать пользователя", new_user_path if can? :create, current_user
       .push
     %footer.container-fluid
       %p &copy; Company 2012
