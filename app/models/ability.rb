@@ -7,8 +7,9 @@ class Ability
       can :update,  School.where(:id => user.school_id)
       can :create,  User
       can :update,  User.where(:school_id => user.school_id)
-      can :update,  User.where(:role => "pupil")
-      can :destroy, User.where(:school_id => user.school_id, :role => ["pupil", "moderator"])
+      can :update,  User.where(:role => ["pupil", "moderator"])
+      can :destroy, User.where(:role => ["pupil", "moderator"])
+      cannot :update, User.where(:role => ["manager"])
     end
 
     if user.role? :moderator
