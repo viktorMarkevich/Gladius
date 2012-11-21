@@ -81,6 +81,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_user
+
+    @user = User.new(params[:user])
+    @user.password = @user.password_confirmation = :'123456'
+    @contact = @user.build_contact_info
+
+    if @user.save
+      [:email, :skype, :site, :phone].each do |contact_type|
+        if params[contact_type].try(:[], :body).blank?
+          @contact.send(contact_type.to_s.pluralize).create
+        else
+          redirect_to users_path
+          #params[contact_type][:body].split(',').each do |elem|
+          #  resource.contact_infos.send(contact_type).create(:body => elem)
+          #end
+        end
+      end
+    redirect_to users_path
+    end
+  end
+
+  def new_user
+    @user = User.new
+  end
+
   private
 
   def get_school

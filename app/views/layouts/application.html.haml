@@ -49,11 +49,11 @@
               %ul.nav.nav-list
                 %li.nav-header Sidebar
                 - if user_signed_in?
-                  %li= link_to "Создать школу", new_school_path if can? :create, current_user
+                  %li= link_to "Создать школу", new_school_path if can? :create, School
                   %li= link_to "Все школы", schools_path
                   %li= link_to "Редактировать мой профиль", edit_user_path(current_user)
                   %li= link_to "Все пользователи", users_path
-                  %li= link_to "Создать пользователя", new_user_path if can? :create, current_user
+                  %li= link_to "Создать пользователя",  new_user_users_path if can? :create, User
       .push
     %footer.container-fluid
       %p &copy; Company 2012

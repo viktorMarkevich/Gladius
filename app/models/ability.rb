@@ -2,24 +2,31 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.role? :manager
-      #can :manage, School.where(:id => user.school_id)
-      #can :manage, User.where(:school_id => user.school_id)
-      can :manage, User
+
+    user ||= User.new
+
+    if user.role? :pupil
+      can :update,  User, :id => user.id
     end
 
     if user.role? :moderator
-      can :create, School
-      can :destroy, User.where(:role => "pupil")
-      can :create, User
-      can :update, User.where(:role => "pupil")
-      cannot :update, User.where(:role => ["manager", "moderator"])
-      can :do_this, :for_moderator
-      cannot :create, :for_moderator
+      can :manage, User, :school_id => user.school_id, :role => "pupil"
+      can :update, School, :id => user.school_id
+      cannot :manage,  User, :role => "manager"
     end
 
-    if user.role? :pupil
-      can :read, User
+    if user.role? :manager
+      can :manage, User, :school_id => user.school_id, :role => "moderator"
+      can :update, User, :id => user.id, :role => "manager"
+      can :destroy, School, :id => user.school_id
+      can :create, School
+
+    end
+
+    if user.role? :fighter
+      cannot :manage, User, :role => ["pupil", "moderator", "manager", "admin"]
+      cannot :create, School
+      cannot :create, User
     end
 
     can :manage, :all if user.role == "admin"
