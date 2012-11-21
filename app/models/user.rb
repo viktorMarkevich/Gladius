@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   before_create :create_login
 
-  ROLES = %w(manager moderator pupil admin fighter)
+  ROLES = %w(pupil moderator manager) # admin fighter)
   STATUS = %w(student sifu trainer)
   LEVEL = %w(0 1 2 3 4 5 6) # это частный случай
 

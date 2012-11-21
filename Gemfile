@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
+gem 'rake', '~> 0.9.2.2'
 gem "haml-rails", "~> 0.3.5"
 gem "twitter-bootstrap-rails", "~> 2.1.5"
 gem "less-rails", "~> 2.2.3"

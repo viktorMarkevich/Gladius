@@ -2,7 +2,6 @@ class SchoolsController < ApplicationController
 
   def index
     @schools = School.all
-    @user = User.new
   end
   def new
     @school = School.new

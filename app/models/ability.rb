@@ -2,36 +2,31 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.role? :manager
-      can :create,  School
-      can :update,  School.where(:id => user.school_id)
-      can :create,  User
-      can :update,  User.where(:school_id => user.school_id)
-      can :update,  User.where(:role => ["pupil", "moderator"])
-      can :destroy, User.where(:role => ["pupil", "moderator"])
-      can :update,  User.where(:id => user.school_id, :role => ["manager"])
+
+    user ||= User.new
+
+    if user.role? :pupil
+      can :update,  User, :id => user.id
     end
 
     if user.role? :moderator
-      #can :create, School
-      #can :destroy, User.where(:role => "pupil")
-      #can :create, User
-      #can :update, User.where(:role => "pupil")
-      #cannot :update, User.where(:role => ["manager", "moderator"])
-      #can :do_this, :for_moderator
+      can :manage, User, :school_id => user.school_id, :role => "pupil"
+      can :update, School, :id => user.school_id
+      cannot :manage,  User, :role => "manager"
     end
 
-    if user.role? :pupil
-      can :read, User
-      cannot :update, User.where(:role => ["moderator", "manager", "fighter"])
-      can :update, User.where(:role => ["pupil"])
+    if user.role? :manager
+      can :manage, User, :school_id => user.school_id, :role => "moderator"
+      can :update, User, :id => user.id, :role => "manager"
+      can :destroy, School, :id => user.school_id
+      can :create, School
 
     end
 
-    if user.role? :fighter
-      cannot :update, User.where( :role => ["pupil", "moderator", "manager"])
-    end
+    #if user.role? :fighter
+    #  #cannot :update, User.where( :role => ["pupil", "moderator", "manager"])
+    #end
 
-    can :manage, :all if user.role == "admin"
+    #can :manage, :all if user.role == "admin"
   end
 end

@@ -92,6 +92,7 @@ class UsersController < ApplicationController
         if params[contact_type].try(:[], :body).blank?
           @contact.send(contact_type.to_s.pluralize).create
         else
+          redirect_to users_path
           #params[contact_type][:body].split(',').each do |elem|
           #  resource.contact_infos.send(contact_type).create(:body => elem)
           #end

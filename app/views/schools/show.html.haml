@@ -10,8 +10,8 @@
 
 
 
-= link_to 'Добавить Нового участника школы', new_user_path(@user)
+= link_to 'Добавить Нового участника школы', new_user_path(@user) if (can? :create, User) && current_user.school_id == @school.id
 
-= link_to 'Edit', edit_school_path(@school)
+= link_to 'Edit', edit_school_path(@school) if (can? :update, @school)
 
 = link_to 'Back', schools_path
