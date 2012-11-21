@@ -23,10 +23,12 @@ class Ability
 
     end
 
-    #if user.role? :fighter
-    #  #cannot :update, User.where( :role => ["pupil", "moderator", "manager"])
-    #end
+    if user.role? :fighter
+      cannot :manage, User, :role => ["pupil", "moderator", "manager", "admin"]
+      cannot :create, School
+      cannot :create, User
+    end
 
-    #can :manage, :all if user.role == "admin"
+    can :manage, :all if user.role == "admin"
   end
 end
