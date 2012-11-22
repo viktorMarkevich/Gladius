@@ -46,8 +46,20 @@ class SchoolsController < ApplicationController
     end
   end
 
+  def destroy
+    @school = School.find(params[:id])
+    @school.users.each do |user|
+      user.update_attributes(:school_id => 0)
+    end
+    @school.destroy
+
+    respond_to do |format|
+      format.html { redirect_to schools_url }
+      format.json { head :no_content }
+    end
+  end
+
   def school_has_users
     @users_of_school = School.find(params[:school_id]).users
-    i = 0
   end
 end
