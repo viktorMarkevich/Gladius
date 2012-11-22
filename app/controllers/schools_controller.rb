@@ -45,4 +45,9 @@ class SchoolsController < ApplicationController
       end
     end
   end
+
+  def school_has_users
+    @users_of_school = School.find(params[:school_id]).users
+    i = 0
+  end
 end
