@@ -21,6 +21,7 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(params[:school])
+    @school.users << current_user
 
     respond_to do |format|
       if @school.save
@@ -49,7 +50,7 @@ class SchoolsController < ApplicationController
   def destroy
     @school = School.find(params[:id])
     @school.users.each do |user|
-      user.update_attributes(:school_id => 0)
+      user.update_attributes(:school_id => 0, :role => "fighter")
     end
     @school.destroy
 
