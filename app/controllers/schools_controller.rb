@@ -21,6 +21,7 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(params[:school])
+    @school.users << current_user
 
     respond_to do |format|
       if @school.save
@@ -44,5 +45,22 @@ class SchoolsController < ApplicationController
         format.json { render json: @school.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @school = School.find(params[:id])
+    @school.users.each do |user|
+      user.update_attributes(:school_id => 0, :role => "fighter")
+    end
+    @school.destroy
+
+    respond_to do |format|
+      format.html { redirect_to schools_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def school_has_users
+    @users_of_school = School.find(params[:school_id]).users
   end
 end

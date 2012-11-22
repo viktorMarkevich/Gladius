@@ -13,6 +13,8 @@ Gladius::Application.routes.draw do
     get 'new_user', :on => :collection
   end
 
-  resources :schools
+  resources :schools do
+    get '/users/', :to => 'schools#school_has_users', :as => :has_users
+  end
 end
 
