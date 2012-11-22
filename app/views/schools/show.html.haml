@@ -2,6 +2,7 @@
 
 
 
+
 %table.table.table-striped
   %tbody
     %tr
@@ -10,7 +11,7 @@
 
 
 
-= link_to 'Добавить Нового участника школы', new_user_path(@user) if (can? :create, User) && current_user.school_id == @school.id
+= link_to 'Добавить Нового участника школы', new_user_path if (can? :create, User) && current_user.school_id == @school.id
 
 = link_to 'Edit', edit_school_path(@school) if (can? :update, @school)
 
