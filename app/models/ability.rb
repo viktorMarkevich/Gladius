@@ -23,7 +23,7 @@ class Ability
 
     if user.role? :manager
       if user.school_id != 0
-        can :manage, User, :school_id => user.school_id, :role => "moderator"
+        can :manage, User, :school_id => user.school_id, :role => ["moderator", "manager"]
         can :destroy, School, :id => user.school_id
         can :update, User, :school_id => 0, :role => "fighter"
       else

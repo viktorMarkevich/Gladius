@@ -32,13 +32,13 @@
         = f.radio_button :sex, true
         .controls
           = f.label :sex, "Женский"
-      .control-group
-        = f.label :school_id, 'Школа', :class => 'control-label'
-        .controls
-          = f.collection_select :school_id, @schools, :id, :school_name, {:include_blank => '---'}, :class => 'input-xlarge'
 
-      - if can? :update, @user
-        - if current_user.role == 'manager'
+      - if can? :manage, @user
+        - if can? :update, @user
+          .control-group
+            = f.label :school_id, 'Школа', :class => 'control-label'
+            .controls
+              = f.collection_select :school_id, @schools, :id, :school_name, {:include_blank => '---'}, :class => 'input-xlarge'
           .control-group
             = f.label :role, 'Роль', :class => 'control-label'
             .controls
