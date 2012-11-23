@@ -98,6 +98,7 @@ class UsersController < ApplicationController
           #end
         end
       end
+    UserMailer.notification_you_have_added(@user, @user.password).deliver
     redirect_to users_path
     end
   end
