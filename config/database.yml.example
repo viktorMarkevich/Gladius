@@ -1,7 +1,7 @@
 login: &login
-  adapter: postgres
+  adapter: postgresql
   encoding: utf8
-  reconnect: false
+  host: localhost
   username: username
   password: userpassword
 

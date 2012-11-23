@@ -1,0 +1,18 @@
+%p#notice= notice
+
+
+
+
+%table.table.table-striped
+  %tbody
+    %tr
+      %th Название школы:
+      %td=@school.school_name
+
+
+
+= link_to 'Добавить Нового участника школы', new_user_path if (can? :create, User) && current_user.school_id == @school.id
+
+= link_to 'Edit', edit_school_path(@school) if (can? :update, @school)
+
+= link_to 'Back', schools_path

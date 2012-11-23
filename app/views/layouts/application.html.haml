@@ -26,12 +26,17 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.brand(href="#") Gladius
-            .container.nav-collapse
-              %ul.nav
-                %li= link_to "Link 1", "/path1"
-                %li= link_to "Link 2", "/path2"
-                %li= link_to "Link 3", "/path3"
+            = link_to "Gladius", users_path, :class => "brand"
+            .nav-collapse
+              .pull-right
+                - if user_signed_in?
+                  Signed in as
+                  %strong
+                    #{current_user.login}
+                  = link_to "Sign out", destroy_user_session_path, :method => :delete
+                - else
+                  = link_to "Sign up", new_user_registration_path
+                  or #{link_to "sign in", new_user_session_path}
 
       .container
         .row
@@ -43,9 +48,12 @@
               %h3 Sidebar
               %ul.nav.nav-list
                 %li.nav-header Sidebar
-                %li= link_to "Link 1", "/path1"
-                %li= link_to "Link 2", "/path2"
-                %li= link_to "Link 3", "/path3"
+                - if user_signed_in?
+                  %li= link_to "Создать школу", new_school_path if can? :create, School
+                  %li= link_to "Все школы", schools_path
+                  %li= link_to "Редактировать мой профиль", edit_user_path(current_user)
+                  %li= link_to "Все пользователи", users_path
+                  %li= link_to "Создать пользователя",  new_user_users_path if can? :create, User
       .push
     %footer.container-fluid
       %p &copy; Company 2012
