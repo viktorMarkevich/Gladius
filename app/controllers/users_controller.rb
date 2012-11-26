@@ -82,7 +82,7 @@ class UsersController < ApplicationController
   end
 
   def add_user
-    @user = User.new(params[:user].update(:school_id => current_user.school_id, :role => "pupil" ))
+    @user = User.new(params[:user].update(:school_id => current_user.school_id, :role => select_role ))
     @user.password = @user.password_confirmation = :'123456'
     @contact = @user.build_contact_info
 
@@ -109,5 +109,9 @@ class UsersController < ApplicationController
 
   def get_school
     @schools = School.all
+  end
+
+  def select_role
+    params[:user][:role].present? ? params[:user][:role] : "pupil"
   end
 end
