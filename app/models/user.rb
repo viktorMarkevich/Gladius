@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
 
   validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
             :if => "self.login.present?"
+  validates :role, :presence => true
+  validates :status, :presence => true
 
   before_create :create_login
 

@@ -82,8 +82,7 @@ class UsersController < ApplicationController
   end
 
   def add_user
-
-    @user = User.new(params[:user])
+    @user = User.new(params[:user].update(:school_id => current_user.school_id, :role => select_role ))
     @user.password = @user.password_confirmation = :'123456'
     @contact = @user.build_contact_info
 
@@ -93,13 +92,12 @@ class UsersController < ApplicationController
           @contact.send(contact_type.to_s.pluralize).create
         else
           redirect_to users_path
-          #params[contact_type][:body].split(',').each do |elem|
-          #  resource.contact_infos.send(contact_type).create(:body => elem)
-          #end
         end
       end
-    UserMailer.notification_you_have_added(@user, @user.password).deliver
-    redirect_to users_path
+      UserMailer.notification_you_have_added(@user, @user.password).deliver
+      redirect_to users_path
+    else
+      render :action => :new_user
     end
   end
 
@@ -111,5 +109,9 @@ class UsersController < ApplicationController
 
   def get_school
     @schools = School.all
+  end
+
+  def select_role
+    params[:user][:role].present? ? params[:user][:role] : "pupil"
   end
 end
