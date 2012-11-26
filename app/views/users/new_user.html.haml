@@ -32,14 +32,16 @@
         = f.radio_button :sex, true
         .controls
           = f.label :sex, "Женский"
-      .control-group
-        = f.label :school_id, 'Школа', :class => 'control-label'
-        .controls
-          = f.select :school_id, School.all.collect {|s| [ s.school_name, s.id ] }, { :include_blank => true }, :class => 'input-xlarge'
-      .control-group
-        = f.label :role, 'Роль', :class => 'control-label'
-        .controls
-          = f.collection_select :role, User::ROLES, :to_s, :humanize
+      - unless current_user.role == "moderator"
+        = f.hidden_field(@user, current_user.school_id)
+        .control-group
+          = f.label :school_id, 'Школа', :class => 'control-label'
+          .controls
+            = f.select :school_id, School.all.collect {|s| [ s.school_name, s.id ] }, { :include_blank => true }, :class => 'input-xlarge'
+        .control-group
+          = f.label :role, 'Роль', :class => 'control-label'
+          .controls
+            = f.collection_select :role, User::ROLES, :to_s, :humanize
       .control-group
         = f.label :level, 'Level', :class => 'control-label'
         .controls
