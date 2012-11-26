@@ -36,10 +36,6 @@ class User < ActiveRecord::Base
   STATUS = %w(student sifu trainer)
   LEVEL = %w(0 1 2 3 4 5 6) # это частный случай
 
-  def role?(base_role)
-    ROLES.index(base_role.to_s) <= ROLES.index(role)
-  end
-
   def full_name
     "#{last_name} #{first_name} #{second_name}"
   end
