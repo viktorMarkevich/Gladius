@@ -15,6 +15,7 @@ Gladius::Application.routes.draw do
 
   resources :schools do
     get '/users/', :to => 'schools#school_has_users', :as => :has_users
+    get '/users/:id', :to => 'schools#expelled', :as => :expelled
   end
 end
 
