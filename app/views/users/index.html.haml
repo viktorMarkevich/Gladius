@@ -8,7 +8,7 @@
       %th ФИО
       %th Status
       %th Role
-      %th Редактировать профиль
+      %th Возможные операции
 
     - @users.each do |user|
       %tr
@@ -17,4 +17,4 @@
         %td= link_to user.full_name, user_path(user)
         %td= user.status
         %td= user.role
-        %td= link_to_if((can? :update, user) || (user == current_user) , "Edit", edit_user_path(user))
+        %td= link_to_if((can? :update, user) || (user == current_user) , "Добавить в школу", edit_user_path(user))
