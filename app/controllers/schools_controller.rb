@@ -21,7 +21,7 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(params[:school])
-    @school.users << current_user
+    #@school.users << current_user
 
     respond_to do |format|
       if @school.save

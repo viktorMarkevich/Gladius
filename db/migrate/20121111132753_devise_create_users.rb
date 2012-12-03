@@ -47,7 +47,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :group_id
       t.integer :list_registration_id
       t.integer :team_id
-      t.integer :school_id
 
       t.timestamps
     end
