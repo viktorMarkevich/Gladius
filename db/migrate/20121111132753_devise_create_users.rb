@@ -42,12 +42,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :sex,               :default => false
       t.float :weight
       t.integer :level
-      t.string :status
+      t.string :status,             :default => "fighter"
       t.text :about
       t.integer :group_id
       t.integer :list_registration_id
       t.integer :team_id
-      t.integer :school_id
 
       t.timestamps
     end

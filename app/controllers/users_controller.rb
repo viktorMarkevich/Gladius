@@ -82,23 +82,24 @@ class UsersController < ApplicationController
   end
 
   def add_user
-    @user = User.new(params[:user].update(:school_id => current_user.school_id, :role => select_role ))
-    @user.password = @user.password_confirmation = :'123456'
-    @contact = @user.build_contact_info
+      @user = User.new(params[:user].update(:role => select_role ))
+      #@user = User.new(params[:user].update(:school_id => current_user.school_id, :role => select_role ))
+      @user.password = @user.password_confirmation = :'123456'
+      @contact = @user.build_contact_info
 
-    if @user.save
-      [:email, :skype, :site, :phone].each do |contact_type|
-        if params[contact_type].try(:[], :body).blank?
-          @contact.send(contact_type.to_s.pluralize).create
-        else
-          redirect_to users_path
+      if @user.save
+        [:email, :skype, :site, :phone].each do |contact_type|
+          if params[contact_type].try(:[], :body).blank?
+            @contact.send(contact_type.to_s.pluralize).create
+          else
+            redirect_to users_path
+          end
         end
+        UserMailer.notification_you_have_added(@user, @user.password).deliver
+        redirect_to users_path
+      else
+        render :action => :new_user
       end
-      UserMailer.notification_you_have_added(@user, @user.password).deliver
-      redirect_to users_path
-    else
-      render :action => :new_user
-    end
   end
 
   def new_user
