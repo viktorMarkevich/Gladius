@@ -29,16 +29,14 @@ class User < ActiveRecord::Base
 
   validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
             :if => "self.login.present?"
+  validates :role, :presence => true
+  validates :status, :presence => true
 
   before_create :create_login
 
   ROLES = %w(pupil moderator manager admin fighter)
-  STATUS = %w(student sifu trainer)
+  STATUS = %w(student sifu trainer fighter)
   LEVEL = %w(0 1 2 3 4 5 6) # это частный случай
-
-  def role?(base_role)
-    ROLES.index(base_role.to_s) <= ROLES.index(role)
-  end
 
   def full_name
     "#{last_name} #{first_name} #{second_name}"

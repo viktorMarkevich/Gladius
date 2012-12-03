@@ -63,4 +63,10 @@ class SchoolsController < ApplicationController
   def school_has_users
     @users_of_school = School.find(params[:school_id]).users
   end
+
+  def expelled
+    @user = School.find(params[:school_id]).users.find(params[:id])
+    @user.update_attributes(:school_id => 0, :role => "fighter", :status => "fighter")
+    redirect_to school_has_users_path, notice: 'Student was expelled!'
+  end
 end

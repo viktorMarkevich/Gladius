@@ -3,45 +3,34 @@ class Ability
 
   def initialize(user)
 
-    user ||= User.new
+    #user ||= User.new
 
-    if user.role? :pupil
-      can :update,  User, :id => user.id
+    if user.role == "pupil"
+     can :read, User, :all
     end
 
-    if user.role? :moderator
+    if user.role == "moderator"
+      can :create, User
       if user.school_id != 0
+        can [:update, :destroy], User, :school_id => user.school_id, :role => "pupil"
+        can :update, User, :school_id => 0, :role => "fighter"
         can :update, School, :id => user.school_id
-        can :manage, User, :school_id => user.school_id, :role => "pupil"
-        can :manage, User, :school_id => nil, :role => "fighter"
+        cannot :update, User, :id => user.id
       else
-        cannot :destroy, User, :school_id => user.school_id, :role => "pupil"
-        cannot :create, User, :school_id => user.school_id, :role => "pupil"
-        cannot :update, School, :id => user.school_id
+        cannot :update, User
       end
-      cannot :manage,  User, :role => "manager"
-      cannot :destroy, User, :school_id => nil, :role => "fighter"
     end
 
-    if user.role? :manager
+    if user.role == "manager"
+      can :manage, School
       if user.school_id != 0
-        can :manage, User, :school_id => user.school_id, :role => ["moderator", "manager"]
-        can :destroy, School, :id => user.school_id
+        can [:update, :destroy], User, :school_id => user.school_id, :role => ["pupil", "moderator"]
+        can :update, User, :id => user.id
+        can :update, User, :school_id => 0, :role => "fighter"
+        can :create, User
       else
-        cannot :destroy, User, :school_id => user.school_id, :role => "moderator"
-        cannot :create, User
+        cannot :manage, User
       end
-      can :update, User, :id => user.id, :role => "manager"
-      can :create, School
-
     end
-
-    if user.role? :fighter
-      cannot :manage, User, :role => ["pupil", "moderator", "manager", "admin"]
-      cannot :create, School
-      cannot :create, User
-    end
-
-    can :manage, :all if user.role == "admin"
   end
 end
