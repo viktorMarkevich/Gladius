@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :about, :birthday, :first_name, :last_name, :level, :second_name,
                   :sex, :status, :weight, :login, :contact_info_attributes, :avatar,
-                  :school_id, :role
+                  :role
 
   has_attached_file :avatar, :styles => { :medium => "200x250>", :thumb => "100x125>", :large => "50x63>"},
                     :default_url => '/assets/DefaultImage_:style.png'
@@ -17,13 +17,14 @@ class User < ActiveRecord::Base
   belongs_to :group
   belongs_to :list_registration
   belongs_to :team
-  belongs_to :school, :counter_cache => true
+  #belongs_to :school, :counter_cache => true
 
   has_one  :contact_info, :as => :info_for
   has_many :honors, :as => :item
   has_many :duels, :as => :fighter
   has_many :comments
   has_many :posts
+  has_many :user_school_relations
 
   accepts_nested_attributes_for :contact_info
 

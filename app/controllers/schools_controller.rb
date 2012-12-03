@@ -21,12 +21,15 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(params[:school])
-    @school.users << current_user
+    #@school.users << current_user
 
     respond_to do |format|
       if @school.save
-        format.html { redirect_to @school, notice: 'School was successfully created.' }
-        format.json { render json: @school, status: :created, location: @school }
+        @user_school_relations = UserSchoolRelation.new(:school_id => @school.id, :user_id => current_user.id)
+        if @user_school_relations.save
+          format.html { redirect_to @school, notice: 'School was successfully created.' }
+          format.json { render json: @school, status: :created, location: @school }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @school.errors, status: :unprocessable_entity }
@@ -61,7 +64,8 @@ class SchoolsController < ApplicationController
   end
 
   def school_has_users
-    @users_of_school = School.find(params[:school_id]).users
+    @school = School.find(params[:school_id])
+    @users_of_school = User.where(:id => UserSchoolRelation.where(:school_id => 1).pluck(:user_id))
   end
 
   def expelled
