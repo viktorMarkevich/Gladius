@@ -13,6 +13,6 @@
       %tr
         %td= school.id
         %td= link_to school.school_name || "Не заполненно", school_has_users_path(school)
-        %td= school.users.count
+        %td= school.user_school_relations.count
         %td= link_to_if((can? :update, school), "Edit", edit_school_path(school))
         %td= link_to_if((can? :destroy, school), "Delete", school_path(school), :method => :DELETE)
