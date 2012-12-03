@@ -61,7 +61,8 @@ class SchoolsController < ApplicationController
   end
 
   def school_has_users
-    @users_of_school = School.find(params[:school_id]).users
+    @school = School.find(params[:school_id])
+    @users_of_school = @school.users
   end
 
   def expelled

@@ -22,7 +22,7 @@ class Ability
     end
 
     if user.role == "manager"
-      can :manage, School
+      can :manage, School, :id => user.school_id
       if user.school_id != 0
         can [:update, :destroy], User, :school_id => user.school_id, :role => ["pupil", "moderator"]
         can :update, User, :id => user.id
