@@ -65,7 +65,7 @@ class SchoolsController < ApplicationController
 
   def school_has_users
     @school = School.find(params[:school_id])
-    @users_of_school = @school.users
+    @users_of_school = User.where(:id => UserSchoolRelation.where(:school_id => 1).pluck(:user_id))
   end
 
   def expelled
