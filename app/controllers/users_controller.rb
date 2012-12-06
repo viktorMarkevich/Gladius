@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  before_filter :get_school, :only => [:edit, :new_user, :update]
+
+  before_filter :get_school, :only => [:edit, :new, :update]
+  before_filter :find_a_user, :only => [:update, :edit, :show, :destroy, :create_user_school_relation]
 
   def index
     @users = User.all
@@ -12,19 +12,13 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
 
@@ -34,13 +28,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -55,12 +45,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    create_user_school_relation if params[:user][:user_school_relations].present?
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(params[:user].delete_if  {|key| key == "user_school_relations" })
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -70,10 +58,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -83,29 +68,28 @@ class UsersController < ApplicationController
   end
 
   def add_user
-      @user = User.new(params[:user].update(:role => select_role ))
-      #@user = User.new(params[:user].update(:school_id => current_user.school_id, :role => select_role ))
-      @user.password = @user.password_confirmation = :'123456'
-      @contact = @user.build_contact_info
+    school_id = params[:user][:user_school_relations]
+    @user = User.new(params[:user].delete_if  {|key| key == "user_school_relations" }.update(:role => select_role ))
+    @user.password = @user.password_confirmation = :'123456'
+    @contact = @user.build_contact_info
 
-      if @user.save
-        [:email, :skype, :site, :phone].each do |contact_type|
-          if params[contact_type].try(:[], :body).blank?
-            @contact.send(contact_type.to_s.pluralize).create
-          else
-            redirect_to users_path
-          end
+    if @user.save!
+      [:email, :skype, :site, :phone].each do |contact_type|
+        if params[contact_type].try(:[], :body).blank?
+          @contact.send(contact_type.to_s.pluralize).create
+        else
+          redirect_to users_path
         end
-        UserMailer.notification_you_have_added(@user, @user.password).deliver
-        redirect_to users_path
-      else
-        render :action => :new_user
       end
+      create_user_school_relation(@user, school_id)
+      UserMailer.notification_you_have_added(@user, @user.password).deliver
+      redirect_to users_path
+    else
+      redirect_to users_path
+    end
   end
 
-  def new_user
-    @user = User.new
-  end
+  private
 
   def can_edit(user_id)
     UserSchoolRelation.get_cross(user_id, current_user.id).present?
@@ -113,7 +97,9 @@ class UsersController < ApplicationController
 
   helper_method :can_edit
 
-  private
+  def create_user_school_relation(user, school_id)
+    UserSchoolRelation.create(:user_id => @user.id || user.id, :school_id => params[:user][:user_school_relations] || school_id)
+  end
 
   def get_school
     @schools = current_user.schools
@@ -121,6 +107,10 @@ class UsersController < ApplicationController
 
   def select_role
     params[:user][:role].present? ? params[:user][:role] : "pupil"
+  end
+
+  def find_a_user
+    @user = User.find(params[:id])
   end
 
 end
