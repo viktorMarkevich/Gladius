@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
-  before_filter :get_school, :only => [:edit, :new, :update]
+  before_filter :get_school, :only => [:edit, :new_user, :update]
+
   def index
     @users = User.all
 
@@ -106,13 +107,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def can_edit(user_id)
+    UserSchoolRelation.get_cross(user_id, current_user.id).present?
+  end
+
+  helper_method :can_edit
+
   private
 
   def get_school
-    @schools = School.all
+    @schools = current_user.schools
   end
 
   def select_role
     params[:user][:role].present? ? params[:user][:role] : "pupil"
   end
+
 end

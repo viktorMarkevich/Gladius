@@ -8,6 +8,7 @@ class School < ActiveRecord::Base
   has_many :training_places
   has_many :honors, :as => :item
   has_many :user_school_relations
+  has_many :user, :through => :user_school_relations
 
   accepts_nested_attributes_for :contact_info
 end
