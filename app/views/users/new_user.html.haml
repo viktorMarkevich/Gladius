@@ -9,6 +9,7 @@
 
   .actions
     %fieldset
+
       .control-group
         = f.label :last_name, 'Фамилия', :class => 'control-label'
         .controls
@@ -34,9 +35,9 @@
           = f.label :sex, "Женский"
       - unless current_user.role == "moderator"
         .control-group
-          = f.label :school_id, 'Школа', :class => 'control-label'
+          = f.label :id, 'Школа', :class => 'control-label'
           .controls
-            = f.select :school_id, School.all.collect {|s| [ s.school_name, s.id ] }, {:prompt => 'Select school', :include_blank => true }, :class => 'input-xlarge'
+            = f.collection_select :user_school_relations, @schools, :id, :school_name, {:prompt => 'Select school', :include_blank => '---'}, :class => 'input-xlarge'
         .control-group
           = f.label :role, 'Роль', :class => 'control-label'
           .controls

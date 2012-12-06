@@ -23,10 +23,11 @@ class Ability
     #
     if user.role == "manager"
       can :create, School
-      if UserSchoolRelation.get_user(user).present?
-        can [:update, :destroy], User, :school_id => user.school_id, :role => ["pupil", "moderator"]
-        can :update, User, :id => user.id
-        can :update, User, :school_id => 0, :role => "fighter"
+      can :update, User, :id => user.id
+      if UserSchoolRelation.get_school_id(user).present?
+        can [:update, :destroy], User, :role => ["pupil", "moderator"]
+        #can :update, User, :id => user.id
+        can :update, User, :role => "fighter"
         can :create, User
       else
         cannot :manage, User

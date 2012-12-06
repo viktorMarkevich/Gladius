@@ -82,9 +82,9 @@
 
       - if (can? :update, @user) && (current_user.role == "manager")
         .control-group
-          = f.label :school_id, 'Школа', :class => 'control-label'
+          = f.label :id, 'Школа', :class => 'control-label'
           .controls
-            = f.collection_select :school_id, @schools, :id, :school_name, {:include_blank => '---'}, :class => 'input-xlarge'
+            = f.collection_select :user_school_relations, @schools, :id, :school_name, {:prompt => 'Select school', :include_blank => '---'}, :class => 'input-xlarge'
         .control-group
           = f.label :role, 'Роль', :class => 'control-label'
           .controls
