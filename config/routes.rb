@@ -10,7 +10,7 @@ Gladius::Application.routes.draw do
 
   resources :users do
     post 'add_user', :on => :collection
-    get 'new_user', :on => :collection
+    #get 'new_user', :on => :collection
   end
 
   resources :schools do
