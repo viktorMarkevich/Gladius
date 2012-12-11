@@ -91,6 +91,12 @@ class UsersController < ApplicationController
 
   private
 
+  def get_user_school_relation(user)
+    UserSchoolRelation.get_usr(user).present?
+  end
+
+  helper_method :get_user_school_relation
+
   def create_user_school_relation(user, school_id)
     UserSchoolRelation.create(:user_id => @user.id || user.id, :school_id => params[:user][:user_school_relations] || school_id)
   end
