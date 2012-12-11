@@ -91,12 +91,6 @@ class UsersController < ApplicationController
 
   private
 
-  def can_edit(user_id)
-    UserSchoolRelation.get_cross(user_id, current_user.id).present?
-  end
-
-  helper_method :can_edit
-
   def create_user_school_relation(user, school_id)
     UserSchoolRelation.create(:user_id => @user.id || user.id, :school_id => params[:user][:user_school_relations] || school_id)
   end
