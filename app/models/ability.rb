@@ -27,7 +27,7 @@ class Ability
       if UserSchoolRelation.get_usr(user).present?
         can [:update, :destroy], User, :role => ["pupil", "moderator"]
         can :update, User, :role => "fighter"
-        can [:update, :destroy], School.where(:id => user.schools.all.map(&:id))
+        can :manage, School.where(:id => user.schools.all.map(&:id))
         can :create, User
       else
         cannot :manage, User

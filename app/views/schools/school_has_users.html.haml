@@ -21,4 +21,4 @@
         %td= link_to_if((can? :update, user) || (user == current_user), "Редактировать", edit_user_path(user))
         %td= link_to_if((can? :destroy, user), "Отчислить ученика", school_expelled_path(:school_id => @school.id, :id => user.id))
 
-= link_to 'Добавить Нового участника школы', new_user_users_path if (can? :manage, @school)
+= link_to 'Добавить Нового участника школы', new_user_path if (can? :manage, @school)
