@@ -2,7 +2,7 @@
   Здравствуйте уважаемый #{@user.full_name || "боец"}!
 
 Вас добавили на портал боевых искусств
-= link_to "Gladius", root_url(:only_path => false)
+= link_to "Gladius", root_url(:host => "192.168.137.37:3000")
 %p
   Ваш login: #{@user.login}
 
@@ -10,5 +10,5 @@
 %p
   Пройдите по следующей ссылке для входа на сайт
 
-  = link_to "Sign_in", root_url(:only_path => false)
+  = link_to "Sign_in", new_user_session_url(:host => "192.168.137.37:3000")
 
