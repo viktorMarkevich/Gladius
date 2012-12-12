@@ -21,7 +21,6 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(params[:school])
-    #@school.users << current_user
 
     respond_to do |format|
       if @school.save
@@ -52,9 +51,11 @@ class SchoolsController < ApplicationController
 
   def destroy
     @school = School.find(params[:id])
-    @school.users.each do |user|
-      user.update_attributes(:school_id => 0, :role => "fighter")
+    @user_school_relations = UserSchoolRelation.where(:school_id => @school.id)
+    @user_school_relations.pluck(:user_id).each do |id|
+      User.find(id).update_attributes(:role => change_role?(id), :status => "fighter")
     end
+    @user_school_relations.destroy_all
     @school.destroy
 
     respond_to do |format|
@@ -69,8 +70,13 @@ class SchoolsController < ApplicationController
   end
 
   def expelled
-    @user = School.find(params[:school_id]).users.find(params[:id])
-    @user.update_attributes(:school_id => 0, :role => "fighter", :status => "fighter")
+    @user = School.find(params[:school_id]).user.find(params[:id])
+    UserSchoolRelation.where(:school_id => params[:school_id], :user_id => params[:id]).destroy_all
+    @user.update_attributes(:role => "fighter", :status => "fighter")
     redirect_to school_has_users_path, notice: 'Student was expelled!'
+  end
+
+  def change_role?(id)
+    User.where(:id => id, :role => "manager").present? ? "manager" : "fighter"
   end
 end

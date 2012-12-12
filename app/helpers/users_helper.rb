@@ -2,7 +2,7 @@
 module UsersHelper
 
   def td_value(user)
-    if get_user_school_relation(user)
+    if user.school_relation
       if (can? :update, user) || (user == current_user)
         link_to "Редактировать", edit_user_path(user)
       else
@@ -16,5 +16,4 @@ module UsersHelper
       end
     end
   end
-
 end
