@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   before_filter :find_a_user, :only => [:update, :edit, :show, :destroy, :create_user_school_relation]
 
   def index
-    @users = User.all
-
+    @users = User.select("users.*, CASE WHEN user_school_relations.id IS NULL THEN NULL ELSE TRUE END as school_relation")
+      .joins(%Q{LEFT OUTER JOIN user_school_relations ON users.id = user_school_relations.user_id})
+      .group("users.id, school_relation")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -90,12 +91,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def get_user_school_relation(user)
-    UserSchoolRelation.get_usr(user).present?
-  end
-
-  helper_method :get_user_school_relation
 
   def create_user_school_relation(user, school_id)
     UserSchoolRelation.create(:user_id => @user.id || user.id, :school_id => params[:user][:user_school_relations] || school_id)
