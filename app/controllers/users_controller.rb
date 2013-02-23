@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    create_user_school_relation if params[:user][:user_school_relations].present?
+    create_user_school_relation(@user, params[:user][:user_school_relations]) if params[:user][:user_school_relations].present?
     respond_to do |format|
       if @user.update_attributes(params[:user].delete_if  {|key| key == "user_school_relations" })
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
