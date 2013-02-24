@@ -9,10 +9,6 @@ class SchoolsController < ApplicationController
 
   def show
     @school = School.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @school }
-    end
   end
 
   def edit
@@ -21,32 +17,21 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(params[:school])
-
-    respond_to do |format|
-      if @school.save
-        @user_school_relations = UserSchoolRelation.new(:school_id => @school.id, :user_id => current_user.id)
-        if @user_school_relations.save
-          format.html { redirect_to @school, notice: 'School was successfully created.' }
-          format.json { render json: @school, status: :created, location: @school }
-        end
-      else
-        format.html { render action: "new" }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
-      end
+    if @school.save
+      @user_school_relations = UserSchoolRelation.new(:school_id => @school.id, :user_id => current_user.id)
+      @user_school_relations.save
+    else
+      render action: "new"
     end
   end
 
   def update
     @school = School.find(params[:id])
-    respond_to do |format|
       if @school.update_attributes(params[:school])
-        format.html { redirect_to @school, notice: 'School was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to @school, notice: 'School was successfully updated.'
       else
-        format.html { render action: "edit" }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
+        render action: "edit"
       end
-    end
   end
 
   def destroy
@@ -57,11 +42,7 @@ class SchoolsController < ApplicationController
     end
     @user_school_relations.destroy_all
     @school.destroy
-
-    respond_to do |format|
-      format.html { redirect_to schools_url }
-      format.json { head :no_content }
-    end
+     redirect_to schools_url
   end
 
   def school_has_users
