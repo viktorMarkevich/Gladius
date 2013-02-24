@@ -20,6 +20,7 @@ class SchoolsController < ApplicationController
     if @school.save
       @user_school_relations = UserSchoolRelation.new(:school_id => @school.id, :user_id => current_user.id)
       @user_school_relations.save
+      redirect_to @school, notice: 'School was successfully created.'
     else
       render action: "new"
     end

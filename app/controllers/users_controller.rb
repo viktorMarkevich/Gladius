@@ -7,26 +7,13 @@ class UsersController < ApplicationController
     @users = User.select("users.*, CASE WHEN user_school_relations.id IS NULL THEN NULL ELSE TRUE END as school_relation")
       .joins(%Q{LEFT OUTER JOIN user_school_relations ON users.id = user_school_relations.user_id})
       .group("users.id, school_relation")
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
   end
 
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
   end
 
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
   end
 
   def edit
@@ -34,38 +21,25 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      redirect_to @user, notice: 'User was successfully created.'
+    else
+      render action: "new"
     end
   end
 
   def update
     create_user_school_relation(@user, params[:user][:user_school_relations]) if params[:user][:user_school_relations].present?
-    respond_to do |format|
-      if @user.update_attributes(params[:user].delete_if  {|key| key == "user_school_relations" })
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update_attributes(params[:user].delete_if  {|key| key == "user_school_relations" })
+      redirect_to @user, notice: 'User was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
   def destroy
     @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    redirect_to users_url
   end
 
   def add_user
