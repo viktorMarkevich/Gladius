@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
                   :sex, :status, :weight, :login, :contact_info_attributes, :avatar,
                   :role, :user_school_relations
 
+  attr_accessor   :school_id
+
   has_attached_file :avatar, :styles => { :medium => "200x250>", :thumb => "100x125>", :large => "50x63>"},
                     :default_url => '/assets/DefaultImage_:style.png'
 
