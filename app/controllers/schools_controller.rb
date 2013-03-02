@@ -18,8 +18,6 @@ class SchoolsController < ApplicationController
   def create
     @school = School.new(params[:school])
     if @school.save
-      @user_school_relations = UserSchoolRelation.new(:school_id => @school.id, :user_id => current_user.id)
-      @user_school_relations.save
       redirect_to @school, notice: 'School was successfully created.'
     else
       render action: "new"
@@ -51,14 +49,4 @@ class SchoolsController < ApplicationController
     @users_of_school = User.where(:id => @school.user_school_relations.pluck(:user_id))
   end
 
-  def expelled
-    @user = School.find(params[:school_id]).user.find(params[:id])
-    UserSchoolRelation.where(:school_id => params[:school_id], :user_id => params[:id]).destroy_all
-    @user.update_attributes(:role => "fighter", :status => "fighter")
-    redirect_to school_has_users_path, notice: 'Student was expelled!'
-  end
-
-  def change_role?(id)
-    User.where(:id => id, :role => "manager").present? ? "manager" : "fighter"
-  end
 end

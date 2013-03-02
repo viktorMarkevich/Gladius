@@ -88,21 +88,4 @@
           .controls
             = f.text_field :about, :class => 'input-xlarge'
 
-      .control-group
-        = f.label :id, 'Школа', :class => 'control-label'
-        .controls
-          = f.collection_select :school_id,   @schools, :id, :school_name, :prompt => true
-      .control-group
-        = f.label :role, 'Роль', :class => 'control-label'
-        .controls
-          = f.collection_select :role, User::ROLES, :to_s, :humanize
-      .control-group
-        = f.label :level, 'Level', :class => 'control-label'
-        .controls
-          = f.select :level, User::LEVEL, {:prompt => 'Select Level' , :include_blank => true}
-      .control-group
-        = f.label :status, 'Status', :class => 'control-label'
-        .controls
-          = f.select :status, User::STATUS, {:prompt => 'Select Status' , :include_blank => true}
-
     = f.submit 'Save'

@@ -8,13 +8,10 @@ Gladius::Application.routes.draw do
 
   root :to => 'users#index'
 
-  resources :users do
-    post 'add_user', :on => :collection
-  end
+  resources :users
 
   resources :schools do
-    get '/users/', :to => 'schools#school_has_users', :as => :has_users
-    get '/users/:id', :to => 'schools#expelled', :as => :expelled
+    resources :users
   end
 end
 

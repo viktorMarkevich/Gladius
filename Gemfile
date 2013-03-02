@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
-gem 'rake', '~> 0.9.2.2'
+gem 'rake'
 gem "haml-rails", "~> 0.3.5"
 gem "twitter-bootstrap-rails", "~> 2.1.5"
 gem "less-rails", "~> 2.2.3"
@@ -11,7 +11,6 @@ gem "devise", "~> 2.1.2"
 gem "activeadmin", "~> 0.5.0"
 gem "paperclip", "~> 3.3.1"
 gem "rmagick", "~> 2.13.1"
-gem "cancan"
 
 
 group :assets do
