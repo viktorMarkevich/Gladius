@@ -1,0 +1,28 @@
+.form-horizontal
+  = form_for @user_school_relation, :url => school_users_path, :html => {:method => :post} do |f|
+    - if @user_school_relation.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@user_school_relation.errors.count, "error")} prohibited this user from being saved:"
+        %ul
+          - @user_school_relation.errors.full_messages.each do |msg|
+            %li= msg
+
+    %fieldset
+      .control-group
+        = f.label :school_id, 'Школа', :class => 'control-label'
+        .controls
+          = f.collection_select :school_id, @schools, :id, :school_name, :prompt => true
+      .control-group
+        = f.label :role, 'Роль', :class => 'control-label'
+        .controls
+          = f.collection_select :role, UserSchoolRelation::ROLES, :to_s, :humanize
+      .control-group
+        = f.label :level, 'Level', :class => 'control-label'
+        .controls
+          = f.select :level, UserSchoolRelation::LEVEL, {:prompt => 'Select Level' , :include_blank => true}
+      .control-group
+        = f.label :status, 'Status', :class => 'control-label'
+        .controls
+          = f.select :status, UserSchoolRelation::STATUS, {:prompt => 'Select Status' , :include_blank => true}
+
+    = f.submit 'Save'

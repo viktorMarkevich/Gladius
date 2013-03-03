@@ -1,0 +1,7 @@
+%h3
+  Здравствуйте уважаемый #{@invited.full_name || "боец"}!
+%p
+  Школа #{@school.school_name} приглашает Вас.
+%p
+  Пройдите по ссылке ниже, чтобы вступить в ряды школы:
+  = link_to @school.school_name, @invite_url
