@@ -1,6 +1,5 @@
 class UserSchoolRelation < ActiveRecord::Base
-  attr_accessible :school_id, :user_id
-
+  attr_accessible :school_id, :user_id, :role, :status, :level
   belongs_to :user
   belongs_to :school, :counter_cache => true
 

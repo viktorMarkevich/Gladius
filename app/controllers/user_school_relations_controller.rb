@@ -1,6 +1,5 @@
 class UserSchoolRelationsController < ApplicationController
 
-  #before_filter :find_user, :only => [:index]
   before_filter :find_school, :only => [:index]
 
   def index
@@ -9,6 +8,7 @@ class UserSchoolRelationsController < ApplicationController
 
   def new
     @user_school_relation = UserSchoolRelation.new
+    @schools = School.where(:id => current_user.user_school_relations.pluck(:school_id))
   end
 
   def show
@@ -18,6 +18,7 @@ class UserSchoolRelationsController < ApplicationController
   end
 
   def create
+    i = 0
     #  school_id = params[:user][:user_school_relations]
     #  @user = User.new(params[:user].delete_if  {|key| key == "user_school_relations" }.update(:role => select_role ))
     #  @user.password = @user.password_confirmation = :'123456'
@@ -81,6 +82,7 @@ class UserSchoolRelationsController < ApplicationController
   #def change_role?(id)
   #  User.where(:id => id, :role => "manager").present? ? "manager" : "fighter"
   #end
+  private
 
   def find_user
     @user = User.find(params[:id])

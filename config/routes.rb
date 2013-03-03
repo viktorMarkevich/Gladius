@@ -10,6 +10,12 @@ Gladius::Application.routes.draw do
 
   resources :users
 
+  resources :send_mailers  do
+    collection do
+      get :invite
+    end
+  end
+
   resources :schools do
     resources :users, :controller => "user_school_relations"
   end
