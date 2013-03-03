@@ -11,7 +11,7 @@ Gladius::Application.routes.draw do
   resources :users
 
   resources :schools do
-    resources :users
+    resources :users, :controller => "user_school_relations"
   end
 end
 

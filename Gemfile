@@ -11,7 +11,7 @@ gem "devise", "~> 2.1.2"
 gem "activeadmin", "~> 0.5.0"
 gem "paperclip", "~> 3.3.1"
 gem "rmagick", "~> 2.13.1"
-
+gem "coffee-script-source", "~> 1.4.0"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

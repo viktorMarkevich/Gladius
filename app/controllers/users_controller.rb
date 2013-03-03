@@ -3,9 +3,10 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:update, :edit, :show, :destroy]
 
   def index
-    @users = User.select("users.*, CASE WHEN user_school_relations.id IS NULL THEN NULL ELSE TRUE END as school_relation")
-      .joins(%Q{LEFT OUTER JOIN user_school_relations ON users.id = user_school_relations.user_id})
-      .group("users.id, school_relation")
+    #@users = User.select("users.*, CASE WHEN user_school_relations.id IS NULL THEN NULL ELSE TRUE END as school_relation")
+    #  .joins(%Q{LEFT OUTER JOIN user_school_relations ON users.id = user_school_relations.user_id})
+    #  .group("users.id, school_relation")
+    @users = User.all
   end
 
   def show
@@ -40,4 +41,9 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  private
+
+  def find_user
+    @user = User.find(params[:id])
+  end
 end

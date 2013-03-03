@@ -22,12 +22,6 @@
       %th Role:
       %td=@user.role
     %tr
-      %th Level:
-      %td=@user.level
-    %tr
-      %th Status:
-      %td=@user.status
-    %tr
       %th Emails:
       %td=(@user.user_contact_info('emails').blank? ? @user.email : "#{@user.email}, #{@user.user_contact_info('emails')}")
     %tr

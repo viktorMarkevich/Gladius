@@ -1,18 +1,19 @@
 class SchoolsController < ApplicationController
 
+  before_filter :find_school, :only => [:show, :edit, :update, :destroy]
+
   def index
     @schools = School.all
   end
+
   def new
     @school = School.new
   end
 
   def show
-    @school = School.find(params[:id])
   end
 
   def edit
-    @school = School.find(params[:id])
   end
 
   def create
@@ -25,7 +26,6 @@ class SchoolsController < ApplicationController
   end
 
   def update
-    @school = School.find(params[:id])
       if @school.update_attributes(params[:school])
         redirect_to @school, notice: 'School was successfully updated.'
       else
@@ -34,7 +34,6 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
-    @school = School.find(params[:id])
     @user_school_relations = UserSchoolRelation.where(:school_id => @school.id)
     @user_school_relations.pluck(:user_id).each do |id|
       User.find(id).update_attributes(:role => change_role?(id), :status => "fighter")
@@ -44,9 +43,10 @@ class SchoolsController < ApplicationController
      redirect_to schools_url
   end
 
-  def school_has_users
-    @school = School.find(params[:school_id])
-    @users_of_school = User.where(:id => @school.user_school_relations.pluck(:user_id))
+  private
+
+  def find_school
+    @school = School.find(params[:id] || params[:school_id])
   end
 
 end

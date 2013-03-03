@@ -10,4 +10,9 @@ class UserSchoolRelation < ActiveRecord::Base
           usr.school_id = user_school_relations.school_id").where(
           "user_school_relations.user_id = ? and usr.user_id = ?", user1_id, user2_id)
                             }
+
+  ROLES = %w(student moderator manager admin)
+  STATUS = %w(student sifu trainer)
+  LEVEL = %w(0 1 2 3 4 5 6)
+
 end

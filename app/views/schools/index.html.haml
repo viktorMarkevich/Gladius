@@ -12,7 +12,7 @@
     - @schools.each do |school|
       %tr
         %td= school.id
-        %td= link_to school.school_name || "Не заполненно", school_has_users_path(school)
+        %td= link_to school.school_name || "Не заполненно", school_users_path(school)
         %td= school.user_school_relations.count
         %td= link_to "Edit", edit_school_path(school)
         %td= link_to "Delete", school_path(school), :method => :DELETE
