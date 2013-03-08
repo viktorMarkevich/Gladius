@@ -1,6 +1,7 @@
 class UserSchoolRelationsController < ApplicationController
 
-  before_filter :find_school, :only => [:index]
+  before_filter :find_school, :only => [:index, :show]
+  before_filter :find_user, :only => [:show]
 
   def index
     @users = User.where(:id => @school.user_school_relations.pluck(:user_id))
