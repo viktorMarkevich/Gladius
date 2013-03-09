@@ -1,7 +1,9 @@
 class UserSchoolRelationsController < ApplicationController
 
-  before_filter :find_school, :only => [:index, :show]
-  before_filter :find_user, :only => [:show]
+  before_filter :find_school, :only => [:index, :show, :edit]
+  before_filter :find_all_schools, :only => [:new, :edit]
+  before_filter :find_user, :only => [:show, :edit, :update]
+  before_filter :find_user_school_relation, :only => [:new, :show, :edit, :update]
 
   def index
     @users = User.where(:id => @school.user_school_relations.pluck(:user_id))
@@ -9,13 +11,14 @@ class UserSchoolRelationsController < ApplicationController
 
   def new
     @user_school_relation = UserSchoolRelation.new
-    @schools = School.where(:id => current_user.user_school_relations.pluck(:school_id))
   end
 
   def show
+    i = 0
   end
 
   def edit
+    i = 0
   end
 
   def create
@@ -41,6 +44,14 @@ class UserSchoolRelationsController < ApplicationController
     #  end
   end
 
+  def update
+    if @user_school_relation.update_attributes(params[:user_school_relation])
+      redirect_to :action => 'show', :school_id => @user_school_relation.school_id,
+                  :user_id => @user_school_relation.user_id
+    else
+      render action: "edit"
+    end
+  end
   #def create_user_school_relation(user, school_id)
   #  UserSchoolRelation.create(:user_id => @user.id || user.id, :school_id => params[:user][:user_school_relations] || school_id)
   #end
@@ -91,5 +102,14 @@ class UserSchoolRelationsController < ApplicationController
 
   def find_school
     @school = School.find(params[:school_id])
+  end
+
+  def find_user_school_relation
+    @user_school_relation = UserSchoolRelation.where(:school_id => params[:school_id],
+                                                     :user_id => params[:id]).first
+  end
+
+  def find_all_schools
+    @schools = School.where(:id => current_user.user_school_relations.pluck(:school_id))
   end
 end
