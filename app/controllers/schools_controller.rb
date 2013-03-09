@@ -35,11 +35,6 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
-    @user_school_relations = UserSchoolRelation.where(:school_id => @school.id)
-    @user_school_relations.pluck(:user_id).each do |id|
-      User.find(id).update_attributes(:role => change_role?(id), :status => "fighter")
-    end
-    @user_school_relations.destroy_all
     @school.destroy
      redirect_to schools_url
   end
@@ -47,7 +42,7 @@ class SchoolsController < ApplicationController
   private
 
   def find_school
-    @school = School.find(params[:id] || params[:school_id])
+    @school = School.find(params[:id])
   end
 
 end

@@ -52,6 +52,7 @@ class UserSchoolRelationsController < ApplicationController
       render action: "edit"
     end
   end
+
   #def create_user_school_relation(user, school_id)
   #  UserSchoolRelation.create(:user_id => @user.id || user.id, :school_id => params[:user][:user_school_relations] || school_id)
   #end
@@ -62,7 +63,7 @@ class UserSchoolRelationsController < ApplicationController
 
   #def add_user_
   #  school_id = params[:user][:user_school_relations]
-  #  @user = User.new(params[:user].delete_if  {|key| key == "user_school_relations" }.update(:role => select_role ))
+  #  @user = User.new(params[:user].delete_if  {|key| key   == "user_school_relations" }.update(:role => select_role ))
   #  @user.password = @user.password_confirmation = :'123456'
   #  @contact = @user.build_contact_info
   #
@@ -94,6 +95,17 @@ class UserSchoolRelationsController < ApplicationController
   #def change_role?(id)
   #  User.where(:id => id, :role => "manager").present? ? "manager" : "fighter"
   #end
+
+  def destroy
+    @user_school_relations = UserSchoolRelation.where(:school_id => @school.id)
+    @user_school_relations.pluck(:user_id).each do |id|
+      User.find(id).update_attributes(:role => change_role?(id), :status => "fighter")
+    end
+    @user_school_relations.destroy_all
+    @school.destroy
+    redirect_to schools_url
+  end
+
   private
 
   def find_user
