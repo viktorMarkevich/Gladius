@@ -14,7 +14,7 @@
       %td=@user.birthday
     %tr
       %th Пол:
-      %td=@user.sex ? "Женский" : "Мужской"
+      %td= get_sex
     %tr
       %th Weight:
       %td=@user.weight
@@ -23,7 +23,7 @@
       %td=@user.role
     %tr
       %th Emails:
-      %td=(@user.user_contact_info('emails').blank? ? @user.email : "#{@user.email}, #{@user.user_contact_info('emails')}")
+      %td= @user.email
     %tr
       %th Sites:
       %td=@user.user_contact_info('sites')

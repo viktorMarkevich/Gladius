@@ -35,6 +35,7 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
+    UserSchoolRelation.where(:school_id => @school.id).destroy_all
     @school.destroy
      redirect_to schools_url
   end

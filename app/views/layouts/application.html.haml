@@ -54,6 +54,10 @@
                   %li= link_to "Редактировать мой профиль", edit_user_path(current_user)
                   %li= link_to "Все пользователи", users_path
                   %li= link_to "Вступить в эту школу", "#"
+          .span3
+            .well.sidebar-nav
+            - if user_signed_in?
+              = yield :invite_form
       .push
     %footer.container-fluid
       %p &copy; Company 2012

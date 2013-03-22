@@ -17,7 +17,11 @@ Gladius::Application.routes.draw do
   end
 
   resources :schools do
-    resources :users, :controller => "user_school_relations"
+    resources :users, :controller => "user_school_relations"  do
+      #collection do
+      #  post :invite_form
+      #end
+    end
   end
 end
 

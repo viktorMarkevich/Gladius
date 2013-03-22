@@ -48,27 +48,21 @@
         = f.fields_for :contact_info do |c|
           = c.fields_for :sites do |s|
             .control-group
-              = s.label :body, 'sites', :class => 'control-label'
+              = s.label :body, 'Site', :class => 'control-label'
               .controls
                 = s.text_field :body, :class => 'input-xlarge'
 
           = c.fields_for :phones do |p|
             .control-group
-              = p.label :body, 'phones', :class => 'control-label'
+              = p.label :body, 'Phone', :class => 'control-label'
               .controls
                 = p.text_field :body, :class => 'input-xlarge'
 
           = c.fields_for :skypes do |sk|
             .control-group
-              = sk.label :body, 'skypes', :class => 'control-label'
+              = sk.label :body, 'Skype', :class => 'control-label'
               .controls
                 = sk.text_field :body, :class => 'input-xlarge'
-
-          = c.fields_for :emails do |e|
-            .control-group
-              = e.label :body, 'emails', :class => 'control-label'
-              .controls
-                = e.text_field :body, :class => 'input-xlarge'
 
           .control-group
             = c.label :country, 'Country', :class => 'control-label'

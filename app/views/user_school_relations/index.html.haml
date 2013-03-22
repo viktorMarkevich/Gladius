@@ -15,6 +15,6 @@
         %td= image_tag user.avatar.url(:large)
         %td= link_to user.full_name, [@school, user]
         %td= link_to "Редактировать", [:edit, @school, user]
-        %td= link_to "Отчислить ученика", "#" #school_expelled_path(:school_id => @school.id, :id => user.id)
+        %td= link_to "Отчислить", [@school, user], :method => :delete
 
-= link_to 'Добавить нового участника школы', users_path
+= link_to 'Добавить нового участника школы', new_school_user_path
