@@ -5,11 +5,21 @@
   %tbody
     %tr
       %th Название школы:
-      %td=@school.school_name
-      %td= link_to "Принять приглашение",
+      %td= @school.school_name
+    %tr
+      %th Дата основания
+      %td= @school.date_of_foundation
+    %tr
+      %th Статус
+      %td= @school.status
+    %tr
+      %th Информация
+      %td= @school.info
+    %tr
+      %th Количество учеников
+      %td= @school.user_school_relations_count
 
 
-
-= link_to 'Edit', edit_school_path(@school)
+= link_to 'Edit', [:edit, @school]
 
 = link_to 'Back', schools_path

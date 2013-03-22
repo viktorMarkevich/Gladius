@@ -9,8 +9,19 @@
   .actions
     %fieldset
       .control-group
-        = f.label :school_name, 'Название школы', :class => 'control-label'
+        = f.label :school_name, 'Name', :class => 'control-label'
         .controls
           = f.text_field :school_name, :class => 'input-xlarge'
-
+      .control-group
+        = f.label :date_of_foundation, 'Date of foundation', :class => 'control-label'
+        .controls
+          = f.date_select(:date_of_foundation, :start_year => 1900, :order => [:day, :month, :year], :class => 'input-xlarge')
+      .control-group
+        = f.label :status, 'Status', :class => 'control-label'
+        .controls
+          = f.text_field :status, :class => 'input-xlarge'
+      .control-group
+        = f.label :info, 'Info', :class => 'control-label'
+        .controls
+          = f.text_area :info, :class => 'input-xlarge'
     = f.submit 'Save'
