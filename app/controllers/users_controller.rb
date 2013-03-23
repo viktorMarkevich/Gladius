@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :find_user, :only => [:update, :edit, :show, :destroy]
+  before_filter :find_user, :only => [:update, :edit, :show]
 
   def index
    @users = User.all
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    i = 0
     if @user.update_attributes(params[:user])
       redirect_to @user, notice: 'User was successfully updated.'
     else

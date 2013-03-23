@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :about, :birthday, :first_name, :last_name, :level, :second_name,
                   :sex, :status, :weight, :login, :avatar, :role,
-                  :user_school_relations_attributes, :contact_info_attributes
+                  :user_school_relation_attributes, :contact_info_attributes
 
   has_attached_file :avatar, :styles => { :medium => "200x250>", :thumb => "100x125>", :large => "50x63>"},
                     :default_url => '/assets/DefaultImage_:style.png'
@@ -23,10 +23,10 @@ class User < ActiveRecord::Base
   has_many :duels, :as => :fighter
   has_many :comments
   has_many :posts
-  has_many :user_school_relations
+  has_one :user_school_relation
   has_many :schools, :through => :user_school_relations
 
-  accepts_nested_attributes_for :contact_info, :user_school_relations
+  accepts_nested_attributes_for :contact_info, :user_school_relation
 
   validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
             :if => "self.login.present?"
@@ -35,10 +35,6 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{last_name} #{first_name} #{second_name}"
-  end
-
-  def user_contact_info(info)
-    contact_info.send(info).pluck(:body).join(', ')
   end
 
   protected

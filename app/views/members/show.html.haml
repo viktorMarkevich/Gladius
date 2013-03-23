@@ -18,19 +18,25 @@
       %td=@member.weight
     %tr
       %th Role:
-      %td=@member.role
+      %td=@member.user_school_relation.role
     %tr
-      %th Emails:
+      %th Level:
+      %td=@member.user_school_relation.level
+    %tr
+      %th Status:
+      %td=@member.user_school_relation.status
+    %tr
+      %th Email:
       %td= @member.email
     %tr
-      %th Sites:
-      %td=@member.user_contact_info('sites')
+      %th Site:
+      %td=@member.contact_info.site
     %tr
-      %th Skypes:
-      %td=@member.user_contact_info('skypes')
+      %th Skype:
+      %td=@member.contact_info.skype
     %tr
-      %th Phones:
-      %td=@member.user_contact_info('phones')
+      %th Phone:
+      %td=@member.contact_info.phone
     %tr
       %th Country:
       %td=@member.contact_info.country
@@ -45,5 +51,5 @@
       %td=@member.about
 
 
-= link_to 'Edit', edit_school_member_path(@member)
+= link_to 'Edit', edit_school_member_path
 = link_to 'Back', school_members_path
