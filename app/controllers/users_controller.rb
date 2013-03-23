@@ -3,10 +3,7 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:update, :edit, :show, :destroy]
 
   def index
-    #@users = User.select("users.*, CASE WHEN user_school_relations.id IS NULL THEN NULL ELSE TRUE END as school_relation")
-    #  .joins(%Q{LEFT OUTER JOIN user_school_relations ON users.id = user_school_relations.user_id})
-    #  .group("users.id, school_relation")
-    @users = User.all
+   @users = User.all
   end
 
   def show
@@ -14,6 +11,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.build_contact_info
   end
 
   def edit
@@ -21,8 +19,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+    if @user.save!
+      redirect_to users_path, notice: 'User was successfully created.'
     else
       render action: "new"
     end

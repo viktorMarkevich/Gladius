@@ -26,13 +26,13 @@
       %td= @user.email
     %tr
       %th Sites:
-      %td=@user.user_contact_info('sites')
+      %td=@user.contact_info.site
     %tr
       %th Skypes:
-      %td=@user.user_contact_info('skypes')
+      %td=@user.contact_info.skype
     %tr
       %th Phones:
-      %td=@user.user_contact_info('phones')
+      %td=@user.contact_info.phone
     %tr
       %th Country:
       %td=@user.contact_info.country

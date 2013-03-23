@@ -1,0 +1,6 @@
+%h3 New member
+
+= form_for(@member, :as => :member, :html => {:multipart => true}, :url => school_members_path, :method => :post) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
+= link_to 'Back', school_members_path

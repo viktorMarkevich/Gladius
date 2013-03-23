@@ -1,0 +1,49 @@
+%h3 These members of the school
+
+%table.table.table-striped
+  %tbody
+    %tr
+      %th ФИО:
+      %td=@member.full_name
+      %tr
+        %td= image_tag @member.avatar.url(:thumb)
+    %tr
+      %th День рождния:
+      %td=@member.birthday
+    %tr
+      %th Пол:
+      %td= @member.sex ? "Женский" : "Мужской"
+    %tr
+      %th Weight:
+      %td=@member.weight
+    %tr
+      %th Role:
+      %td=@member.role
+    %tr
+      %th Emails:
+      %td= @member.email
+    %tr
+      %th Sites:
+      %td=@member.user_contact_info('sites')
+    %tr
+      %th Skypes:
+      %td=@member.user_contact_info('skypes')
+    %tr
+      %th Phones:
+      %td=@member.user_contact_info('phones')
+    %tr
+      %th Country:
+      %td=@member.contact_info.country
+    %tr
+      %th City:
+      %td=@member.contact_info.city
+    %tr
+      %th Address:
+      %td=@member.contact_info.address
+    %tr
+      %th About:
+      %td=@member.about
+
+
+= link_to 'Edit', edit_school_member_path(@member)
+= link_to 'Back', school_members_path

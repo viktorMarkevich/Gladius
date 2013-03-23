@@ -18,7 +18,9 @@
     %tr
       %th Количество учеников
       %td= @school.user_school_relations_count
-
+    %tr
+      %th Добавить нового члена школы
+      %td= link_to "New member", new_school_member_path(@school)
 
 = link_to 'Edit', [:edit, @school]
 

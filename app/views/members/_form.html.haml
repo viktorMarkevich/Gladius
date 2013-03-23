@@ -1,0 +1,86 @@
+.form-horizontal
+
+  - if @member.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@member.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @member.errors.full_messages.each do |msg|
+          %li= msg
+
+
+  %fieldset
+
+    .control-group
+      = f.label :last_name, 'Фамилия', :class => 'control-label'
+      .controls
+        = f.text_field :last_name, :class => 'input-xlarge'
+    .control-group
+      = f.label :first_name, 'Имя', :class => 'control-label'
+      .controls
+        = f.text_field :first_name, :class => 'input-xlarge'
+    .control-group
+      = f.label :second_name, 'Отчество', :class => 'control-label'
+      .controls
+        = f.text_field :second_name, :class => 'input-xlarge'
+        = f.file_field :avatar
+    .control-group
+      = f.label :birthday, 'Birthday', :class => 'control-label'
+      .controls
+        = f.date_select(:birthday, :start_year => 1900, :order => [:day, :month, :year], :class => 'input-xlarge')
+    .controls
+      .radio
+        = f.radio_button :sex, false
+        = f.label :sex, "Мужской"
+    .controls
+      .radio
+        = f.radio_button :sex, true
+        = f.label :sex, "Женский"
+
+
+    .control-group
+      = f.label :weight, 'Weight', :class => 'control-label'
+      .controls
+        = f.text_field :weight, :class => 'input-xlarge'
+    .control-group
+      = f.label :email, 'Email', :class => 'control-label'
+      .controls
+        = f.email_field :email, :class => 'input-xlarge'
+
+    = f.fields_for :contact_info_attributes do |c|
+      = c.fields_for :sites do |s|
+        .control-group
+          = s.label :body, 'Site', :class => 'control-label'
+          .controls
+            = s.text_field :body, :class => 'input-xlarge'
+
+      = c.fields_for :phones do |p|
+        .control-group
+          = p.label :body, 'Phone', :class => 'control-label'
+          .controls
+            = p.text_field :body, :class => 'input-xlarge'
+
+      = c.fields_for :skypes do |sk|
+        .control-group
+          = sk.label :body, 'Skype', :class => 'control-label'
+          .controls
+            = sk.text_field :body, :class => 'input-xlarge'
+
+      .control-group
+        = c.label :country, 'Country', :class => 'control-label'
+        .controls
+          = c.text_field :country, :class => 'input-xlarge'
+      .control-group
+        = c.label :city, 'City', :class => 'control-label'
+        .controls
+          = c.text_field :city, :class => 'input-xlarge'
+      .control-group
+        = c.label :address, 'Address', :class => 'control-label'
+        .controls
+          = c.text_field :address, :class => 'input-xlarge'
+
+    .control-group
+      = f.label :about, 'About', :class => 'control-label'
+      .controls
+        = f.text_field :about, :class => 'input-xlarge'
+
+  = f.submit 'Save'

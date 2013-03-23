@@ -1,0 +1,16 @@
+%h3 Listing members
+
+.well
+  %table.table.table-striped.pretty
+    %tr
+      %th ID
+      %th Photo
+      %th FSL
+      %th Status
+
+    - @members.each do |member|
+      %tr
+        %td= member.id
+        %td= image_tag member.avatar.url(:large)
+        %td= link_to member.full_name, school_member_path(:id => member.id)
+        %td= "student"

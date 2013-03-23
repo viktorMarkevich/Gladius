@@ -6,6 +6,9 @@ class CreateContactInfos < ActiveRecord::Migration
       t.string :country
       t.string :city
       t.string :address
+      t.string :site
+      t.string :skype
+      t.string :phone
 
       t.timestamps
     end
