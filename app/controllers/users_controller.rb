@@ -9,24 +9,11 @@ class UsersController < ApplicationController
   def show
   end
 
-  def new
-    @user = User.new
-    @user.build_contact_info
-  end
-
   def edit
   end
 
-  def create
-    @user = User.new(params[:user])
-    if @user.save!
-      redirect_to users_path, notice: 'User was successfully created.'
-    else
-      render action: "new"
-    end
-  end
-
   def update
+    i = 0
     if @user.update_attributes(params[:user])
       redirect_to @user, notice: 'User was successfully updated.'
     else
@@ -34,12 +21,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-    redirect_to users_url
-  end
-
-  private
+ private
 
   def find_user
     @user = User.find(params[:id])

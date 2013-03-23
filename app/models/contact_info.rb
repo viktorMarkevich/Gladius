@@ -1,12 +1,5 @@
 class ContactInfo < ActiveRecord::Base
-  attr_accessible :name, :info_for_id, :info_for_type, :info_for_attributes, :sites_attributes, :phones_attributes,
-                  :skypes_attributes, :country, :address, :city
+  attr_accessible :name, :info_for_id, :info_for_type, :country, :address, :city, :site, :skype, :phone
 
   belongs_to :info_for, :polymorphic => true
-
-  has_many :phones, :dependent => :delete_all
-  has_many :skypes, :dependent => :delete_all
-  has_many :sites, :dependent => :delete_all
-
-  accepts_nested_attributes_for :info_for, :sites, :phones, :skypes
 end

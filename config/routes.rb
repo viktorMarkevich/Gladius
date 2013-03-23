@@ -8,7 +8,7 @@ Gladius::Application.routes.draw do
 
   root :to => 'users#index'
 
-  resources :users
+  resources :users, :except => [:new, :create, :destroy]
 
   resources :send_mailers  do
     collection do
