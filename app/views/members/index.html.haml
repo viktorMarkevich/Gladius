@@ -14,5 +14,5 @@
         %td= member.id
         %td= image_tag member.avatar.url(:large)
         %td= link_to member.full_name, school_member_path(:id => member.id)#, :method => :get
-        %td= member.user_school_relation.status
+        %td= member.user_school_relations.first.status
         %td= link_to 'Deduct', school_member_path(:id => member.id), :method => :delete

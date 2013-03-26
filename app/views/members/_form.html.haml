@@ -36,7 +36,7 @@
         = f.radio_button :sex, true
         = f.label :sex, "Женский"
 
-    = f.fields_for :user_school_relation do |usr|
+    = f.fields_for :user_school_relations_attributes do |usr|
       .control-group
         = usr.label :role, 'Роль', :class => 'control-label'
         .controls

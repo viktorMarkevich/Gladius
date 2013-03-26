@@ -13,15 +13,17 @@ class MembersController < ApplicationController
   def new
     @member = User.new()
     @member.build_contact_info
-    @member.build_user_school_relation
+    @member.user_school_relations.build
   end
 
   def edit
   end
 
   def create
-    params[:member][:user_school_relation_attributes].merge!(:school_id => params[:school_id])
+    #params[:member][:user_school_relations_attributes].merge!(:school_id => params[:school_id])
     member = User.new(params[:member])
+    #member.build_contact_info
+    #member.user_school_relations.build
     member.password = member.password_confirmation = :'123456'
     if member.save!
       redirect_to :school_members
