@@ -1,9 +1,10 @@
 class MembersController < ApplicationController
 
-  before_filter :find_user_of_school, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_user_of_school, :only => [:show, :edit, :update]
 
   def index
     @members = current_school.users
+    @school =  current_school
   end
 
   def show
@@ -38,7 +39,7 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member.destroy
+    UserSchoolRelation.where(:school_id => params[:school_id], :user_id => params[:id]).first.destroy
     redirect_to school_members_path, notice: 'Student was expelled!'
   end
 

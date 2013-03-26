@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 (0..2).each do |i|
-  @user = User.create(email:"user#{i}@ma.ru", :password => "123456", :password_confirmation => "123456",
-                         role: "manager").build_contact_info
+  user = User.new(email:"user#{i}@ma.ru", :password => "123456",
+                  :password_confirmation => "123456", :role => "manager")
+  user.build_contact_info
+  user.save
 end
