@@ -14,6 +14,7 @@ class MembersController < ApplicationController
     @member = User.new()
     @member.build_contact_info
     @member.user_school_relations.build(school_id: params[:school_id])
+    i=0
   end
 
   def edit

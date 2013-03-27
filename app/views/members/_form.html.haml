@@ -37,6 +37,7 @@
         = f.label :sex, "Женский"
 
     = f.fields_for :user_school_relations do |usr|
+      = usr.hidden_field :school_id
       .control-group
         = usr.label :role, 'Роль', :class => 'control-label'
         .controls
