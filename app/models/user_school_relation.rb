@@ -1,6 +1,6 @@
 class UserSchoolRelation < ActiveRecord::Base
-  attr_accessible :school_id, :user_id, :role, :status, :level
-  belongs_to :user
+  attr_accessible :school_id, :member_id, :role, :status, :level
+  belongs_to :member, :class_name => "User"
   belongs_to :school
 
   ROLES = %w(student moderator manager admin)

@@ -19,7 +19,7 @@ class SchoolsController < ApplicationController
   def create
     @school = School.new(params[:school])
     if @school.save
-      UserSchoolRelation.create(:user_id => current_user.id, :school_id => @school.id, :role => "admin" )
+      UserSchoolRelation.create(:member_id => current_user.id, :school_id => @school.id, :role => "admin" )
       redirect_to @school, notice: 'School was successfully created.'
     else
       render action: "new"
