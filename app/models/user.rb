@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :duels, :as => :fighter
   has_many :comments
   has_many :posts
-  has_many :user_school_relations
+  has_many :user_school_relations, :foreign_key => "member_id"
   has_many :schools, :through => :user_school_relations
 
   accepts_nested_attributes_for :contact_info, :user_school_relations
