@@ -4,7 +4,6 @@ class MembersController < ApplicationController
 
   def index
     @members = current_school.members
-    @school =  current_school
   end
 
   def show
