@@ -3,7 +3,11 @@ class SchoolsController < ApplicationController
   before_filter :find_school, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @schools = School.all
+    @schools = if params[:user_id].present?
+                 User.find(params[:user_id]).schools
+               else
+                 School.all
+               end
   end
 
   def new

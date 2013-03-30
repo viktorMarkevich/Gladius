@@ -17,7 +17,7 @@
       %td= @school.info
     %tr
       %th Количество учеников
-      %td= @school.user_school_relations_count
+      %td= @school.user_school_relations.count
     %tr
       %th Добавить нового члена школы
       %td= link_to "New member", new_school_member_path(@school)
