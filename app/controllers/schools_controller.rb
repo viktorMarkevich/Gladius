@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
 
-  before_filter :find_school, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_school, :only => [:show, :edit, :update]
 
   def index
     @schools = if params[:user_id].present?
@@ -39,9 +39,8 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
-    UserSchoolRelation.where(:school_id => @school.id).destroy_all
-    @school.destroy
-     redirect_to :back
+    School.find_by_creator_id(params[:user_id]).destroy
+    redirect_to :back
   end
 
   private
