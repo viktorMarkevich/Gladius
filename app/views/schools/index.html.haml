@@ -12,7 +12,8 @@
     - @schools.each do |school|
       %tr
         %td= school.id
-        %td= link_to school.school_name, school
+        %td= link_to school.name, user_school_path(:user_id => current_user.id, :id => school.id)
         %td= link_to school.user_school_relations.count, school_members_path(school), :method => :get
-        %td= link_to "Edit", [:edit, school]
-        %td= link_to "Delete", school_path(school), :method => :delete
+        %td= link_to "Edit", edit_user_school_path(:user_id => current_user.id, :id => school.id)
+        %td= link_to "Delete", user_school_path(:user_id => current_user.id, :id => school.id),
+                                                :confirm => "Are you sure?", :method => :delete

@@ -18,7 +18,7 @@ Gladius::Application.routes.draw do
   #  end
   #end
 
-  resources :schools do
+  resources :schools, :only => [:index, :show] do
     resources :members
    end
 end

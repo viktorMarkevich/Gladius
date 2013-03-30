@@ -1,5 +1,5 @@
 class School < ActiveRecord::Base
-  attr_accessible :date_of_foundation, :info, :school_name, :status, :contact_info_attributes
+  attr_accessible :date_of_foundation, :info, :name, :status, :creator_id, :contact_info_attributes
 
   belongs_to :fighting_art
 
@@ -8,6 +8,7 @@ class School < ActiveRecord::Base
   has_many :honors, :as => :item
   has_many :user_school_relations
   has_many :members, :through => :user_school_relations, :class_name => "User"
+  belongs_to :creator, :class_name => "User"
 
   accepts_nested_attributes_for :contact_info
 end

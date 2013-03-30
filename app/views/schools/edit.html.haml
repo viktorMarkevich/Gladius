@@ -1,6 +1,7 @@
 %h1 Editing school
 
-= render 'form'
+= form_for(@school, :html => {:multipart => true}, :url => user_school_path, :method => :put) do |f|
+  = render :partial => 'form', :locals => { :f => f }
 
 = link_to 'Show', @school
 \|

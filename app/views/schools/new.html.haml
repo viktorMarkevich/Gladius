@@ -1,5 +1,6 @@
 %h1 New School
 
-= render 'form'
+= form_for(@school, :html => {:multipart => true}, :url => user_schools_path, :method => :post) do |f|
+  = render :partial => 'form', :locals => { :f => f }
 
 = link_to 'Back', :back

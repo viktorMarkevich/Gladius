@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :user_school_relations, :foreign_key => "member_id"
   has_many :schools, :through => :user_school_relations
+  has_many :schools, :foreign_key => "creator_id"
 
   accepts_nested_attributes_for :contact_info, :user_school_relations
 

@@ -21,18 +21,18 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    @school = School.new(params[:school])
-    if @school.save
-      UserSchoolRelation.create(:member_id => current_user.id, :school_id => @school.id, :role => "admin" )
-      redirect_to @school, notice: 'School was successfully created.'
+    school = School.new(params[:school].merge(:creator_id => params[:user_id]))
+    if school.save!
+      UserSchoolRelation.create(:member_id => params[:user_id], :school_id => school.id, :role => "admin" )
+      redirect_to user_school_path(params[:user_id], school.id), :action => :show
     else
-      render action: "new"
+      render new_user_school_path
     end
   end
 
   def update
       if @school.update_attributes(params[:school])
-        redirect_to @school, notice: 'School was successfully updated.'
+        redirect_to user_school_path(params[:user_id], @school.id), :action => :show
       else
         render action: "edit"
       end
@@ -41,7 +41,7 @@ class SchoolsController < ApplicationController
   def destroy
     UserSchoolRelation.where(:school_id => @school.id).destroy_all
     @school.destroy
-     redirect_to schools_url
+     redirect_to :back
   end
 
   private
