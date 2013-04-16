@@ -1,7 +1,8 @@
 class Group < ActiveRecord::Base
-  attr_accessible :info, :name, :status
+  attr_accessible :info, :name, :status, :school_id, :timetable
 
-  has_many :timetables
-  has_many :halls, :through => :timetables
+  belongs_to :school
+
   has_many :users
 end
+                                  ````
