@@ -1,7 +1,7 @@
-class CreateUserSchoolRelations < ActiveRecord::Migration
+class CreateMembers < ActiveRecord::Migration
   def change
-    create_table :user_school_relations do |t|
-      t.integer :member_id
+    create_table :members do |t|
+      t.integer :user_id
       t.integer :school_id
       t.integer :level,             :default => 0
       t.string :status,             :default => "student"
