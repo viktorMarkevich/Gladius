@@ -20,6 +20,6 @@ Gladius::Application.routes.draw do
 
   resources :schools, :only => [:index, :show] do
     resources :members
-   end
+  end
 end
 

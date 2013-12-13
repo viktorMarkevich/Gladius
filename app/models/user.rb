@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :about, :birthday, :first_name, :last_name, :level, :second_name,
-                  :sex, :status, :weight, :login, :avatar, :role, :user_school_relations_attributes,
-                   :contact_info_attributes
+                  :sex, :status, :weight, :login, :contact_info_attributes, :avatar,
+                  :role
 
   has_attached_file :avatar, :styles => { :medium => "200x250>", :thumb => "100x125>", :large => "50x63>"},
                     :default_url => '/assets/DefaultImage_:style.png'
@@ -17,25 +17,34 @@ class User < ActiveRecord::Base
   belongs_to :group
   belongs_to :list_registration
   belongs_to :team
+  #belongs_to :school, :counter_cache => true
 
   has_one  :contact_info, :as => :info_for
   has_many :honors, :as => :item
   has_many :duels, :as => :fighter
   has_many :comments
   has_many :posts
-  has_many :user_school_relations, :foreign_key => "member_id"
-  has_many :schools, :through => :user_school_relations
-  has_many :schools, :foreign_key => "creator_id"
+  #has_many :user_school_relations
 
-  accepts_nested_attributes_for :contact_info, :user_school_relations
+  accepts_nested_attributes_for :contact_info
 
   validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
             :if => "self.login.present?"
+  validates :role, :presence => true
+  validates :status, :presence => true
 
   before_create :create_login
 
+  ROLES = %w(pupil moderator manager admin fighter)
+  STATUS = %w(student sifu trainer fighter)
+  LEVEL = %w(0 1 2 3 4 5 6) # это частный случай
+
   def full_name
     "#{last_name} #{first_name} #{second_name}"
+  end
+
+  def user_contact_info(info)
+    contact_info.send(info).pluck(:body).join(', ')
   end
 
   protected
