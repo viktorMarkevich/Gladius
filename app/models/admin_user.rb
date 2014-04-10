@@ -6,6 +6,6 @@ class AdminUser < ActiveRecord::Base
          :trackable, :validatable, :authentication_keys => [ :name ]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
+  #attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   # attr_accessible :title, :body
 end

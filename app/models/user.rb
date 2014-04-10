@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [ :login ]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :about, :birthday, :first_name, :last_name, :level, :second_name,
-                  :sex, :status, :weight, :login, :avatar, :role, :user_school_relations_attributes,
-                   :contact_info_attributes
+  #attr_accessible :lockers_attributes
+  #attr_accessible :email, :password, :password_confirmation, :remember_me,
+  #                :about, :birthday, :first_name, :last_name, :level, :second_name,
+  #                :sex, :status, :weight, :login, :avatar, :role, :user_school_relations_attributes,
+  #                 :contact_info_attributes
 
   has_attached_file :avatar, :styles => { :medium => "200x250>", :thumb => "100x125>", :large => "50x63>"},
                     :default_url => '/assets/DefaultImage_:style.png'
@@ -29,9 +30,9 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :contact_info, :user_school_relations
 
-  validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
-            :if => "self.login.present?"
-
+  #validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
+  #          :if => "self.login.present?"
+  validates :login, :presence => true, :uniqueness => true, :if => "self.login.present?"
   before_create :create_login
 
   def full_name

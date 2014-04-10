@@ -24,6 +24,9 @@
 /public/system/*
 
 /test/*
+/.ruby-version
+/.ruby-gemset
+/Gemfile.lock
 
 # Ignore bundler config
 /.bundle
