@@ -4,8 +4,7 @@ Gladius::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  # devise_for :users, :controllers => {:registrations => "users/registrations", :sessions => "users/sessions"}
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users
 
   root :to => 'users#index'
 
@@ -13,14 +12,8 @@ Gladius::Application.routes.draw do
     resources :schools
   end
 
-  #resources :send_mailers  do
-  #  collection do
-  #    get :invite
-  #  end
-  #end
-
   resources :schools, :only => [:index, :show] do
     resources :members
-   end
+  end
 end
 

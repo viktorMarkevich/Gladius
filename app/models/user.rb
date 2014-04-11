@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :contact_info, :user_school_relations
 
-  #validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
+  # validates :login, :presence => true, :uniqueness => true, :format => {:with => /^[a[\S]z]+$/i, :message => "should not have spaces"},
   #          :if => "self.login.present?"
   validates :login, :presence => true, :uniqueness => true, :if => "self.login.present?"
   before_create :create_login
