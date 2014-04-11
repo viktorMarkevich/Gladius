@@ -21,7 +21,7 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    school = School.new(params[:school].merge(:creator_id => params[:user_id]))
+    school = School.new(school_params.merge(:creator_id => params[:user_id]))
     if school.save!
       UserSchoolRelation.create(:member_id => params[:user_id], :school_id => school.id, :role => "admin" )
       redirect_to user_school_path(params[:user_id], school.id), :action => :show
@@ -31,7 +31,7 @@ class SchoolsController < ApplicationController
   end
 
   def update
-      if @school.update_attributes(params[:school])
+      if @school.update_attributes(school_params)
         redirect_to user_school_path(params[:user_id], @school.id), :action => :show
       else
         render action: "edit"
@@ -47,6 +47,10 @@ class SchoolsController < ApplicationController
 
   def find_school
     @school = School.find(params[:id])
+  end
+
+  def school_params
+    params.require(:school).permit(:date_of_foundation, :info, :name, :status, :creator_id, :contact_info_attributes)
   end
 
 end

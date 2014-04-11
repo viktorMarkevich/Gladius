@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => { :medium => "200x250>", :thumb => "100x125>", :large => "50x63>"},
                     :default_url => '/assets/DefaultImage_:style.png'
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   belongs_to :group
   belongs_to :list_registration

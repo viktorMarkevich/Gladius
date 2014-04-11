@@ -1,5 +1,4 @@
 class School < ActiveRecord::Base
-  #attr_accessible :date_of_foundation, :info, :name, :status, :creator_id, :contact_info_attributes
 
   belongs_to :fighting_art
   belongs_to :creator, :class_name => "User"
