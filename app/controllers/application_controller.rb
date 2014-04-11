@@ -10,10 +10,9 @@ class ApplicationController < ActionController::Base
     edit_user_registration_path(resource) if resource.sign_in_count <= 1
   end
 
- #  method to sanitized params for devise user sign up
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :email) }
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :email, :password, :password_confirmation, :password, :remember_me) }
+  #   devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
   end
 
 end

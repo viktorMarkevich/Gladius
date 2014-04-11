@@ -1,8 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
-  def new
-    super
-  end
+  before_filter :configure_permitted_parameters
 
   def create
     super
@@ -21,7 +18,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def update
-    super
+  protected
+
+  # my custom fields are :name, :heard_how
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:login, :email, :password, :password_confirmation, :password, :remember_me)
+    end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:login, :email, :password, :password_confirmation, :password, :remember_me, :current_password)
+    end
   end
+
 end

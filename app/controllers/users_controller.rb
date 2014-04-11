@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes!(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
       render action: "edit"
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def person_params
+  def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :remember_me,
                     :about, :birthday, :first_name, :last_name, :level, :second_name,
                     :sex, :status, :weight, :login, :avatar, :role, :user_school_relations_attributes,

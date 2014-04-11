@@ -119,8 +119,6 @@ GEM
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.4)
-    protected_attributes (1.0.7)
-      activemodel (>= 4.0.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -187,19 +185,18 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  coffee-rails (~> 4.0.1)
-  coffee-script-source (~> 1.7.0)
-  devise (~> 3.2.3)
-  haml-rails (~> 0.5.3)
-  jquery-rails (~> 3.1.0)
-  less-rails (~> 2.4.2)
-  paperclip (~> 4.1.1)
-  pg (~> 0.17.1)
-  protected_attributes
-  rails (~> 4.0.3)
+  coffee-rails
+  coffee-script-source
+  devise
+  haml-rails
+  jquery-rails
+  less-rails
+  paperclip
+  pg
+  rails (~> 4.0.4)
   rake
-  rmagick (~> 2.13.2)
-  sass-rails (~> 4.0.1)
-  therubyracer (~> 0.12.1)
-  twitter-bootstrap-rails (~> 2.2.8)
-  uglifier (>= 2.4.0)
+  rmagick
+  sass-rails
+  therubyracer
+  twitter-bootstrap-rails
+  uglifier
