@@ -42,7 +42,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.float :weight
       t.text :about
       t.string :role,               :default => "fighter"
-      t.add_attachment :avatar
 
       t.timestamps
     end
