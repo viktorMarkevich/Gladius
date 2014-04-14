@@ -34,7 +34,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string :authentication_token
 
       t.string :login
-      t.string :email
       t.string :first_name
       t.string :second_name
       t.string :last_name
@@ -42,10 +41,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :sex,               :default => false
       t.float :weight
       t.text :about
-      t.integer :group_id
-      t.integer :list_registration_id
-      t.integer :team_id
       t.string :role,               :default => "fighter"
+      t.add_attachment :avatar
 
       t.timestamps
     end
