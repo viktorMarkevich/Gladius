@@ -12,6 +12,7 @@ gem 'activeadmin', :github => 'gregbell/active_admin'
 gem 'paperclip'
 gem 'rmagick'
 gem 'coffee-script-source'
+gem 'pg'
 
 group :assets do
   gem 'sass-rails'
@@ -20,5 +21,13 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'pg'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
+group :test do
+  gem 'shoulda-matchers'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+end
+
