@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414111233) do
+ActiveRecord::Schema.define(version: 20140414141507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,19 +31,6 @@ ActiveRecord::Schema.define(version: 20140414111233) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
-  create_table "admin_notes", force: true do |t|
-    t.string   "resource_id",     null: false
-    t.string   "resource_type",   null: false
-    t.integer  "admin_user_id"
-    t.string   "admin_user_type"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admin_notes", ["admin_user_type", "admin_user_id"], name: "index_admin_notes_on_admin_user_type_and_admin_user_id", using: :btree
-  add_index "admin_notes", ["resource_type", "resource_id"], name: "index_admin_notes_on_resource_type_and_resource_id", using: :btree
-
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -62,15 +49,6 @@ ActiveRecord::Schema.define(version: 20140414111233) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "comments", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "contact_infos", force: true do |t|
     t.string   "name"
     t.integer  "info_for_id"
@@ -85,88 +63,7 @@ ActiveRecord::Schema.define(version: 20140414111233) do
     t.datetime "updated_at"
   end
 
-  create_table "duels", force: true do |t|
-    t.string   "title"
-    t.integer  "item_left_id"
-    t.string   "item_left_type"
-    t.integer  "item_right_id"
-    t.string   "item_right_type"
-    t.string   "type"
-    t.string   "winner"
-    t.integer  "nomination_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "fighting_arts", force: true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.text     "about"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "groups", force: true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.string   "status"
-    t.text     "info"
-    t.integer  "hall_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "school_id"
-    t.text     "timetable"
-  end
-
-  create_table "honors", force: true do |t|
-    t.string   "name"
-    t.integer  "item_id"
-    t.string   "item_type"
-    t.integer  "nomination_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "list_registrations", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "nominations", force: true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.integer  "tournament_id"
-    t.integer  "type_nomination_id"
-    t.integer  "params_nomination_id"
-    t.integer  "list_registration_id"
-    t.time     "start_time_nomination"
-    t.time     "end_time_nomination"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "params_nominations", force: true do |t|
-    t.string   "sex"
-    t.float    "min_weight"
-    t.float    "max_weight"
-    t.integer  "min_age"
-    t.integer  "max_age"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "protocols", force: true do |t|
-    t.string   "title"
-    t.integer  "duel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -176,56 +73,7 @@ ActiveRecord::Schema.define(version: 20140414111233) do
     t.datetime "date_of_foundation"
     t.string   "status"
     t.text     "info"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_school_relations_count", default: 0
     t.integer  "creator_id"
-  end
-
-  create_table "string_protocols", force: true do |t|
-    t.string   "title"
-    t.float    "value"
-    t.integer  "type_string_protocol_id"
-    t.integer  "protocol_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "teams", force: true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tournaments", force: true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.string   "status"
-    t.string   "status_competition"
-    t.datetime "start_tournament"
-    t.datetime "end_tournament"
-    t.text     "info"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "type_nominations", force: true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "type_parts", force: true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "type_string_protocols", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -241,7 +89,7 @@ ActiveRecord::Schema.define(version: 20140414111233) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email"
+    t.string   "email",                  default: "",        null: false
     t.string   "encrypted_password",     default: "",        null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -259,9 +107,6 @@ ActiveRecord::Schema.define(version: 20140414111233) do
     t.boolean  "sex",                    default: false
     t.float    "weight"
     t.text     "about"
-    t.integer  "group_id"
-    t.integer  "list_registration_id"
-    t.integer  "team_id"
     t.string   "role",                   default: "fighter"
     t.datetime "created_at"
     t.datetime "updated_at"
