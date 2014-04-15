@@ -8,11 +8,9 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   has_one  :contact_info, :as => :info_for
-  has_many :user_school_relations, :foreign_key => "member_id"
-  has_many :schools, :through => :user_school_relations
   has_many :schools, :foreign_key => "creator_id"
 
-  accepts_nested_attributes_for :contact_info, :user_school_relations
+  accepts_nested_attributes_for :contact_info
 
   validates :login, :presence => true, :uniqueness => true, :format => {:with => /[a[\S]z]/i, :message => "should not have spaces"},
            :if => "self.login.present?"
