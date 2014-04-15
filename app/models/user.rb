@@ -7,15 +7,7 @@ class User < ActiveRecord::Base
                     :default_url => '/assets/DefaultImage_:style.png'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  belongs_to :group
-  belongs_to :list_registration
-  belongs_to :team
-
   has_one  :contact_info, :as => :info_for
-  has_many :honors, :as => :item
-  has_many :duels, :as => :fighter
-  has_many :comments
-  has_many :posts
   has_many :user_school_relations, :foreign_key => "member_id"
   has_many :schools, :through => :user_school_relations
   has_many :schools, :foreign_key => "creator_id"

@@ -1,3 +1,7 @@
+ActiveAdmin::BaseController.class_eval do
+  skip_before_filter :authenticate_user!
+end
+
 ActiveAdmin.setup do |config|
 
   # == Site Title
