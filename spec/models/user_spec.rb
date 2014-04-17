@@ -1,4 +1,10 @@
 require 'spec_helper'
+require 'paperclip/matchers'
+
+RSpec.configure do |config|
+  config.include Paperclip::Shoulda::Matchers
+  config.include FactoryGirl::Syntax::Methods
+end
 
 describe User do
   context 'check column' do
@@ -35,6 +41,33 @@ describe User do
     it { should validate_presence_of(:role) }
   end
 
+  context 'check nested attributes' do
+    it { should accept_nested_attributes_for(:contact_info) }
+  end
+
+  context 'check nested attributes' do
+    it { should have_attached_file(:avatar) }
+    it { should validate_attachment_content_type(:avatar).
+                     allowing('image/png', 'image/gif').
+                     rejecting('text/plain', 'text/xml') }
+    it { should validate_attachment_size(:avatar).
+                    less_than(2.megabytes) }
+  end
+
+  context 'check methods of model' do
+    before do
+      @user = FactoryGirl.build(:user)
+    end
+
+    it "before_create :create_login" do
+      @user.send(:create_login).should == 'foo1'
+      @user.save
+    end
+
+    it "check to full_name method" do
+      @user.full_name.should == 'A B'
+    end
+  end
 end
 
 
