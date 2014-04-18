@@ -55,17 +55,17 @@ describe User do
   end
 
   context 'check methods of model' do
-    before do
-      @user = FactoryGirl.build(:user)
-    end
 
     it "before_create :create_login" do
-      @user.send(:create_login).should == 'foo1'
-      @user.save
+      user = FactoryGirl.build(:user, email: 'login@mail.ru')
+      user.send(:create_login).should == 'login'
+      user.save
     end
 
     it "check to full_name method" do
-      @user.full_name.should == 'A B'
+      user = FactoryGirl.build(:user)
+      user.send(:create_login)
+      user.full_name.should == 'A B'
     end
   end
 end
