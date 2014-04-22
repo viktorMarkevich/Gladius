@@ -31,3 +31,5 @@
 # Ignore database config file
 /config/database.yml
 /config/environments/development.rb
+
+/coverage

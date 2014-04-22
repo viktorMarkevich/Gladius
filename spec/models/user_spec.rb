@@ -29,7 +29,6 @@ describe User do
   end
 
   context 'check validate' do
-    it { should validate_presence_of(:login) }
     it { should validate_uniqueness_of(:login) }
     it { should allow_value('dfsfgfd').for(:login) }
     it { should_not allow_value('asd fjkl').for(:login).with_message('should not have spaces') }
@@ -37,7 +36,6 @@ describe User do
     it { should validate_uniqueness_of(:email) }
     it { should allow_value('example@ex.re').for(:email) }
     it { should_not allow_value('exampl eex.re').for(:email).with_message('the wrong format') }
-    it { should validate_presence_of(:birthday) }
     it { should validate_presence_of(:role) }
   end
 
@@ -45,7 +43,7 @@ describe User do
     it { should accept_nested_attributes_for(:contact_info) }
   end
 
-  context 'check nested attributes' do
+  context 'check attached' do
     it { should have_attached_file(:avatar) }
     it { should validate_attachment_content_type(:avatar).
                      allowing('image/png', 'image/gif').
@@ -55,7 +53,6 @@ describe User do
   end
 
   context 'check methods of model' do
-
     it "before_create :create_login" do
       user = FactoryGirl.build(:user, email: 'login@mail.ru')
       user.send(:create_login).should == 'login'

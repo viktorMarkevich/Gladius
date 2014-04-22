@@ -13,8 +13,7 @@ describe UsersController, :type => :controller do
     end
 
     it 'check methods of model' do
-      user = FactoryGirl.create(:user)
-      put :update, id: user, user_params: FactoryGirl.attributes_for(:user)
+      put :update, id: @user, user_params: FactoryGirl.attributes_for(:user)
       should permit( :email, :password, :password_confirmation, :remember_me,
                              :about, :birthday, :first_name, :last_name, :level, :second_name,
                              :sex, :status, :weight, :login, :avatar, :role, :user_school_relations_attributes,
