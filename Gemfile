@@ -25,7 +25,7 @@ group :test, :development do
   gem 'factory_girl_rails'
 end
 group :test do
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'shoulda-callback-matchers'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'

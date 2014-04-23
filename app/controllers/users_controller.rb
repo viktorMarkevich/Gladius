@@ -28,8 +28,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :remember_me,
-                    :about, :birthday, :first_name, :last_name, :level, :second_name,
-                    :sex, :status, :weight, :login, :avatar, :role, :user_school_relations_attributes,
-                    contact_info_attributes: [:site, :phone, :skype, :country, :city, :address])
+                                 :about, :birthday, :first_name, :last_name, :second_name,
+                                 :sex, :weight, :login, :avatar, :role, user_school_relations_attributes:  [ :member_id,
+                                 :school_id, :level, :status, :role],
+                                 contact_info_attributes: [:site, :phone, :skype, :country, :city, :address])
   end
 end

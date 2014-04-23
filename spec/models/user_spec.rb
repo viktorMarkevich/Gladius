@@ -1,10 +1,4 @@
 require 'spec_helper'
-require 'paperclip/matchers'
-
-RSpec.configure do |config|
-  config.include Paperclip::Shoulda::Matchers
-  config.include FactoryGirl::Syntax::Methods
-end
 
 describe User do
   context 'check column' do
@@ -60,7 +54,7 @@ describe User do
     end
 
     it "check to full_name method" do
-      user = FactoryGirl.build(:user)
+      user = FactoryGirl.build(:user, email: 'login@mail.ru')
       user.send(:create_login)
       user.full_name.should == 'A B'
     end
