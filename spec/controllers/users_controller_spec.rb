@@ -59,23 +59,4 @@ describe UsersController do
       @user.email.should == 'login@example.com'
       puts @user.email
     end
-
-    # describe 'PUT #update' do
-    #
-    #   before(:each) {
-    #     User.stub(:find).and_return(@user)
-    #   }
-    #
-    #   it 'should redirect to the user path on succesful save' do
-    #     @user.should_receive(:update_attributes).and_return true
-    #     put :update, id: @user.id, user: FactoryGirl.attributes_for(:user, email: 'test@example.com')
-    #     response.should redirect_to edit_user_path(@user)
-    #   end
-    #
-    #   it 'should render the edit screen again with errors if the model does not save' do
-    #     @user.should_receive(:update_attributes).and_return false
-    #     put :update, id: @user.id, user: FactoryGirl.attributes_for(:user, email: 'test@example.com')
-    #     response.should render_template 'edit'
-    #   end
-    # end
 end
