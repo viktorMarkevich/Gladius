@@ -10,4 +10,8 @@ FactoryGirl.define do
     password_confirmation { password }
     remember_me false
   end
+
+  factory :invalid_user, parent: :user do |f|
+    f.first_name nil
+  end
 end

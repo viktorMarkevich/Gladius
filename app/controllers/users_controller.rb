@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.update_attributes!(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
-      render action: "edit"
+      render action: :edit
     end
   end
 
@@ -29,8 +29,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :remember_me,
                                  :about, :birthday, :first_name, :last_name, :second_name,
-                                 :sex, :weight, :login, :avatar, :role, user_school_relations_attributes:  [ :member_id,
-                                 :school_id, :level, :status, :role],
+                                 :sex, :weight, :login, :avatar, :role,
                                  contact_info_attributes: [:site, :phone, :skype, :country, :city, :address])
   end
 end

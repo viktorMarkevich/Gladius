@@ -50,14 +50,4 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include Paperclip::Shoulda::Matchers
-
-  # def auth_for(type, &block)
-  #   before :each do
-  #     @request.env["devise.mapping"] = :user
-  #     @user = FactoryGirl.create(type)
-  #     sign_in @user
-  #   end
-  # end
-
-
 end
