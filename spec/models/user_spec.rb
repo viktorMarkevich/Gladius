@@ -53,9 +53,15 @@ describe User do
       user.save
     end
 
+    it "before_create :create_login when login are taken" do
+      user_new = FactoryGirl.build(:user, email: 'login@mail_new.ru')
+      FactoryGirl.create(:user, email: 'login@mail.ru')
+      user_new.send(:create_login).should == 'login@mail_new.ru'
+      user_new.save
+    end
+
     it "check to full_name method" do
       user = FactoryGirl.build(:user, email: 'login@mail.ru')
-      user.send(:create_login)
       user.full_name.should == 'A B'
     end
   end
