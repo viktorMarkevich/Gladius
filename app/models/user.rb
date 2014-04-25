@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness:true, format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/,
                                                                 message: 'the wrong format' }, if: 'self.email.present?'
   validates :role, presence: true
-  validates :weight, format: /\A[0-9.]*\z/i
+  validates_format_of :weight, with: /\A\d{0,3}.\d\z/i, message: 'should not have characters strings.'
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_attachment_size :avatar, less_than: 2.megabytes

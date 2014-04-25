@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20140424134030) do
     t.string   "last_name"
     t.date     "birthday"
     t.boolean  "sex",                    default: false
-    t.float    "weight"
+    t.text     "weight"
     t.text     "about"
     t.string   "role",                   default: "fighter"
     t.datetime "created_at"

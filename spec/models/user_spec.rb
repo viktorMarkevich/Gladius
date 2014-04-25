@@ -31,7 +31,7 @@ describe User do
     it { should allow_value('example@ex.re').for(:email) }
     it { should validate_presence_of(:role) }
     it { should allow_value(11.1).for(:weight) }
-    # it { should_not allow_value('dfgdg').for(:weight) }
+    it { should_not allow_value('dfgdg').for(:weight).with_message('should not have characters strings.') }
   end
 
   context 'check nested attributes' do
