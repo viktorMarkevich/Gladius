@@ -50,4 +50,5 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include Paperclip::Shoulda::Matchers
+  config.include Warden::Test::Helpers
 end
