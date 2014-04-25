@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 describe UsersController do
 
     before :each do
@@ -66,6 +65,12 @@ describe UsersController do
           put :update, id: @user, user: FactoryGirl.attributes_for(:user)
           response.should redirect_to @user
         end
+
+        # it 'redirects to the updated user' do
+        #   put :update, id: @user.id, user: @user.attributes
+        #   @user.should_receive(:update_attributes).and_return false
+        #   response.should render_template(:edit)
+        # end
       end
 
       context 'invalid attributes' do
