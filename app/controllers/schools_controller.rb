@@ -31,7 +31,7 @@ class SchoolsController < ApplicationController
   end
 
   def update
-      if @school.update_attributes(school_params)
+      if @school.update(school_params)
         redirect_to user_school_path(params[:user_id], @school.id), :action => :show
       else
         render action: "edit"
