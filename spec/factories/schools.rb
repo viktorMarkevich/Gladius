@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :school do
-    name 'wing-chun school'
+    sequence(:name) { |n| "wing-chun school #-#{n}"}
     date_of_foundation '2014-12-01'
     status 'open'
     info 'some text'

@@ -18,4 +18,11 @@ describe School do
   context 'check nested attributes' do
     it { should accept_nested_attributes_for(:contact_info) }
   end
+
+  context 'check validation' do
+    it { should validate_uniqueness_of(:name) }
+    it { should validate_presence_of(:name) }
+    it { should ensure_length_of(:name).is_at_least(10).is_at_most(40).with_message('to long.') }
+    it { should validate_presence_of(:creator_id) }
+  end
 end

@@ -9,15 +9,18 @@ describe SchoolsController do
 
   context 'first part' do
     before :each do
-      @school = FactoryGirl.create(:school)
+      @school = FactoryGirl.build(:school)
       @school.update_attributes(creator_id: @user.id)
     end
 
     it 'update permit' do
-      hash = FactoryGirl.attributes_for(:school)
-      hash[:creator_id] = @user.id
-      put :update, user_id: @user, id: @school, school: hash
+      put :update, user_id: @user, id: @school, school: FactoryGirl.attributes_for(:school).merge!( creator_id: @user.id )
       assigns(:school).should eq(@school)
+    end
+
+    it 'render to edit' do
+      put :update, user_id: @user, id: @school, school: FactoryGirl.attributes_for(:school)
+      response.should render_template(:edit)
     end
 
     context 'GET #index' do
@@ -51,7 +54,7 @@ describe SchoolsController do
       end
 
       it 'renders the #show view' do
-        get :show, id: FactoryGirl.create(:school)
+        get :show, id: @school
         response.should render_template :show
       end
     end
