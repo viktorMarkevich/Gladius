@@ -22,7 +22,7 @@ describe School do
   context 'check validation' do
     it { should validate_uniqueness_of(:name) }
     it { should validate_presence_of(:name) }
-    it { should ensure_length_of(:name).is_at_least(10).is_at_most(40).with_message('to long.') }
+    it { should ensure_length_of(:name).is_at_least(5).is_at_most(40).with_message('The name must be at least 5 characters and no more than 40 characters!') }
     it { should validate_presence_of(:creator_id) }
   end
 end

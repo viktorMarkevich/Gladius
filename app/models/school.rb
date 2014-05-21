@@ -12,5 +12,5 @@ class School < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :creator_id
   validates_uniqueness_of :name
-  validates_length_of :name,  in: 10..40, message: 'to long.'
+  validates_length_of :name, in: 5..40, message: 'The name must be at least 5 characters and no more than 40 characters!'
 end
