@@ -1,12 +1,16 @@
 require 'spec_helper'
 describe SchoolsController do
 
+  before :each do
+    request.env['devise.mapping'] = Devise.mappings[:user]
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
+
+  context 'first part' do
     before :each do
-      request.env['devise.mapping'] = Devise.mappings[:user]
-      @user = FactoryGirl.create(:user)
       @school = FactoryGirl.create(:school)
       @school.update_attributes(creator_id: @user.id)
-      sign_in @user
     end
 
     it 'update permit' do
@@ -52,15 +56,17 @@ describe SchoolsController do
       end
     end
 
-      it "assigns form params[:school] to the new school" do
+    context 'GET #new' do
+      it 'assigns form params[:school] to the new school' do
         @school = FactoryGirl.build :school
         get :new, user_id: @user.id
         assigns(:school).should_not be_nil
       end
 
-      it "renders the #new view" do
+      it 'renders the #new view' do
         get :new, user_id: @user.id
         response.should render_template :new
       end
-
+    end
+  end
 end

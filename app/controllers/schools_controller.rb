@@ -21,10 +21,10 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    school = School.new(school_params.merge(:creator_id => params[:user_id]))
-    if school.save!
-      UserSchoolRelation.create(:member_id => params[:user_id], :school_id => school.id, :role => "admin" )
-      redirect_to user_school_path(params[:user_id], school.id), :action => :show
+    @school = School.new(school_params.merge(:creator_id => params[:user_id]))
+    if @school.save!
+      UserSchoolRelation.create(:member_id => params[:user_id], :school_id => @school.id, :role => "admin" )
+      redirect_to user_school_path(params[:user_id], @school.id), :action => :show, :notice => 'Article saved successfully!'
     else
       render new_user_school_path
     end
