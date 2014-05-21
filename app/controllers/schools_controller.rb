@@ -34,13 +34,14 @@ class SchoolsController < ApplicationController
       if @school.update(school_params)
         redirect_to user_school_path(params[:user_id], @school.id), :action => :show
       else
-        render action: "edit"
+        render action: 'edit'
       end
   end
 
   def destroy
-    School.find_by_creator_id(params[:user_id]).destroy
-    redirect_to :back
+    school = School.where(creator_id: params[:user_id], id: params[:id]).first
+    school.destroy unless school.nil?
+    render action: 'index'
   end
 
   private

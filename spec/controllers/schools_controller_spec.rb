@@ -71,5 +71,12 @@ describe SchoolsController do
         response.should render_template :new
       end
     end
+
+    context 'DELETE #destroy' do
+      it 'renders after #destroy' do
+        delete :destroy, user_id: @user.id, id: @school.id
+        response.should render_template :index
+      end
+    end
   end
 end
