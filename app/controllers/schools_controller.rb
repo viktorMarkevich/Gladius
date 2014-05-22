@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
 
-  before_filter :find_school, :only => [:show, :edit, :update]
+  before_filter :find_school, only: [:show, :edit, :update]
 
   def index
     @schools = if params[:user_id].present?
@@ -21,10 +21,10 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    @school = School.new(school_params.merge(:creator_id => params[:user_id]))
+    @school = School.new( school_params.merge( creator_id: params[:user_id] ) )
     if @school.save
-      UserSchoolRelation.create(:member_id => params[:user_id], :school_id => @school.id, :role => "admin" )
-      redirect_to user_school_path id: @school, :notice => 'School saved successfully!'
+      UserSchoolRelation.create( member_id: params[:user_id], school_id: @school.id, role: 'admin' )
+      redirect_to user_school_path( id: @school ), notice: 'School saved successfully!'
     else
       render action: 'new'
     end
@@ -32,14 +32,14 @@ class SchoolsController < ApplicationController
 
   def update
       if @school.update(school_params)
-        redirect_to user_school_path(params[:user_id], @school.id), :action => :show
+        redirect_to user_school_path( params[:user_id], @school.id ), action: :show
       else
         render action: 'edit'
       end
   end
 
   def destroy
-    school = School.where(creator_id: params[:user_id], id: params[:id]).first
+    school = School.where( creator_id: params[:user_id], id: params[:id] ).first
     school.destroy unless school.nil?
     render action: 'index'
   end
