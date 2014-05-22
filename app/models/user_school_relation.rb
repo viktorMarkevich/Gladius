@@ -1,6 +1,6 @@
 class UserSchoolRelation < ActiveRecord::Base
 
-  belongs_to :member, :class_name => "User"
+  belongs_to :member, class_name: Member
   belongs_to :school
 
   ROLES = %w(student moderator manager admin)

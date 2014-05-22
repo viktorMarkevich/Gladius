@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
 
-  before_filter :find_user_of_school, :only => [:show, :edit, :update]
+  before_filter :find_member, only: [:show, :edit, :update]
 
   def index
     @members = current_school.members
@@ -10,16 +10,16 @@ class MembersController < ApplicationController
   end
 
   def new
-    @member = User.new()
+    @member = Member.new()
     @member.build_contact_info
-    @member.user_school_relations.build(:school_id => params[:school_id])
+    @member.user_school_relations.build( school_id: params[:school_id] )
   end
 
   def edit
   end
 
   def create
-    member = User.new(params[:member])
+    member = Member.new(member_params)
     member.password = member.password_confirmation = :'123456'
     if member.save!
       redirect_to :school_members
@@ -29,7 +29,7 @@ class MembersController < ApplicationController
   end
 
   def update
-    if @member.update_attributes(params[:member])
+    if @member.update_attributes(member_params)
       redirect_to :school_member, notice: 'User was successfully updated.'
     else
       render action: "edit"
@@ -37,7 +37,7 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    UserSchoolRelation.where(:school_id => params[:school_id], :member_id => params[:id]).first.destroy
+    UserSchoolRelation.where( school_id: params[:school_id], member_id: params[:id]).first.destroy
     redirect_to school_members_path, notice: 'Student was expelled!'
   end
 
@@ -47,7 +47,14 @@ class MembersController < ApplicationController
     School.find(params[:school_id])
   end
 
-  def find_user_of_school
+  def find_member
     @member = current_school.members.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(:email, :password, :password_confirmation, :remember_me,
+                                 :about, :birthday, :first_name, :last_name, :second_name,
+                                 :sex, :weight, :login, :avatar, :role,
+                                 contact_info_attributes: [:site, :phone, :skype, :country, :city, :address])
   end
 end
