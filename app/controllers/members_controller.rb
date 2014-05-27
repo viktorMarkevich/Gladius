@@ -12,7 +12,7 @@ class MembersController < ApplicationController
   def new
     @member = Member.new()
     @member.build_contact_info
-    @member.user_school_relations.build( school_id: params[:school_id] )
+    @member.build_user_school_relation( school_id: params[:school_id] )
   end
 
   def edit
@@ -55,6 +55,7 @@ class MembersController < ApplicationController
     params.require(:member).permit(:email, :password, :password_confirmation, :remember_me,
                                  :about, :birthday, :first_name, :last_name, :second_name,
                                  :sex, :weight, :login, :avatar, :role,
-                                 contact_info_attributes: [:site, :phone, :skype, :country, :city, :address])
+                                 contact_info_attributes: [:site, :phone, :skype, :country, :city, :address],
+                                 user_school_relation_attributes: [:member_id, :school_id, :level, :status, :role])
   end
 end
