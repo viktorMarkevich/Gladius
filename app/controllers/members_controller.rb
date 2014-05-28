@@ -22,6 +22,8 @@ class MembersController < ApplicationController
     member = Member.new(member_params)
     member.password = member.password_confirmation = :'123456'
     if member.save!
+      rel = member.create_user_school_relation(member_params[:user_school_relation_attributes])
+      rel.save!
       redirect_to :school_members
     else
       render :back
