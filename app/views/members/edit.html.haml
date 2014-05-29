@@ -3,6 +3,6 @@
 = form_for(@member, :as => :member, :url => school_member_path, :method => :put) do |f|
   = render :partial => 'form', :locals => { :f => f }
 
-= link_to 'Show', @member
+= link_to 'Show', school_member_path(@school, @member)
 \|
 = link_to 'Back', school_members_path

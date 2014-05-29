@@ -1,9 +1,10 @@
 class MembersController < ApplicationController
 
   before_filter :find_member, only: [:show, :edit, :update]
+  before_filter :current_school, only: [:index, :edit]
 
   def index
-    @members = current_school.members
+    @members = @school.members
   end
 
   def show
@@ -21,9 +22,9 @@ class MembersController < ApplicationController
   def create
     member = Member.new(member_params)
     member.password = member.password_confirmation = :'123456'
-    if member.save!
-      rel = member.create_user_school_relation(member_params[:user_school_relation_attributes])
-      rel.save!
+    if member.save
+      rel = member.build_user_school_relation(member_params[:user_school_relation_attributes])
+      rel.save
       redirect_to :school_members
     else
       render :back
@@ -46,7 +47,7 @@ class MembersController < ApplicationController
   private
 
   def current_school
-    School.find(params[:school_id])
+    @school = School.find(params[:school_id])
   end
 
   def find_member
