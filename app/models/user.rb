@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: '200x250>', thumb: '100x125>', large: '50x63>'},
                     default_url: '/assets/DefaultImage_:style.png'
 
-  validates :login, presence: true, uniqueness: true, format: { with: /\A[a-z0-9_-]*\z/i, message: 'should not have spaces' },
+  validates :login, uniqueness: true, format: { with: /\A[a-z0-9_-]*\z/i, message: 'should not have spaces' },
                                                                 unless: :check_kind?
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
                                                                 message: 'the wrong format' }

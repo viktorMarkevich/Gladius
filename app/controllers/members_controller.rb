@@ -23,11 +23,9 @@ class MembersController < ApplicationController
     member = Member.new(member_params)
     member.password = member.password_confirmation = :'123456'
     if member.save
-      rel = member.build_user_school_relation(member_params[:user_school_relation_attributes])
-      rel.save
       redirect_to :school_members
     else
-      render :back
+      render sction: 'new'
     end
   end
 
@@ -35,7 +33,7 @@ class MembersController < ApplicationController
     if @member.update_attributes(member_params)
       redirect_to :school_member, notice: 'User was successfully updated.'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 
@@ -51,14 +49,13 @@ class MembersController < ApplicationController
   end
 
   def find_member
-    @member = current_school.members.find(params[:id])
+    @member = current_school.members.includes(:user_school_relation).find(params[:id])
   end
 
   def member_params
-    params.require(:member).permit(:email, :password, :password_confirmation, :remember_me,
-                                 :about, :birthday, :first_name, :last_name, :second_name,
-                                 :sex, :weight, :login, :avatar, :role,
-                                 contact_info_attributes: [:site, :phone, :skype, :country, :city, :address],
-                                 user_school_relation_attributes: [:member_id, :school_id, :level, :status, :role])
+    params.require(:member).permit( :about, :email, :birthday, :first_name, :last_name, :second_name, :sex, :weight,
+                                    :avatar, :role, :kind, contact_info_attributes: [ :site, :phone, :skype, :country,
+                                    :city, :address ], user_school_relation_attributes: [ :member_id, :school_id,
+                                    :level, :status, :role ] )
   end
 end
