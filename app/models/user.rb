@@ -3,13 +3,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [ :login ]
 
-  has_one  :contact_info, as: :info_for
-  has_many :schools, foreign_key: 'creator_id'
+  has_one :image, dependent: destroy
+  has_one  :contact_info, as: :info_for, dependent: destroy
+  has_many :schools, foreign_key: 'creator_id', dependent: destroy
 
-  accepts_nested_attributes_for :contact_info
-
-  has_attached_file :avatar, styles: { medium: '200x250>', thumb: '100x125>', large: '50x63>'},
-                    default_url: '/assets/DefaultImage_:style.png'
+  accepts_nested_attributes_for :contact_info, update_only: true
+  accepts_nested_attributes_for :image
 
   validates :login, uniqueness: true, format: { with: /\A[a-z0-9_-]*\z/i, message: 'should not have spaces' },
                                                                 unless: :check_kind?
@@ -17,9 +16,6 @@ class User < ActiveRecord::Base
                                                                 message: 'the wrong format' }
   validates :role, presence: true
   validates_format_of :weight, with: /\A\d{0,3}.\d\z/i, message: 'should not have characters strings.'
-
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  validates_attachment_size :avatar, less_than: 2.megabytes
 
   before_create :create_login
 

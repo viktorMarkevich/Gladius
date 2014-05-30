@@ -13,6 +13,7 @@ class MembersController < ApplicationController
   def new
     @member = Member.new()
     @member.build_contact_info
+    @member.build_image
     @member.build_user_school_relation( school_id: params[:school_id] )
   end
 
@@ -49,13 +50,13 @@ class MembersController < ApplicationController
   end
 
   def find_member
-    @member = current_school.members.includes(:user_school_relation).find(params[:id])
+    @member = current_school.members.find(params[:id])
   end
 
   def member_params
     params.require(:member).permit( :about, :email, :birthday, :first_name, :last_name, :second_name, :sex, :weight,
                                     :avatar, :role, :kind, contact_info_attributes: [ :site, :phone, :skype, :country,
                                     :city, :address ], user_school_relation_attributes: [ :member_id, :school_id,
-                                    :level, :status, :role ] )
+                                    :level, :status, :role ], image_attributes: [:avatar] )
   end
 end

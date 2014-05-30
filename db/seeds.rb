@@ -10,5 +10,6 @@
   user = User.new( email:"user#{i}@ma.ru", password: '123456', weight: 82.1,
                   password_confirmation: '123456', role: 'manager' )
   user.build_contact_info
+  user.build_image
   user.save!
 end
