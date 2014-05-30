@@ -11,9 +11,10 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: '200x250>', thumb: '100x125>', large: '50x63>'},
                     default_url: '/assets/DefaultImage_:style.png'
 
-  validates :login, uniqueness: true, format: { with: /\A[a-z0-9_-]*\z/i, message: 'should not have spaces' }
-  validates :email, presence: true, uniqueness:true, format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/,
-                                                                message: 'the wrong format' }, if: 'self.email.present?'
+  validates :login, presence: true, uniqueness: true, format: { with: /\A[a-z0-9_-]*\z/i, message: 'should not have spaces' },
+                                                                unless: :check_kind?
+  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
+                                                                message: 'the wrong format' }
   validates :role, presence: true
   validates_format_of :weight, with: /\A\d{0,3}.\d\z/i, message: 'should not have characters strings.'
 
@@ -24,6 +25,10 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def check_kind?
+    self.kind == 'Member'
   end
 
   protected

@@ -24,6 +24,7 @@ describe User do
 
   context 'check validate' do
     it { should validate_uniqueness_of(:login) }
+    it { should validate_presence_of(:login) }
     it { should allow_value('dfsfgfd').for(:login) }
     it { should_not allow_value('asd fjkl').for(:login).with_message('should not have spaces') }
     it { should validate_presence_of(:email) }

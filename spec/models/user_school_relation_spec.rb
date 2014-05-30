@@ -9,7 +9,7 @@ describe UserSchoolRelation do
     it { should have_db_column(:role).with_options( default:'student' ) }
   end
   context 'check associations' do
-    it { should belong_to(:member).class_name('User') }
+    it { should belong_to(:member) }
     it { should belong_to(:school) }
   end
 end

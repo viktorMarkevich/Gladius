@@ -7,6 +7,7 @@ FactoryGirl.define do
     birthday '2014-12-01'
     weight 80.4
     sequence(:email) { |n| "foo#{n}@example.com" }
+    sequence(:login) { |n| "foo#{n}" }
     password 'example'
     password_confirmation { password }
     remember_me false
