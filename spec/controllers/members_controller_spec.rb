@@ -89,4 +89,17 @@ describe MembersController do
       response.should render_template(:index)
     end
   end
+
+  context 'GET #new' do
+    it 'assigns form params[:member] to the new member' do
+      @member = FactoryGirl.build(:member)
+      get :new, school_id: @school
+      assigns(:member).should_not be_nil
+    end
+
+    it 'renders the #new view' do
+      get :new, school_id: @school
+      response.should render_template :new
+    end
+  end
 end
