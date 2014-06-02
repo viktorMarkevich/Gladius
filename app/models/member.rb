@@ -1,6 +1,6 @@
 class Member < User
 
-  has_one :image
+  has_one :image, foreign_key: 'user_id'
   has_one :user_school_relation, dependent: :destroy
   has_one :school, through: :user_school_relation
 
