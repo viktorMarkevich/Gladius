@@ -16,18 +16,18 @@ describe MembersController do
       put :update, school_id: @school.id, id: @member.id, member: hash
       assigns(:member).should eq(@member)
     end
-    #
-    #context 'GET #index' do
-    #  it 'assigns all users to @users' do
-    #    get :index
-    #    expect(assigns(:users)).to eq([@user])
-    #  end
-    #
-    #  it 'renders the #index view' do
-    #    get :index
-    #    response.should render_template(:index)
-    #  end
-    #end
+
+    context 'GET #index' do
+    it 'assigns all users to @members' do
+       get :index, school_id: @school.id
+       expect(assigns(:members)).to eq([@member])
+    end
+
+    it 'renders the #index view' do
+       get :index, school_id: @school.id
+       response.should render_template(:index)
+    end
+    end
     #
     #context 'GET #show' do
     #  it 'assigns the requested user to @user' do
