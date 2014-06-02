@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [ :login ]
 
-  has_one :image, dependent: destroy
-  has_one  :contact_info, as: :info_for, dependent: destroy
-  has_many :schools, foreign_key: 'creator_id', dependent: destroy
+  has_one :image, dependent: :destroy
+  has_one  :contact_info, as: :info_for, dependent: :destroy
+  has_many :schools, foreign_key: 'creator_id', dependent: :destroy
 
   accepts_nested_attributes_for :contact_info, update_only: true
   accepts_nested_attributes_for :image

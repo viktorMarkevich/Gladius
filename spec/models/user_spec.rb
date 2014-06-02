@@ -19,6 +19,7 @@ describe User do
   end
   context 'check associations' do
     it { should have_one(:contact_info) }
+    it { should have_one(:image).dependent(:destroy) }
     it { should have_many(:schools).with_foreign_key('creator_id') }
   end
 
@@ -36,15 +37,6 @@ describe User do
 
   context 'check nested attributes' do
     it { should accept_nested_attributes_for(:contact_info) }
-  end
-
-  context 'check attached' do
-    it { should have_attached_file(:avatar) }
-    it { should validate_attachment_content_type(:avatar).
-                     allowing('image/png', 'image/gif').
-                     rejecting('text/plain', 'text/xml') }
-    it { should validate_attachment_size(:avatar).
-                    less_than(2.megabytes) }
   end
 
   context 'check methods of model' do
