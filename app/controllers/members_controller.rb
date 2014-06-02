@@ -40,7 +40,7 @@ class MembersController < ApplicationController
 
   def destroy
     UserSchoolRelation.where( school_id: params[:school_id], member_id: params[:id]).first.destroy
-    redirect_to school_members_path, notice: 'Student was expelled!'
+    render action: 'index', notice: 'Student was expelled!'
   end
 
   private

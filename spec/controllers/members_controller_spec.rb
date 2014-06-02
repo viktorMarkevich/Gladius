@@ -82,4 +82,11 @@ describe MembersController do
         end
       end
     end
+
+    context 'DELETE #destroy' do
+      it 'renders after #destroy' do
+        delete :destroy, school_id: @school.id, id: @member.id
+        response.should render_template(:index)
+      end
+    end
 end
