@@ -7,9 +7,9 @@ class Member < User
   accepts_nested_attributes_for :user_school_relation, update_only: true
   accepts_nested_attributes_for :image
 
-  after_create :update_kind
+  after_create :member?
 
-  def update_kind
+  def member?
     self.kind = 'Member'
     self.save
   end
