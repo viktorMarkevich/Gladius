@@ -1,17 +1,21 @@
 require 'spec_helper'
 describe MembersController do
 
-    #before :each do
-    #  request.env['devise.mapping'] = Devise.mappings[:user]
-    #  @user = FactoryGirl.create(:user)
-    #  sign_in @user
-    #end
-    #
-    #it 'update permit' do
-    #  hash = FactoryGirl.attributes_for(:user)
-    #  put :update, id: @user, user: hash
-    #  assigns(:user).should eq(@user)
-    #end
+    before :each do
+      request.env['devise.mapping'] = Devise.mappings[:user]
+      @user = FactoryGirl.create(:user)
+      @member = FactoryGirl.create(:member)
+      @school = FactoryGirl.create(:school, creator_id: @user.id)
+      rel = FactoryGirl.build(:user_school_relation, school_id: @school.id, member_id: @member.id)
+      rel.save
+      sign_in @user
+    end
+
+    it 'update permit' do
+      hash = FactoryGirl.attributes_for(:member)
+      put :update, school_id: @school.id, id: @member.id, member: hash
+      assigns(:member).should eq(@member)
+    end
     #
     #context 'GET #index' do
     #  it 'assigns all users to @users' do

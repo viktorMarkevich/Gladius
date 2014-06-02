@@ -14,7 +14,7 @@ describe Member do
 
   context 'check methods of model' do
     it 'after_create :member?' do
-      member = FactoryGirl.build(:member)
+      member = FactoryGirl.build(:invalid_member)
       member.kind.should == nil
       member.save
       member.send(:member?)
