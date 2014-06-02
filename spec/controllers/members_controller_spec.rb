@@ -11,35 +11,37 @@ describe MembersController do
       sign_in @user
     end
 
-    it 'update permit' do
-      hash = FactoryGirl.attributes_for(:member)
-      put :update, school_id: @school.id, id: @member.id, member: hash
-      assigns(:member).should eq(@member)
+    context 'permit' do
+      it 'update permit' do
+        hash = FactoryGirl.attributes_for(:member)
+        put :update, school_id: @school, id: @member, member: hash
+        assigns(:member).should eq(@member)
+      end
     end
 
     context 'GET #index' do
-    it 'assigns all users to @members' do
-       get :index, school_id: @school.id
-       expect(assigns(:members)).to eq([@member])
+      it 'assigns all users to @members' do
+         get :index, school_id: @school
+         expect(assigns(:members)).to eq([@member])
+      end
+
+      it 'renders the #index view' do
+         get :index, school_id: @school
+         response.should render_template(:index)
+      end
     end
 
-    it 'renders the #index view' do
-       get :index, school_id: @school.id
-       response.should render_template(:index)
+    context 'GET #show' do
+      it 'assigns the requested user to @member' do
+         get :show, school_id: @school, id: @member
+         assigns(:member).should eq(@member)
+      end
+
+      it 'renders the #show view' do
+         get :show, school_id: @school, id: @member
+         response.should render_template :show
+      end
     end
-    end
-    #
-    #context 'GET #show' do
-    #  it 'assigns the requested user to @user' do
-    #    get :show, id: @user
-    #    assigns(:user).should eq(@user)
-    #  end
-    #
-    #  it 'renders the #show view' do
-    #    get :show, id: FactoryGirl.create(:user)
-    #    response.should render_template :show
-    #  end
-    #end
     #
     #context 'GET #edit' do
     #  it 'assigns the requested user to @user' do
