@@ -42,19 +42,19 @@ describe MembersController do
          response.should render_template :show
       end
     end
-    #
-    #context 'GET #edit' do
-    #  it 'assigns the requested user to @user' do
-    #    get :edit, id: @user
-    #    assigns(:user).should eq(@user)
-    #  end
-    #
-    #  it 'renders the #edit view' do
-    #    get :edit, id: FactoryGirl.create(:user)
-    #    response.should render_template :edit
-    #  end
-    #end
-    #
+
+    context 'GET #edit' do
+      it 'assigns the requested user to @member' do
+         get :edit, school_id: @school, id: @member
+         assigns(:member).should eq(@member)
+      end
+
+      it 'renders the #edit view' do
+         get :edit, school_id: @school, id: @member
+         response.should render_template :edit
+      end
+    end
+
     #describe 'PUT update' do
     #  context 'valid attributes' do
     #    it 'located the requested @user' do
