@@ -40,7 +40,7 @@ class SchoolsController < ApplicationController
 
   def destroy
     school = School.where( creator_id: params[:user_id], id: params[:id] ).first
-    school.destroy unless school.nil?
+    school.destroy
     render action: 'index'
   end
 

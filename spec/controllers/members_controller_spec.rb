@@ -11,14 +11,6 @@ describe MembersController do
       sign_in @user
     end
 
-    context 'permit' do
-      it 'update permit' do
-        hash = FactoryGirl.attributes_for(:member)
-        put :update, school_id: @school, id: @member, member: hash
-        assigns(:member).should eq(@member)
-      end
-    end
-
     context 'GET #index' do
       it 'assigns all users to @members' do
          get :index, school_id: @school
@@ -55,39 +47,39 @@ describe MembersController do
       end
     end
 
-    #describe 'PUT update' do
-    #  context 'valid attributes' do
-    #    it 'located the requested @user' do
-    #      put :update, id: @user, user: FactoryGirl.attributes_for(:user)
-    #      assigns(:user).should eq(@user)
-    #    end
-    #    it 'changes @users attributes' do
-    #      put :update, id: @user, user: FactoryGirl.attributes_for(:user, first_name: 'Larry', last_name: 'Smith')
-    #      @user.reload
-    #      @user.first_name.should eq('Larry')
-    #      @user.last_name.should eq('Smith')
-    #    end
-    #    it 'redirects to the updated user' do
-    #      put :update, id: @user, user: FactoryGirl.attributes_for(:user)
-    #      response.should redirect_to @user
-    #    end
-    #
-    #    it 'redirects to the updated user' do
-    #      put :update, id: @user.id, user: FactoryGirl.attributes_for(:invalid_user)
-    #      response.should render_template(:edit)
-    #    end
-    #  end
-    #
-    #  context 'invalid attributes' do
-    #    it 'locates the requested @user' do
-    #      put :update, id: @user, user: FactoryGirl.attributes_for(:invalid_user)
-    #      assigns(:user).should eq(@user)
-    #    end
-    #    it 'does not change @users attributes' do
-    #      put :update, id: @user, user: FactoryGirl.attributes_for(:user, first_name: 'Larry', last_name: 'Smith')
-    #      @user.reload @user.first_name.should_not eq('Larry')
-    #      @user.last_name.should eq('Smith')
-    #    end
-    #  end
-    #end
+    describe 'PUT update' do
+      context 'valid attributes' do
+         it 'located the requested @member' do
+           put :update, school_id: @school, id: @member, member: FactoryGirl.attributes_for(:member)
+           assigns(:member).should eq(@member)
+         end
+         it 'changes @member attributes' do
+           put :update, school_id: @school, id: @member, member: FactoryGirl.attributes_for(:member, first_name: 'Larry', last_name: 'Smith')
+           @member.reload
+           @member.first_name.should eq('Larry')
+           @member.last_name.should eq('Smith')
+         end
+         it 'redirects to the updated member' do
+           put :update, school_id: @school, id: @member, member: FactoryGirl.attributes_for(:member)
+           response.should redirect_to(school_id: @school.id, id: @member.id)
+         end
+
+         it 'redirects to the updated member' do
+           put :update, school_id: @school, id: @member, member: FactoryGirl.attributes_for(:invalid_member, email: nil)
+           response.should render_template(:edit)
+         end
+      end
+
+      context 'invalid attributes' do
+        it 'locates the requested @member' do
+          put :update, school_id: @school, id: @member, member: FactoryGirl.attributes_for(:invalid_member, email: nil)
+          assigns(:member).should eq(@member)
+        end
+        it 'does not change @members attributes' do
+          put :update, school_id: @school, id: @member, member: FactoryGirl.attributes_for(:member, first_name: 'Larry', last_name: 'Smith')
+          @member.reload @user.first_name.should_not eq('Larry')
+          @member.last_name.should eq('Smith')
+        end
+      end
+    end
 end
