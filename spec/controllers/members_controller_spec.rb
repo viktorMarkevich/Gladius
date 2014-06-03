@@ -23,7 +23,7 @@ describe MembersController do
 
       it 'renders the #index view' do
          get :index, school_id: @school
-         response.should render_template(:index)
+         response.should render_template :index
       end
     end
 
@@ -70,7 +70,7 @@ describe MembersController do
 
          it 'redirects to the updated member' do
            put :update, school_id: @school, id: @member, member: FactoryGirl.attributes_for(:invalid_member)
-           response.should render_template(:edit)
+           response.should render_template :edit
          end
       end
 
@@ -90,7 +90,7 @@ describe MembersController do
     context 'DELETE #destroy' do
       it 'renders after #destroy' do
         delete :destroy, school_id: @school.id, id: @member.id
-        response.should render_template(:index)
+        response.should render_template :index
       end
     end
 
@@ -112,12 +112,12 @@ describe MembersController do
     context '@create method' do
       it 'should return true for save obj' do
         post :create, school_id: @school, member: FactoryGirl.attributes_for(:member)
-        expect(assigns(:member)).to eq(Member.last)
+        assigns(:member).should eq(Member.last)
       end
 
       it 'should render template new' do
         post :create, school_id: @school, member: FactoryGirl.attributes_for(:invalid_member)
-        response.should render_template(:new)
+        response.should render_template :new
       end
     end
   end
