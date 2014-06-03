@@ -24,7 +24,7 @@ class MembersController < ApplicationController
     member = Member.new(member_params)
     member.password = member.password_confirmation = :'123456'
     if member.save
-      redirect_to :school_members
+      redirect_to school_members_path(school_id: params[:school_id])
     else
       render sction: 'new'
     end

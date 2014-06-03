@@ -7,5 +7,6 @@ FactoryGirl.define do
 
   factory :invalid_member, parent: :user, class: Member do
     kind nil
+    email nil
   end
 end
