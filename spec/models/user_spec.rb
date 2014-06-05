@@ -21,6 +21,7 @@ describe User do
     it { should have_one(:contact_info) }
     it { should have_one(:image).dependent(:destroy) }
     it { should have_many(:schools).with_foreign_key('creator_id') }
+    it { should have_many(:articles).with_foreign_key('author_id').dependent(:destroy) }
   end
 
   context 'check validate' do

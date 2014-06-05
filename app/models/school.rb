@@ -6,6 +6,7 @@ class School < ActiveRecord::Base
   has_one :contact_info, as: :info_for
   has_many :user_school_relations, dependent: :destroy
   has_many :members, through: :user_school_relations
+  has_many :articles, dependent: :destroy
 
   accepts_nested_attributes_for :contact_info
 

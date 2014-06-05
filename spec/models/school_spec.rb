@@ -13,6 +13,7 @@ describe School do
     it { should have_one(:contact_info) }
     it { should have_many(:user_school_relations).dependent(:destroy) }
     it { should have_many(:members).through(:user_school_relations) }
+    it { should have_many(:articles).dependent(:destroy) }
   end
 
   context 'check nested attributes' do

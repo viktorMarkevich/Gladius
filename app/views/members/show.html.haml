@@ -6,7 +6,7 @@
       %th ФИО:
       %td=@member.full_name
       %tr
-        %td= image_tag @member.avatar.url(:thumb)
+        %td= image_tag @member.image.avatar.url(:thumb)
     %tr
       %th День рождния:
       %td=@member.birthday
