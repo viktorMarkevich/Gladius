@@ -23,7 +23,8 @@ describe Article do
   context 'check validate' do
     it { should validate_presence_of(:title) }
     it { should ensure_length_of(:title).is_at_least(5).is_at_most(140).with_message('The name must be at least 5 characters and no more than 140 characters!') }
-    it { should validate_uniqueness_of(:school_id).scoped_to(:author_id) }
+    it { should validate_presence_of(:school_id) }
+    it { should validate_presence_of(:author_id) }
   end
 end
 
