@@ -22,6 +22,6 @@
       %th Добавить нового члена школы
       %td= link_to 'New member', new_school_member_path(@school)
 
-= link_to 'Edit', edit_user_school_path(params[:user_id], @school)
+= link_to 'Edit', edit_user_school_path(@user, @school)
 
 = link_to 'Back', :back

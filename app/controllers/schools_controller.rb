@@ -15,6 +15,7 @@ class SchoolsController < ApplicationController
   end
 
   def show
+    @user = @school.creator
   end
 
   def edit
