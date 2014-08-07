@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [ :login ]
 
   has_one :image, dependent: :destroy
