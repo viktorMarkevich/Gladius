@@ -43,9 +43,10 @@
           .span9
             %ul.breadcrumb
             %ul.nav.nav-tabs
-              %li{class: "#{'active' if current_page?(new_user_school_path(current_user.id))}"}= link_to "Создать школу", new_user_school_path(:user_id => current_user.id)
-              %li{class: "#{'active' if current_page?(schools_path)}"}= link_to "Все школы", schools_path
-              %li{class: "#{'active' if current_page?(edit_user_path(current_user))}"}= link_to "Редактировать мой профиль", edit_user_path(current_user)
+              - if current_user
+                %li{class: "#{'active' if current_page?(new_user_school_path(current_user.id))}"}= link_to "Создать школу", new_user_school_path(:user_id => current_user.id)
+                %li{class: "#{'active' if current_page?(schools_path)}"}= link_to "Все школы", schools_path
+                %li{class: "#{'active' if current_page?(edit_user_path(current_user))}"}= link_to "Редактировать мой профиль", edit_user_path(current_user)
             = flash_alerts
             = yield
           .span3
