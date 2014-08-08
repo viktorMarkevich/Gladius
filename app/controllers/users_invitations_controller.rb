@@ -18,4 +18,10 @@ class UsersInvitationsController < Devise::InvitationsController
       respond_with_navigational(resource){ render :edit, :layout => false }
     end
   end
+
+  def resource_params
+    params.require(:user).permit(:invitation_token, :password, :password_confirmation)
+  end
+  private :resource_params
+
 end

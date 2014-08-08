@@ -1,23 +1,28 @@
 ActiveAdmin.register User do
 
-
-  action_item do
-    link_to 'Invite New User', new_user_invitation_path
+  # permit_params :first_name, :last_name, :email
+  permit_params do
+    params = [:first_name, :last_name, :email]
+    params
   end
 
-  collection_action :new_invitation do
+  action_item do
+    link_to 'Invite New User', new_invitation_admin_users_path
+  end
+
+  collection_action :new_invitation, method: :get  do
     @user = User.new
   end
 
   collection_action :send_invitation, :method => :post do
-    @user = User.invite!(params[:user], current_user)
+    @user = User.invite!(permitted_params[:user], current_admin_user)
     if @user.errors.empty?
       flash[:success] = "User has been successfully invited."
       redirect_to admin_users_path
     else
       messages = @user.errors.full_messages.map { |msg| msg }.join
       flash[:error] = "Error: " + messages
-      redirect_to new_user_invitation_path
+      redirect_to new_invitation_admin_users_path
     end
   end
 end
