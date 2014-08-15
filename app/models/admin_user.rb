@@ -1,6 +1,7 @@
 class AdminUser < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable
+  include DeviseInvitable::Inviter
 end

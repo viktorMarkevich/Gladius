@@ -13,7 +13,7 @@ class UsersInvitationsController < Devise::InvitationsController
       set_flash_message :notice, flash_message
       sign_in(resource_name, resource)
 
-      redirect_to '/profile', :alert => "Welcome! Please fill out your profile and upload a headshot."
+      redirect_to '/edit', :alert => "Welcome! Please fill out your profile and upload a headshot."
     else
       respond_with_navigational(resource){ render :edit, :layout => false }
     end

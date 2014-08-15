@@ -16,7 +16,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) do |u|
       u.permit(:login, :email, :password, :password_confirmation, :remember_me)
     end
-
   end
-
 end

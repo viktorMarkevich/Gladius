@@ -2,7 +2,7 @@ Gladius::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, :controllers => { :invitations => 'users_invitations' }
+  devise_for :users, :controllers => { :invitations => 'users_invitations', :registrations => 'users/registrations' }
 
   root :to => 'users#index'
 
