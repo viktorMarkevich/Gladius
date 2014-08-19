@@ -17,7 +17,8 @@ FactoryGirl.define do
     f.first_name nil
     f.last_name nil
     f.birthday nil
-    f.weight '80.4er'
+    f.email '80.4er'
+    # f.weight '80.4er'
     f.password nil
     f.password_confirmation nil
     f.remember_me nil

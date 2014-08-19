@@ -4,6 +4,8 @@ end
 
 ActiveAdmin.setup do |config|
 
+  config.skip_before_filter :authenticate_user!
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -136,7 +138,6 @@ ActiveAdmin.setup do |config|
   # Enable and disable Batch Actions
   #
   config.batch_actions = true
-
 
   # == Controller Filters
   #

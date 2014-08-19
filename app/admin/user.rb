@@ -15,7 +15,7 @@ ActiveAdmin.register User do
   end
 
   collection_action :send_invitation, :method => :post do
-    @user = User.invite!(permitted_params[:user], current_admin_user)
+    @user = User.invite!(permitted_params[:user].merge(weight: 0.0), current_admin_user)
     if @user.errors.empty?
       flash[:success] = "User has been successfully invited."
       redirect_to admin_users_path
