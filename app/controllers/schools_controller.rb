@@ -1,5 +1,7 @@
 class SchoolsController < ApplicationController
 
+  # layout 'school_owner'
+
   before_filter :find_school, only: [:show, :edit, :update]
 
   def index
