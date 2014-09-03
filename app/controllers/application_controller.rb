@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  protected
+    protected
 
   def update_sanitized_params
     devise_parameter_sanitizer.for(:sign_up) do |u|

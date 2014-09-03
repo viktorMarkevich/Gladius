@@ -4,7 +4,7 @@ Gladius::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { :invitations => 'users_invitations', :registrations => 'users/registrations' }
 
-  root :to => 'users#index'
+  root :to => 'main#index'
 
   resources :users, :except => [:new, :create, :destroy] do
     resources :schools
