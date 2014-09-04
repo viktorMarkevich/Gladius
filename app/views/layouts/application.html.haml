@@ -19,25 +19,24 @@
 
 
   %body
-    %container
-      %nav.navbar.navbar-inverse{:role => 'navigation'}
-        .container-fluid
-          .navbar-header
-            = link_to 'Gladius', users_path, :class => 'navbar-brand'
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse
-            %p.navbar-text.navbar-right
-              - if user_signed_in?
-                Signed in as
-                %strong
-                  #{current_user.login}
-                = link_to 'Sign out', destroy_user_session_path, :method => :delete
-              - else
-                = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
-                or #{link_to 'sign in', new_user_session_path, class: 'navbar-link'}
-      .col-xs-12
-        %h1 Bootstrap 3 Thumbnail Slider
+    %nav.navbar.navbar-inverse{:role => 'navigation'}
+      .container-fluid
+        .navbar-header
+          = link_to 'Gladius', users_path, :class => 'navbar-brand'
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %p.navbar-text.navbar-right
+            - if user_signed_in?
+              Signed in as
+              %strong
+                #{current_user.login}
+              = link_to 'Sign out', destroy_user_session_path, :method => :delete
+            - else
+              = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
+              or #{link_to 'sign in', new_user_session_path, class: 'navbar-link'}
+    .container
+      .col-sm-12
         .well
-          #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+          #carousel-generic.carousel.slide{ 'data-ride' => 'carousel', 'data-interval' => '3000' }
             .carousel-inner
               .item.active
                 .row
@@ -81,36 +80,10 @@
                   .col-xs-3
                     %a.thumbnail{:href => "#x"}
                       = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
-            %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+            %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-generic", :role => "button"}
               %span.glyphicon.glyphicon-chevron-left
-            %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+            %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-generic", :role => "button"}
               %span.glyphicon.glyphicon-chevron-right
-      -##carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-      -#  / Indicators
-      -#  %ol.carousel-indicators
-      -#    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
-      -#    %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
-      -#    %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
-      -#  / Wrapper for slides
-      -#  .carousel-inner
-      -#    .item.active
-      -#      = image_tag 'cat1.jpg', alt: 'kot'
-      -#      .carousel-caption
-      -#        \...
-      -#    .item
-      -#      = image_tag 'cat2.jpg', alt: 'kot'
-      -#      .carousel-caption
-      -#        \...
-      -#    .item
-      -#      = image_tag 'cat3.jpg', alt: 'kot'
-      -#      .carousel-caption
-      -#        \...
-      -#  / Controls
-      -#  %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
-      -#    %span.glyphicon.glyphicon-chevron-left
-      -#  %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
-      -#    %span.glyphicon.glyphicon-chevron-right
-
       -#  .container-fluid
       -#    .row-fluid
       -#      .span9
