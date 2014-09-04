@@ -53,5 +53,7 @@ module Gladius
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
     config.i18n.enforce_available_locales = true
+
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
   end
 end

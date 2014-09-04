@@ -9,7 +9,7 @@
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
-    = javascript_include_tag "application"
+    = javascript_include_tag "application", :media => "all"
     = stylesheet_link_tag "application", :media => "all"
     %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
@@ -19,71 +19,127 @@
 
 
   %body
-    %nav.navbar.navbar-inverse{:role => 'navigation'}
-      .container-fluid
-        .navbar-header
-          = link_to 'Gladius', users_path, :class => 'navbar-brand'
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %p.navbar-text.navbar-right
-            - if user_signed_in?
-              Signed in as
-              %strong
-                #{current_user.login}
-              = link_to 'Sign out', destroy_user_session_path, :method => :delete
-            - else
-              = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
-              or #{link_to 'sign in', new_user_session_path, class: 'navbar-link'}
-    #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-      / Indicators
-      %ol.carousel-indicators
-        %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
-        %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
-        %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
-      / Wrapper for slides
-      .carousel-inner
-        .item.active
-          %img{:alt => "...", :src => "..."}/
-          .carousel-caption
-            \...
-        .item
-          %img{:alt => "...", :src => "..."}/
-          .carousel-caption
-            \...
-        \...
-      / Controls
-      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
-        %span.glyphicon.glyphicon-chevron-left
-      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
-        %span.glyphicon.glyphicon-chevron-right
+    %container
+      %nav.navbar.navbar-inverse{:role => 'navigation'}
+        .container-fluid
+          .navbar-header
+            = link_to 'Gladius', users_path, :class => 'navbar-brand'
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            %p.navbar-text.navbar-right
+              - if user_signed_in?
+                Signed in as
+                %strong
+                  #{current_user.login}
+                = link_to 'Sign out', destroy_user_session_path, :method => :delete
+              - else
+                = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
+                or #{link_to 'sign in', new_user_session_path, class: 'navbar-link'}
+      .col-xs-12
+        %h1 Bootstrap 3 Thumbnail Slider
+        .well
+          #myCarousel.carousel.slide
+            / Carousel items
+            .carousel-inner
+              .item.active
+                .row
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+              .item
+                .row
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+              .item
+                .row
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+                  .col-xs-3
+                    %a.thumbnail{:href => "#x"}
+                      %img.img-responsive{:alt => "Image", :src => "http://placehold.it/250x250"}/
+            %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+              %span.glyphicon.glyphicon-chevron-left
+            %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+              %span.glyphicon.glyphicon-chevron-right
+      -##carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+      -#  / Indicators
+      -#  %ol.carousel-indicators
+      -#    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+      -#    %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+      -#    %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+      -#  / Wrapper for slides
+      -#  .carousel-inner
+      -#    .item.active
+      -#      = image_tag 'cat1.jpg', alt: 'kot'
+      -#      .carousel-caption
+      -#        \...
+      -#    .item
+      -#      = image_tag 'cat2.jpg', alt: 'kot'
+      -#      .carousel-caption
+      -#        \...
+      -#    .item
+      -#      = image_tag 'cat3.jpg', alt: 'kot'
+      -#      .carousel-caption
+      -#        \...
+      -#  / Controls
+      -#  %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+      -#    %span.glyphicon.glyphicon-chevron-left
+      -#  %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+      -#    %span.glyphicon.glyphicon-chevron-right
 
-    -#  .container-fluid
-    -#    .row-fluid
-    -#      .span9
-    -#        %ul.breadcrumb
-    -#        %ul.nav.nav-tabs
-    -#          - if current_user
-    -#            %li{class: "#{'active' if current_page?(user_schools_path(current_user.id))}"}= link_to "Мои школы", user_schools_path(:user_id => current_user.id)
-    -#            %li{class: "#{'active' if current_page?(schools_path)}"}= link_to "Все школы", schools_path
-    -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Тренерская", users_path
-    -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Новости", "users_path"
-    -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Расписание", "users_path"
-    -#        = flash_alerts
-    -#        = yield
-    -#      .span3
-    -#        %h3 Sidebar
-    -#        %ul.nav.nav-list
-    -#          %li.nav-header Sidebar
-    -#          - if user_signed_in?
-    -#            %li= link_to "Создать школу", new_user_school_path(:user_id => current_user.id)
-    -#            %li= link_to "Редактировать школу", "new_user_school_path(:user_id => current_user.id)"
-    -#            %li= link_to "Добавить члена школы", "new_user_school_path(:user_id => current_user.id)"
-    -#            %li= link_to "Просмотр членов школы или поиск по инструкторам", "new_user_school_path(:user_id => current_user.id)"
-    -#            %li= link_to "Просмотр студентов", "new_user_school_path(:user_id => current_user.id)"
-    -#            %li= link_to "Просмотр других членов", "new_user_school_path(:user_id => current_user.id)"
-    -#            %li= link_to "Создать статью школы", "new_user_school_path(:user_id => current_user.id)"
-    -#            %li= link_to "Создать расписание для групп", "new_user_school_path(:user_id => current_user.id)"
-    -#            %li= link_to "Редактировать мой профиль", edit_user_path(current_user)
-    -#            %li= link_to "Мой кабинет", edit_user_registration_path(:user_id => current_user.id)
-    -#  .push
-    -#%footer.container-fluid
-    -#  %p © Company 2012
+      -#  .container-fluid
+      -#    .row-fluid
+      -#      .span9
+      -#        %ul.breadcrumb
+      -#        %ul.nav.nav-tabs
+      -#          - if current_user
+      -#            %li{class: "#{'active' if current_page?(user_schools_path(current_user.id))}"}= link_to "Мои школы", user_schools_path(:user_id => current_user.id)
+      -#            %li{class: "#{'active' if current_page?(schools_path)}"}= link_to "Все школы", schools_path
+      -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Тренерская", users_path
+      -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Новости", "users_path"
+      -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Расписание", "users_path"
+      -#        = flash_alerts
+      -#        = yield
+      -#      .span3
+      -#        %h3 Sidebar
+      -#        %ul.nav.nav-list
+      -#          %li.nav-header Sidebar
+      -#          - if user_signed_in?
+      -#            %li= link_to "Создать школу", new_user_school_path(:user_id => current_user.id)
+      -#            %li= link_to "Редактировать школу", "new_user_school_path(:user_id => current_user.id)"
+      -#            %li= link_to "Добавить члена школы", "new_user_school_path(:user_id => current_user.id)"
+      -#            %li= link_to "Просмотр членов школы или поиск по инструкторам", "new_user_school_path(:user_id => current_user.id)"
+      -#            %li= link_to "Просмотр студентов", "new_user_school_path(:user_id => current_user.id)"
+      -#            %li= link_to "Просмотр других членов", "new_user_school_path(:user_id => current_user.id)"
+      -#            %li= link_to "Создать статью школы", "new_user_school_path(:user_id => current_user.id)"
+      -#            %li= link_to "Создать расписание для групп", "new_user_school_path(:user_id => current_user.id)"
+      -#            %li= link_to "Редактировать мой профиль", edit_user_path(current_user)
+      -#            %li= link_to "Мой кабинет", edit_user_registration_path(:user_id => current_user.id)
+      -#  .push
+      -#%footer.container-fluid
+      -#  %p © Company 2012

@@ -13,10 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap-sprockets
 //= require_tree .
 
 $(document).ready(function() {
     nav_menu();
+    $('#myCarousel').carousel({
+        interval: 10000
+    });
+
+    $('#myCarousel').on('slid.bs.carousel', function() {
+        //alert("slid");
+    });
+
 });
 
 function nav_menu(){
