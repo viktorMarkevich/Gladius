@@ -18,14 +18,7 @@
 
 $(document).ready(function() {
     nav_menu();
-    $('#myCarousel').carousel({
-        interval: 10000
-    });
-
-    $('#myCarousel').on('slid.bs.carousel', function() {
-        //alert("slid");
-    });
-
+    carousel();
 });
 
 function nav_menu(){
@@ -42,4 +35,14 @@ function nav_menu(){
             $("ul.breadcrumb").append("<li><a href='"+url_href+"' >"+v+"</a><span class='divider'>/</span> </li>")
         });
     }
-}
+};
+
+function carousel(){
+    $('#myCarousel').carousel({
+        interval: 10000
+    });
+
+    $('#myCarousel').on('slid.bs.carousel', function() {
+        //alert("slid");
+    });
+};
