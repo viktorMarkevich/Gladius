@@ -13,12 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require bootstrap-sprockets
-//= require_tree .
+// require_tree .
 
 $(document).ready(function() {
     nav_menu();
-    carousel();
 });
 
 function nav_menu(){
@@ -35,14 +33,4 @@ function nav_menu(){
             $("ul.breadcrumb").append("<li><a href='"+url_href+"' >"+v+"</a><span class='divider'>/</span> </li>")
         });
     }
-};
-
-function carousel(){
-    $('#myCarousel').carousel({
-        interval: 10000
-    });
-
-    $('#myCarousel').on('slid.bs.carousel', function() {
-        //alert("slid");
-    });
 };
