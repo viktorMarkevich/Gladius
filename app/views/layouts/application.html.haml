@@ -100,17 +100,19 @@
                 %span.glyphicon.glyphicon-chevron-left
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-generic", :role => "button"}
                 %span.glyphicon.glyphicon-chevron-right
+
+    %ul.breadcrumb
     .row
       .col-lg-12
-        .col-xs-2
+        .col-xs-2{style: 'margin-top: 40px;'}
           .well
             = yield :sidebar_left
         .col-xs-8
           = flash_alerts
           = yield
-        .col-xs-2
+        .col-xs-2{style: 'margin-top: 40px;'}
           .well
             = yield :sidebar_right
-        .push
+
   %footer.container
     %p.text-center © Company 2013

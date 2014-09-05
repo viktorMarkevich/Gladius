@@ -26,11 +26,11 @@ function nav_menu(){
         arr.pop();
     }
     $("ul.breadcrumb").html()
-    $("ul.breadcrumb").append("<li><a href='/'>home</a><span class='divider'>/</span> </li>")
+    $("ul.breadcrumb").append("<li><a href='/'>home</a></li>")
     if(arr[0] != ""){
         $.each(arr, function(k,v){
             var url_href = "/" +  arr.slice(0, k+1).join("/")
-            $("ul.breadcrumb").append("<li><a href='"+url_href+"' >"+v+"</a><span class='divider'>/</span> </li>")
+            $("ul.breadcrumb").append("<li><a href='"+url_href+"' >"+v+"</a></li>")
         });
     }
 };
