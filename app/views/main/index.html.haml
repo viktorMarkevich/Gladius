@@ -1,2 +1,10 @@
 %h1
   main page
+%ul.nav.nav-tabs{ role: 'tablist' }
+  %li{class: "#{'active' if current_page?(schools_path)}"}= link_to "Все школы", schools_path
+  %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Тренерская", users_path
+  %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Новости", "users_path"
+  %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Расписание", "users_path"
+- content_for :sidebar_left, render(:partial => 'sidebar_left')
+
+- content_for :sidebar_right, render(:partial => 'sidebar_right')

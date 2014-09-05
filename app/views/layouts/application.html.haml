@@ -19,137 +19,98 @@
 
 
   %body
-    %nav.navbar.navbar-inverse{:role => 'navigation'}
+    %header
+      %nav.navbar.navbar-inverse{:role => 'navigation'}
+        .container-fluid
+          .navbar-header
+            = link_to 'Gladius', users_path, :class => 'navbar-brand'
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            %p.navbar-text.navbar-right
+              - if user_signed_in?
+                Signed in as
+                %strong
+                  #{current_user.login}
+                = link_to 'Sign out', destroy_user_session_path, :method => :delete
+              - else
+                = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
+                or #{link_to 'sign in', new_user_session_path, class: 'navbar-link'}
       .container-fluid
-        .navbar-header
-          = link_to 'Gladius', users_path, :class => 'navbar-brand'
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %p.navbar-text.navbar-right
-            - if user_signed_in?
-              Signed in as
-              %strong
-                #{current_user.login}
-              = link_to 'Sign out', destroy_user_session_path, :method => :delete
-            - else
-              = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
-              or #{link_to 'sign in', new_user_session_path, class: 'navbar-link'}
-    .container-fluid
-      .col-lg-12
-        .well
-          #carousel-generic.carousel.slide{ 'data-ride' => 'carousel', 'data-interval' => '3000' }
-            .carousel-inner
-              .item.active
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-              .item
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-              .item
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-                .col-xs-2
-                  %a.thumbnail{:href => "#x"}
-                    = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
-            %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-generic", :role => "button"}
-              %span.glyphicon.glyphicon-chevron-left
-            %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-generic", :role => "button"}
-              %span.glyphicon.glyphicon-chevron-right
+        .col-lg-12
+          .well
+            #carousel-generic.carousel.slide{ 'data-ride' => 'carousel', 'data-interval' => '3000' }
+              .carousel-inner
+                .item.active
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                .item
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                .item
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+                  .col-xs-2
+                    %a.thumbnail{:href => "#x"}
+                      = image_tag 'Леопард.jpg', alt: 'cat', class: 'img-responsive'
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-generic", :role => "button"}
+                %span.glyphicon.glyphicon-chevron-left
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-generic", :role => "button"}
+                %span.glyphicon.glyphicon-chevron-right
     .row
       .col-lg-12
         .col-xs-2
-          -#.well
-          -#  %ul.nav.nav-list
-          -#    %li.nav-header Sidebar
-          -#    %li= link_to "Редактировать школу", "new_user_school_path(:user_id => current_user.id)"
-          -#    %li= link_to "Добавить члена школы", "new_user_school_path(:user_id => current_user.id)"
-          -#    %li= link_to "Просмотр членов школы или поиск по инструкторам", "new_user_school_path(:user_id => current_user.id)"
-          -#    %li= link_to "Просмотр студентов", "new_user_school_path(:user_id => current_user.id)"
-          -#    %li= link_to "Просмотр других членов", "new_user_school_path(:user_id => current_user.id)"
-          -#    %li= link_to "Создать статью школы", "new_user_school_path(:user_id => current_user.id)"
-          -#    %li= link_to "Создать расписание для групп", "new_user_school_path(:user_id => current_user.id)"
+          .well
+            = yield :sidebar_left
         .col-xs-8
-          -#%ul.nav.nav-tabs{ role: 'tablist' }
-          -#  %li{class: "#{'active' if current_page?(schools_path)}"}= link_to "Все школы", schools_path
-          -#  %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Тренерская", users_path
-          -#  %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Новости", "users_path"
-          -#  %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Расписание", "users_path"
-          -#= flash_alerts
+          = flash_alerts
           = yield
         .col-xs-2
-
-      -#  .container-fluid
-      -#    .row-fluid
-      -#      .span9
-      -#        %ul.breadcrumb
-      -#        %ul.nav.nav-tabs
-      -#          - if current_user
-      -#            %li{class: "#{'active' if current_page?(user_schools_path(current_user.id))}"}= link_to "Мои школы", user_schools_path(:user_id => current_user.id)
-      -#            %li{class: "#{'active' if current_page?(schools_path)}"}= link_to "Все школы", schools_path
-      -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Тренерская", users_path
-      -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Новости", "users_path"
-      -#            %li{class: "#{'active' if current_page?(users_path)}"}= link_to "Расписание", "users_path"
-      -#        = flash_alerts
-      -#        = yield
-      -#      .span3
-      -#        %h3 Sidebar
-      -#        %ul.nav.nav-list
-      -#          %li.nav-header Sidebar
-      -#          - if user_signed_in?
-      -#            %li= link_to "Создать школу", new_user_school_path(:user_id => current_user.id)
-      -#            %li= link_to "Редактировать школу", "new_user_school_path(:user_id => current_user.id)"
-      -#            %li= link_to "Добавить члена школы", "new_user_school_path(:user_id => current_user.id)"
-      -#            %li= link_to "Просмотр членов школы или поиск по инструкторам", "new_user_school_path(:user_id => current_user.id)"
-      -#            %li= link_to "Просмотр студентов", "new_user_school_path(:user_id => current_user.id)"
-      -#            %li= link_to "Просмотр других членов", "new_user_school_path(:user_id => current_user.id)"
-      -#            %li= link_to "Создать статью школы", "new_user_school_path(:user_id => current_user.id)"
-      -#            %li= link_to "Создать расписание для групп", "new_user_school_path(:user_id => current_user.id)"
-      -#            %li= link_to "Редактировать мой профиль", edit_user_path(current_user)
-      -#            %li= link_to "Мой кабинет", edit_user_registration_path(:user_id => current_user.id)
-      -#  .push
-      -#%footer.container-fluid
-      -#  %p © Company 2012
+          .well
+            = yield :sidebar_right
+        .push
+  %footer.container
+    %p.text-center © Company 2013
