@@ -11,6 +11,7 @@
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = javascript_include_tag "application", :media => "all"
     = stylesheet_link_tag "application", :media => "all"
+    = yield :header
     %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
@@ -36,50 +37,47 @@
     .container
       .col-sm-12
         .well
-          #carousel-generic.carousel.slide{ 'data-ride' => 'carousel', 'data-interval' => '3000' }
+          #carousel-generic.carousel.slide{ 'data-ride' => 'carousel', 'data-interval' => '30000' }
             .carousel-inner
               .item.active
-                .row
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'cat2.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
               .item
-                .row
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чего не работаем.jpeg', alt: 'cat', size: '250x250', class: 'img-responsive'
               .item
-                .row
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
-                  .col-xs-3
-                    %a.thumbnail{:href => "#x"}
-                      = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
+                .col-xs-3
+                  %a.thumbnail{:href => "#x"}
+                    = image_tag 'чужой.jpg', alt: 'cat', size: '250x250', class: 'img-responsive'
             %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-generic", :role => "button"}
               %span.glyphicon.glyphicon-chevron-left
             %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-generic", :role => "button"}
