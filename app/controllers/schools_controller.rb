@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
 
-  # layout 'school_owner'
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   before_filter :find_school, only: [:show, :edit, :update]
 

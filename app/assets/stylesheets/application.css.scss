@@ -22,30 +22,15 @@
     url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-
-html, body {
-    height: 100%;
+.carousel-control {
+  width: 0;
 }
-.row {
-    margin-top: 80px;
+.carousel-control.left {
+  background-image: none;
 }
-
-footer {
-    height:44px;
-    line-height:44px;
-    border: 1px solid #eee;
-    text-align: center;
+.carousel-control.right {
+  background-image: none;
 }
-
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -45px;
-}
-
-.push { height: 63px; }
-
-.wrapper > .container-fluid {
-    padding-top: 60px;
+.thumbnail {
+  margin-bottom: 0;
 }
