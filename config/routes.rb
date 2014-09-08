@@ -1,5 +1,7 @@
 Gladius::Application.routes.draw do
 
+  get 'articles/index'
+
   get 'events/index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
