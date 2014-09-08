@@ -1,5 +1,7 @@
 Gladius::Application.routes.draw do
 
+  get 'events/index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { :invitations => 'users_invitations', :registrations => 'users/registrations' }

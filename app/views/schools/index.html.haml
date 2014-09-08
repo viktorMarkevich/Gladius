@@ -17,6 +17,6 @@
       %td= link_to "Delete", user_school_path(:user_id => current_user.try(:id) || '#', :id => school.id),
                                               :confirm => "Are you sure?", :method => :delete
 
-- content_for :sidebar_left, render(:partial => 'sidebar_left')
+- content_for :sidebar_left, render( partial: 'shared/sidebar_left', locals: {title: 'Schools info', paragraph: 'top 10 schools'} )
 
-- content_for :sidebar_right, render(:partial => 'sidebar_right')
+- content_for :sidebar_right, render(:partial => 'shared/sidebar_right')
