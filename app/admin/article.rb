@@ -1,36 +1,19 @@
 ActiveAdmin.register Article do
   # include Common::Selectors
   permit_params do
-    params = [ :to_homepage, :published, :author_id, :school_id, :body, :title, :articlable_id, :articlable_type ]
+    params = [ :to_homepage, :published, :author_id, :school_id, :body, :title, :kind ]
     params
   end
 
-  # form do |f|
-  #   f.inputs "Details" do
-  #     f.input :articlable_type, label: 'Article Type', as: :select, colection: get_polymorphic_associations(Article, :articlable)
-  #   end
-  #   f.actions
-  # end
+  form do |f|
+    f.inputs do
+      f.input :school_id, as: :select, collection: School.all.map{ |s| [ s.name, s.id ] }
+      f.input :author_id, as: :select, collection: User.all.map{ |u| [ u.full_name, u.id ] }
+      f.input :title
+      f.input :body
+      f.input :kind, :label => "Type article", as: :select, :collection => Article::ARTICLE_TYPES
+    end
+    f.actions
 
-  # def get_polymorphic_associations(model_object, name)
-  #   ActiveRecord::Base.subclasses.select do |model|
-  #     model.reflect_on_all_associations(:has_many).any? do |has_many_association|
-  #       has_many_association.options[:as] == :articlable
-  #     end
-  #   end
-  # end
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
-
-
+  end
 end

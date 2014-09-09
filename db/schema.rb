@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908094224) do
+ActiveRecord::Schema.define(version: 20140909100201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,15 +54,13 @@ ActiveRecord::Schema.define(version: 20140908094224) do
     t.text     "body"
     t.integer  "school_id"
     t.integer  "author_id"
-    t.boolean  "published",       default: false
-    t.boolean  "to_homepage",     default: false
+    t.boolean  "published",   default: false
+    t.boolean  "to_homepage", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "articlable_type"
-    t.integer  "articlable_id"
+    t.string   "kind"
   end
 
-  add_index "articles", ["articlable_id"], name: "index_articles_on_articlable_id", using: :btree
   add_index "articles", ["author_id"], name: "index_articles_on_author_id", unique: true, using: :btree
   add_index "articles", ["published"], name: "index_articles_on_published", unique: true, using: :btree
   add_index "articles", ["school_id"], name: "index_articles_on_school_id", unique: true, using: :btree
@@ -83,18 +81,6 @@ ActiveRecord::Schema.define(version: 20140908094224) do
     t.datetime "updated_at"
   end
 
-  create_table "demonstrations", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "events", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "events", ["id"], name: "index_events_on_id", using: :btree
-
   create_table "fighting_arts", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -110,11 +96,6 @@ ActiveRecord::Schema.define(version: 20140908094224) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-  end
-
-  create_table "news_bulletins", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "schools", force: true do |t|
