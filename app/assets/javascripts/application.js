@@ -37,10 +37,7 @@ function nav_menu(){
 };
 
 function tab_menu(){
-//    $('#myTab a[href="#profile"]').tab('show')
-    console.log(window.location.pathname);
     var tab = window.location.pathname.substr(1).split("/");
-    console.log(tab);
     if (tab[0] == ''){
         $("#news_tab").addClass("active");
     } else {

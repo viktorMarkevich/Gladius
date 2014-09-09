@@ -17,8 +17,7 @@
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="images/favicon.ico" rel="shortcut icon")
 
-
-  %body
+  %body.login-page
     %header
       %nav.navbar.navbar-inverse{:role => 'navigation'}
         .container-fluid
@@ -111,7 +110,6 @@
           %ul.nav.nav-tabs{ role: 'tablist' }
             %li#news_tab= link_to 'Новости', root_path
             %li#schools_tab= link_to 'Школы', schools_path
-            %li#events_tab= link_to 'События', events_index_path
             %li#articles_tab= link_to 'Статьи', articles_index_path
           = flash_alerts
           = yield

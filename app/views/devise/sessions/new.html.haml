@@ -1,0 +1,26 @@
+%div{style: 'padding-top: 70px'}
+.form-horizontal
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-group
+      %lable.col-sm-2.control-label
+        = f.label :login
+      .col-sm-10
+        = f.text_field :login, autofocus: true, class: 'form-control'
+    .form-group
+      %lable.col-sm-2.control-label
+        = f.label :password
+      .col-sm-10
+        = f.password_field :password, autocomplete: "off", class: 'form-control'
+    - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+      .form-group
+        .col-sm-offset-2.col-sm-8
+          = link_to 'Forgot your password?', new_password_path(resource_name)
+    - if devise_mapping.rememberable?
+      .form-group
+        .row
+          .col-sm-offset-2.col-sm-8
+            .checkbox
+              = f.check_box :remember_me
+              = f.label :remember_me
+          .col-sm-2
+            = f.submit 'Sign in', class: 'btn btn-default'

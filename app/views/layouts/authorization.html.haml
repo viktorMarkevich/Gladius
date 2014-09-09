@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title Gladius
+    = javascript_include_tag 'authorisation'
+    = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container-fluid{ style: 'margin: 10% auto 0;' }
+      .row
+        .col-sm-4.col-sm-offset-4
+          %ul.nav.nav-tabs.nav-justified
+            %li{class: "#{'active' if current_page?(new_user_session_path)}"}= link_to 'Sign in', new_user_session_path
+            %li{class: "#{'active' if current_page?(new_user_registration_path)}"}= link_to 'sign up', new_user_registration_path
+          = flash_alerts
+          = yield
