@@ -12,6 +12,7 @@ class SchoolsController < ApplicationController
               else
                 @search = Sunspot.search(School) do
                   fulltext params[:search]
+                  paginate :page => 1, :per_page => 5
                 end
               end
 

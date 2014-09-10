@@ -5,10 +5,9 @@
       = submit_tag "Search", :name => nil
 
 - unless @search.blank?
-  .results
-    - @search.each_hit_with_result do |hit, post|
-      .result
-        %p= h post.name
-        %p= h truncate(post.info, :length => 100)
+  - @search.each_hit_with_result do |hit, post|
+    .result
+      %p= h post.name
+      %p= h truncate(post.info, :length => 100)
   .pagination
     = will_paginate(@search.results)
