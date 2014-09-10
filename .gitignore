@@ -34,3 +34,4 @@
 /config/environments/development.rb
 
 /coverage
+/solr/*
