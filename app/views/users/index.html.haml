@@ -12,3 +12,7 @@
         %td= user.id
         %td= image_tag user.image.avatar.url(:large)
         %td= link_to user.full_name, user_path(user)
+
+- content_for :sidebar_left, render( partial: 'shared/sidebar_left', locals: {title: 'Users info', paragraph: 'top 10 users'} )
+
+- content_for :sidebar_right, render(:partial => 'shared/sidebar_right')
