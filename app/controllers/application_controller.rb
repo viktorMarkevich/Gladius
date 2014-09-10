@@ -27,21 +27,21 @@ class ApplicationController < ActionController::Base
       if devise_controller?
         "authorization"
       else
-        "aplication"
+        "application"
       end
     end
 
-    protected
+  protected
 
-  def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:login, :email, :password, :password_confirmation, :remember_me)
+    def update_sanitized_params
+      devise_parameter_sanitizer.for(:sign_up) do |u|
+        u.permit(:login, :email, :password, :password_confirmation, :remember_me)
+      end
+      devise_parameter_sanitizer.for(:account_update) do |u|
+        u.permit(:login, :email, :password, :password_confirmation, :remember_me, :current_password)
+      end
+      devise_parameter_sanitizer.for(:sign_in) do |u|
+        u.permit(:login, :email, :password, :password_confirmation, :remember_me)
+      end
     end
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:login, :email, :password, :password_confirmation, :remember_me, :current_password)
-    end
-    devise_parameter_sanitizer.for(:sign_in) do |u|
-      u.permit(:login, :email, :password, :password_confirmation, :remember_me)
-    end
-  end
 end
