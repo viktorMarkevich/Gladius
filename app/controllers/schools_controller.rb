@@ -5,11 +5,17 @@ class SchoolsController < ApplicationController
   before_filter :find_school, only: [:show, :edit, :update]
 
   def index
-    @schools = if params[:user_id].present?
-                 User.find(params[:user_id]).schools
-               else
-                 School.all
-               end
+    @search = if params[:user_id].present?
+                 @search = Sunspot.search(User.find(params[:user_id]).schools) do
+                   fulltext params[:search]
+                 end
+              else
+                @search = Sunspot.search(School) do
+                  fulltext params[:search]
+                end
+              end
+
+    @schools = @search.results
   end
 
   def new

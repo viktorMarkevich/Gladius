@@ -14,4 +14,12 @@ class School < ActiveRecord::Base
   validates_presence_of :creator_id
   validates_uniqueness_of :name
   validates_length_of :name, in: 5..40, message: 'The name must be at least 5 characters and no more than 40 characters!'
+
+  searchable do
+    text :name, :info, :status
+    integer :fighting_art_id
+    integer :creator_id
+    time    :date_of_foundation
+  end
+
 end
