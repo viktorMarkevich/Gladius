@@ -5,13 +5,18 @@
     = javascript_include_tag 'application'
     = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
+  %body{style: 'background-color: #777'}
     .container-fluid{ style: 'margin: 10% auto 0;' }
       .row
-        .col-sm-4.col-sm-offset-4
-          %ul.nav.nav-tabs.nav-justified
-            %li{class: "#{'active' if current_page?(new_user_session_path)}"}= link_to 'Sign in', new_user_session_path
-            %li{class: "#{'active' if current_page?(new_user_registration_path)}"}= link_to 'sign up', new_user_registration_path
+        .col-sm-4.col-sm-offset-4{style: 'background-color: #eee'}
+          - unless current_page?(edit_user_registration_path)
+            %ul.nav.nav-tabs.nav-justified
+              %li{class: "#{'active' if current_page?(new_user_session_path)}"}= link_to 'Sign in', new_user_session_path
+              %li{class: "#{'active' if current_page?(new_user_registration_path)}"}= link_to 'sign up', new_user_registration_path
+          - else
+            %ul.nav.nav-tabs.nav-justified
+              %li.active
+                %a= 'Edit profile'
           %div{style: 'padding-top: 10%'}
             = flash_alerts
             = yield

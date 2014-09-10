@@ -26,6 +26,7 @@
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %p.navbar-text.navbar-right
               - if user_signed_in?
+                = link_to 'edit my profile', edit_user_registration_path, class: 'navbar-link'
                 Signed in as
                 %strong
                   #{current_user.login}
