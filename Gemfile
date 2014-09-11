@@ -17,7 +17,10 @@ gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem 'twitter-bootstrap-rails'
 gem 'sass-rails'
 gem 'sunspot_rails'
-gem 'sunspot_solr'
+
+group :development do
+  gem 'sunspot_solr'
+end
 
 gem 'will_paginate'
 

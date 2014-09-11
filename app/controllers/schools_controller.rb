@@ -6,13 +6,15 @@ class SchoolsController < ApplicationController
 
   def index
     @search = if params[:user_id].present?
-                 @search = Sunspot.search(User.find(params[:user_id]).schools) do
+                Sunspot.search(User.find(params[:user_id]).schools) do
                    fulltext params[:search]
+                   facet (:name)
                  end
               else
-                @search = Sunspot.search(School) do
+                School.solr_search do
                   fulltext params[:search]
-                  paginate :page => 1, :per_page => 5
+                  facet (:name)
+                  paginate(:page => params[:page], :per_page => 10)
                 end
               end
 

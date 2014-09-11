@@ -103,21 +103,20 @@
 
     %ul.breadcrumb
     .row
-      .col-lg-12
-        .col-xs-2{style: 'margin-top: 40px;'}
-          .well
-            = yield :sidebar_left
-        .col-xs-8
-          %ul.nav.nav-tabs{ role: 'tablist' }
-            %li#news_tab= link_to 'Новости', root_path
-            %li#schools_tab= link_to 'Школы', schools_path
-            %li#articles_tab= link_to 'Статьи', articles_index_path
-            %li#users_tab= link_to 'Пользователи', users_path
-          = flash_alerts
-          = yield
-        .col-xs-2{style: 'margin-top: 40px;'}
-          .well
-            = yield :sidebar_right
+      .col-md-10.col-md-offset-1
+        = yield :sidebar_right
+    .row
+      -#.col-xs-3{style: 'margin-top: 40px;'}
+      -#  .well
+      -#    = yield :sidebar_left
+      .col-xs-8.col-xs-offset-2
+        %ul.nav.nav-tabs{ role: 'tablist' }
+          %li#news_tab= link_to 'Новости', root_path
+          %li#schools_tab= link_to 'Школы', schools_path
+          %li#articles_tab= link_to 'Статьи', articles_index_path
+          %li#users_tab= link_to 'Пользователи', users_path
+        = flash_alerts
+        = yield
 
   %footer.container
     %p.text-center © Company 2013

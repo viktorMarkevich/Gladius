@@ -1,13 +1,6 @@
-.form-inline
-  = form_tag schools_path, :method => :get do
-    %p
-      = text_field_tag :search, params[:search]
-      = submit_tag "Search", :name => nil
-
-- unless @search.blank?
-  - @search.each_hit_with_result do |hit, post|
-    .result
-      %p= h post.name
-      %p= h truncate(post.info, :length => 100)
-  .pagination
-    = will_paginate(@search.results)
+= form_tag schools_path, :method => :get, html: { class: 'form-horizontal'} do
+  .form-group
+    .input-group
+      .input-group-addon{style:'background-color:  #5bc0de'}
+        %span.glyphicon.glyphicon-search
+      = text_field_tag :search, params[:search], class: 'form-control left-icon'

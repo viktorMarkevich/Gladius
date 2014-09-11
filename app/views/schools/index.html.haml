@@ -20,3 +20,5 @@
 - content_for :sidebar_left, render( partial: 'shared/sidebar_left', locals: {title: 'Schools info', paragraph: 'top 10 schools'} )
 
 - content_for :sidebar_right, render(:partial => 'shared/sidebar_right')
+
+= will_paginate(@search.results)

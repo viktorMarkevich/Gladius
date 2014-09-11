@@ -19,7 +19,24 @@ class School < ActiveRecord::Base
     text :name, :info, :status
     integer :fighting_art_id
     integer :creator_id
+    integer :id, :references => self, :multiple => true
     time    :date_of_foundation
+    string :name, :stored => true
   end
+
+  # def self.search_solr_with_exception_handling(*types, &block)
+  #   begin
+  #     search_solr_without_exception_handling(*types, &block)
+  #   rescue Errno::ECONNREFUSED, Timeout::Error => e
+  #     message = "Verbindung zu Solr nicht möglich: #{e.message}"
+  #     logger.error message
+  #     raise Exception.new message
+  #   end
+  # end
+  #
+  # singleton_class.class_eval do
+  #   alias_method :search_solr, :search
+  #   alias_method_chain :search_solr, :exception_handling
+  # end
 
 end
