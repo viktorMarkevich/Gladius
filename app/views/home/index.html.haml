@@ -1,9 +1,12 @@
 %h1
-  News
-%p
-  Safari and responsive justified navs
-  As of v7.0.1, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing. This bug is also shown in the justified nav example.
+  Latest news
+- if @news.present?
+  - @news.each do |new|
+    %p
+      = new.title
+    %div
+      = new.body
+- else
+  %p
+    = 'Yet there is no news'
 
-- content_for :sidebar_left, render( partial: 'shared/sidebar_left', locals: {title: 'News info', paragraph: 'top news'} )
-
-- content_for :sidebar_right, render(:partial => 'shared/sidebar_right')

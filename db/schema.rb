@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909100201) do
+ActiveRecord::Schema.define(version: 20140912140513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,18 +54,13 @@ ActiveRecord::Schema.define(version: 20140909100201) do
     t.text     "body"
     t.integer  "school_id"
     t.integer  "author_id"
-    t.boolean  "published",   default: false
-    t.boolean  "to_homepage", default: false
+    t.boolean  "published",       default: false
+    t.boolean  "to_homepage",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "kind"
+    t.integer  "admin_author_id"
   end
-
-  add_index "articles", ["author_id"], name: "index_articles_on_author_id", unique: true, using: :btree
-  add_index "articles", ["published"], name: "index_articles_on_published", unique: true, using: :btree
-  add_index "articles", ["school_id"], name: "index_articles_on_school_id", unique: true, using: :btree
-  add_index "articles", ["title"], name: "index_articles_on_title", unique: true, using: :btree
-  add_index "articles", ["to_homepage"], name: "index_articles_on_to_homepage", unique: true, using: :btree
 
   create_table "contact_infos", force: true do |t|
     t.string   "name"
