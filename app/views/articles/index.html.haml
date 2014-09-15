@@ -1,5 +1,17 @@
-%h1 Articles#index
-%p Find me in app/views/articles/index.html.haml
+%h1
+  Articles
+
+- if @articles.present?
+  - @articles.each do |article|
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title= article.title
+      .panel-body
+        = article.body
+- else
+  %p
+    = 'Yet there is no news'
+
 
 - content_for :sidebar_left, render( partial: 'shared/sidebar_left', locals: {title: 'Articles info', paragraph: 'top articles'} )
 

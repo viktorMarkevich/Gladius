@@ -1,12 +1,12 @@
 %h1
   Latest news
 - if @news.present?
-  - @news.each do |new|
-    %p
-      = new.title
-    %div
-      = new.body
+  - @news.each do |n|
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title= n.title
+      .panel-body
+        = n.body
 - else
   %p
     = 'Yet there is no news'
-
