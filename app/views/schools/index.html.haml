@@ -5,17 +5,12 @@
     %th ID
     %th Название школы
     %th Количество учеников
-    %th Редактировать школу
-    %th Удалить школу
 
   - @schools.each do |school|
     %tr
       %td= school.id
-      %td= link_to school.name, user_school_path(:user_id => current_user.try(:id) || '#', :id => school.id)
+      %td= link_to school.name, school_path(school.id)
       %td= link_to school.user_school_relations.count, school_members_path(school), :method => :get
-      %td= link_to "Edit", edit_user_school_path(:user_id => current_user.try(:id) || '#', :id => school.id)
-      %td= link_to "Delete", user_school_path(:user_id => current_user.try(:id) || '#', :id => school.id),
-                                              :confirm => "Are you sure?", :method => :delete
 
 - content_for :sidebar_left, render( partial: 'shared/sidebar_left', locals: {title: 'Schools info', paragraph: 'top 10 schools'} )
 

@@ -17,7 +17,7 @@
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="images/favicon.ico" rel="shortcut icon")
 
-  %body.login-page
+  %body
     %header
       %nav.navbar.navbar-inverse{:role => 'navigation'}
         .container-fluid
@@ -101,7 +101,8 @@
               %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-generic", :role => "button"}
                 %span.glyphicon.glyphicon-chevron-right
 
-    %ul.breadcrumb
+    .col-md-12
+      = render_breadcrumbs('', { :class => '', :item_class => '', :divider_class => '', :active_class => 'active' })
     .row
       .col-md-10.col-md-offset-1
         = yield :sidebar_right
@@ -113,7 +114,7 @@
         %ul.nav.nav-tabs{ role: 'tablist' }
           %li#news_tab= link_to 'Новости', root_path
           %li#schools_tab= link_to 'Школы', schools_path
-          %li#articles_tab= link_to 'Статьи', articles_index_path
+          %li#articles_tab= link_to 'Статьи', articles_path
           %li#users_tab= link_to 'Пользователи', users_path
         = flash_alerts
         = yield

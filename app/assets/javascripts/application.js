@@ -16,25 +16,8 @@
 // require_tree .
 
 $(document).ready(function() {
-    nav_menu();
     tab_menu();
 });
-
-function nav_menu(){
-    var arr =  window.location.pathname.split("/");
-    arr.shift();
-    if(arr[arr.length-1] == ''){
-        arr.pop();
-    }
-    $("ul.breadcrumb").html()
-    $("ul.breadcrumb").append("<li><a href='/'>home</a></li>")
-    if(arr[0] != ""){
-        $.each(arr, function(k,v){
-            var url_href = "/" +  arr.slice(0, k+1).join("/")
-            $("ul.breadcrumb").append("<li><a href='"+url_href+"' >"+v+"</a></li>")
-        });
-    }
-};
 
 function tab_menu(){
     var tab = window.location.pathname.substr(1).split("/");

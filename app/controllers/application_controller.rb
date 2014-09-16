@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
   layout :layout_for_auth
+
   before_filter :update_sanitized_params, if: :devise_controller?
   before_action :authenticate_user!
+
+  add_breadcrumb 'home', :root
 
   def after_sign_in_path_for(resource)
     if resource.is_a? User

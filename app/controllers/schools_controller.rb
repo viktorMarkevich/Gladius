@@ -19,6 +19,9 @@ class SchoolsController < ApplicationController
               end
 
     @schools = @search.results
+    add_breadcrumb 'schools', schools_path
+    # add_breadcrumb 'index', schools_path(@schools)
+    # add_breadcrumb :index,  schools_path(@schools) # :index  -используется для translation missing: en.breadcrumbs.schools.index
   end
 
   def new
@@ -27,6 +30,8 @@ class SchoolsController < ApplicationController
 
   def show
     @user = @school.creator
+    add_breadcrumb 'show', school_path(@school)
+    add_breadcrumb @school.name
   end
 
   def edit

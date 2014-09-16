@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.paginate(:page => params[:page]).order('id DESC')
+    add_breadcrumb 'articles', articles_path
   end
 
   private

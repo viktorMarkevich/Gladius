@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def index
    @users = User.all.order(id: :asc)
+   add_breadcrumb 'users', users_path
   end
 
   def show
