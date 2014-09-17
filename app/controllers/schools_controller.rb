@@ -14,14 +14,11 @@ class SchoolsController < ApplicationController
                 School.solr_search do
                   fulltext params[:search]
                   facet (:name)
-                  paginate(:page => params[:page], :per_page => 10)
+                  paginate(:page => params[:page], :per_page => 5)
                 end
               end
-
     @schools = @search.results
     add_breadcrumb 'schools', schools_path
-    # add_breadcrumb 'index', schools_path(@schools)
-    # add_breadcrumb :index,  schools_path(@schools) # :index  -используется для translation missing: en.breadcrumbs.schools.index
   end
 
   def new

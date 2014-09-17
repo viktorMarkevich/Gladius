@@ -6,7 +6,7 @@ class MembersController < ApplicationController
 
   def index
     @members = @school.members
-    add_breadcrumb 'show', school_path(@school)
+    add_breadcrumb 'schools', school_path(@school)
     add_breadcrumb @school.id, school_path(@school)
     add_breadcrumb 'members', school_members_path(@school.id, @members)
   end
