@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @articles = Article.paginate(:page => params[:page]).order('id DESC')
+    @articles = Article.order('id DESC').page(params[:page] || 1).per(5)
     add_breadcrumb 'articles', articles_path
   end
 

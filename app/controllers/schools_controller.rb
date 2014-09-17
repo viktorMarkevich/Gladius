@@ -14,7 +14,8 @@ class SchoolsController < ApplicationController
                 School.solr_search do
                   fulltext params[:search]
                   facet (:name)
-                  paginate(:page => params[:page], :per_page => 5)
+                  order_by :name, :asc
+                  paginate page: params[:page] || 1, per_page: 5
                 end
               end
     @schools = @search.results

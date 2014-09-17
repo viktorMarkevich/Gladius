@@ -16,3 +16,5 @@
 - content_for :sidebar_left, render( partial: 'shared/sidebar_left', locals: {title: 'Articles info', paragraph: 'top articles'} )
 
 - content_for :sidebar_right, render(:partial => 'shared/sidebar_right')
+
+= paginate @articles

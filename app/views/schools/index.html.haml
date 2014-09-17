@@ -16,4 +16,4 @@
 
 - content_for :sidebar_right, render(:partial => 'shared/sidebar_right')
 
-= will_paginate(@search.results)
+= paginate(@search.hits)
