@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Twitter::Bootstrap::Breadcrumbs
+  helper_method :sortable
 
   add_breadcrumb 'home', :root
 
@@ -27,6 +28,13 @@ class ApplicationController < ActionController::Base
     else
       super
     end
+  end
+
+  def sortable(column, title = nil)
+    title ||= column.to_s.titleize
+    css_class = column == sort_column.to_sym ? "sort_link #{sort_direction.to_s}" : nil
+    direction = column == sort_column.to_sym && sort_direction.to_sym == :asc ? :desc : :asc
+    view_context.link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
   private

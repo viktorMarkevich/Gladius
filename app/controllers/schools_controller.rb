@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
@@ -14,7 +15,7 @@ class SchoolsController < ApplicationController
                 School.solr_search do
                   fulltext params[:search]
                   facet (:name)
-                  order_by :name, :asc
+                  order_by sort_column, sort_direction
                   paginate page: params[:page] || 1, per_page: 5
                 end
               end
@@ -67,6 +68,14 @@ class SchoolsController < ApplicationController
 
   def school_params
     params.require(:school).permit(:date_of_foundation, :info, :name, :status, :creator_id, :contact_info_attributes)
+  end
+
+  def sort_column
+    School.column_names.include?(params[:sort]) ? params[:sort].to_sym : :name
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction].to_sym : :asc
   end
 
 end

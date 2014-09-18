@@ -2,9 +2,9 @@
 
 %table.table.table-striped.pretty
   %tr
-    %th ID
-    %th Название школы
-    %th Количество учеников
+    %th= 'Id'
+    %th= sortable :name
+    %th= sortable :count
 
   - @schools.each do |school|
     %tr
