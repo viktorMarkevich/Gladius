@@ -34,3 +34,15 @@
 .thumbnail {
   margin-bottom: 0;
 }
+
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .glyphicon .glyphicon-arrow-up {
+}
+
+.pretty th .glyphicon .glyphicon-arrow-down {
+}

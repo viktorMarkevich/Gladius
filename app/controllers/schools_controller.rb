@@ -71,7 +71,8 @@ class SchoolsController < ApplicationController
   end
 
   def sort_column
-    School.column_names.include?(params[:sort]) ? params[:sort].to_sym : :name
+    columns = School.column_names.map(&:to_sym)
+    columns.push(:the_number_of_members).include?(params[:sort].to_sym) ? params[:sort].to_sym : :name
   end
 
   def sort_direction

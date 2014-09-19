@@ -32,9 +32,11 @@ class ApplicationController < ActionController::Base
 
   def sortable(column, title = nil)
     title ||= column.to_s.titleize
-    css_class = column == sort_column.to_sym ? "sort_link #{sort_direction.to_s}" : nil
+    css_class = column == sort_column.to_sym ? "current glyphicon glyphicon-arrow-#{sort_direction == :asc ? 'up' : 'down' }" : nil
     direction = column == sort_column.to_sym && sort_direction.to_sym == :asc ? :desc : :asc
-    view_context.link_to title, {:sort => column, :direction => direction}, {:class => css_class}
+    view_context.link_to :sort => column, :direction => direction do
+      "<span class='#{css_class}'></span> #{title}".html_safe
+    end
   end
 
   private
