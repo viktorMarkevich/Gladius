@@ -15,7 +15,9 @@ class SchoolsController < ApplicationController
                 School.solr_search do
                   fulltext params[:search]
                   facet (:name)
-                  order_by sort_column, sort_direction
+                  facet (:the_number_of_members)
+                  facet (:status)
+                  order_by sort_column , sort_direction
                   paginate page: params[:page] || 1, per_page: 5
                 end
               end
@@ -72,7 +74,8 @@ class SchoolsController < ApplicationController
 
   def sort_column
     columns = School.column_names.map(&:to_sym)
-    columns.push(:the_number_of_members).include?(params[:sort].to_sym) ? params[:sort].to_sym : :name
+    sort = params[:sort].present? ? params[:sort].to_sym : :name
+    columns.push(:the_number_of_members).include?(sort) ? sort : :name
   end
 
   def sort_direction
