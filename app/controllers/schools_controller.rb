@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column
 
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
@@ -76,10 +76,6 @@ class SchoolsController < ApplicationController
     columns = School.column_names.map(&:to_sym)
     sort = params[:sort].present? ? params[:sort].to_sym : :name
     columns.push(:the_number_of_members).include?(sort) ? sort : :name
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction].to_sym : :asc
   end
 
 end
