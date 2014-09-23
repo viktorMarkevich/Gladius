@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
                                                                 message: 'the wrong format' }
   validates :role, presence: true
-  validates :weight, format: { with: /\A-?[0-9]+(\.[0-9]+)?$\z/i, message: 'should not have characters strings.' } 
 
   before_create :create_login
 

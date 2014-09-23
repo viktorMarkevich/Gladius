@@ -17,7 +17,6 @@ class MembersController < ApplicationController
   def new
     @member = Member.new()
     @member.build_contact_info
-    @member.build_image
     @member.build_user_school_relation( school_id: params[:school_id] )
   end
 
@@ -27,6 +26,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     @member.password = @member.password_confirmation = :'123456'
+    @member.build_image
     if @member.save
       redirect_to school_members_path(school_id: params[:school_id])
     else

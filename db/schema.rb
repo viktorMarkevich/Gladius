@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912140513) do
+ActiveRecord::Schema.define(version: 20140923101941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 20140912140513) do
     t.string   "last_name"
     t.date     "birthday"
     t.boolean  "sex",                    default: false
-    t.text     "weight"
     t.text     "about"
     t.string   "role",                   default: "fighter"
     t.datetime "created_at"
@@ -144,6 +143,7 @@ ActiveRecord::Schema.define(version: 20140912140513) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.float    "weight",                 default: 0.0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
