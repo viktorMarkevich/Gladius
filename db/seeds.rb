@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 (0..2).each do |i|
-  user = User.new( email:"user#{i}@ma.ru", password: '123456', weight: 82.1,
+  user = User.new( email:"user#{i}@ma.ru", first_name: "first_name#{i}", last_name: "last_name#{i}", password: '123456', weight: 82.1,
                   password_confirmation: '123456', role: 'manager' )
   user.build_contact_info
   user.build_image

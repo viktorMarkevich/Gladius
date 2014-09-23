@@ -9,12 +9,14 @@
       %th Photo
       %th FSL
       %th Status
-      %th Actions
+      - if user_signed_in?
+        %th Actions
 
     - @members.each do |member|
       %tr
         %td= member.id
         %td= image_tag member.image.avatar.url(:large)
-        %td= link_to member.full_name, school_member_path(:id => member.id)
+        %td= link_to member.login, school_member_path(:id => member.id)
         %td= member.user_school_relation.status
-        %td= link_to 'Deduct', school_member_path(:id => member.id), :method => :delete
+        - if user_signed_in?
+          %td= link_to 'Deduct', school_member_path(:id => member.id), :method => :delete

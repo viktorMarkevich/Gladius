@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   before_filter :find_member, only: [:show, :edit, :update]
   before_filter :current_school, only: [:index, :edit]
@@ -12,6 +12,10 @@ class MembersController < ApplicationController
   end
 
   def show
+    add_breadcrumb 'schools', school_path(@school)
+    add_breadcrumb @school.id, school_path(@school)
+    add_breadcrumb 'members', school_members_path(@school.id)
+    add_breadcrumb @member.id, school_member_path(@school.id, @member.id)
   end
 
   def new

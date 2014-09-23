@@ -10,11 +10,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    add_breadcrumb 'users', users_path
+    add_breadcrumb @user.id, user_path(@user)
   end
 
   def edit
-    # @user.build_contact_info
-    # @user.build_image
   end
 
   def update

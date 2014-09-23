@@ -51,5 +51,6 @@
       %td=@member.about
 
 
-= link_to 'Edit', edit_school_member_path
+- if user_signed_in?
+  = link_to 'Edit', edit_school_member_path
 = link_to 'Back', school_members_path
