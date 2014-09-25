@@ -1,13 +1,5 @@
 ActiveAdmin.register Article do
 
-  filter :title
-  filter :body
-  filter :published
-  filter :to_homepage
-  filter :created_at
-  filter :kind, as: :select, :collection => Article::ARTICLE_TYPES
-  filter :admin_author, collection: AdminUser.all.map{ |a| [a.email, a.id] }, label: 'Author'
-
   before_create do |product|
     product.admin_author = current_admin_user
   end
@@ -30,6 +22,13 @@ ActiveAdmin.register Article do
     column 'Author', :admin_author, :sortable => true
   end
 
+  filter :title
+  filter :body
+  filter :published
+  filter :to_homepage
+  filter :created_at
+  filter :kind, as: :select, :collection => Article::ARTICLE_TYPES
+  filter :admin_author, label: 'Author'
 
   form do |f|
     f.inputs do
