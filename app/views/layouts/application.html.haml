@@ -34,6 +34,7 @@
               - else
                 = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
                 or #{link_to 'sign in', new_user_session_path, class: 'navbar-link'}
+      = yield :school_header
       .container-fluid
         .col-lg-12
           .well
