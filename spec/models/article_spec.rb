@@ -11,9 +11,7 @@ describe Article do
 
     it { should have_db_index(:school_id).unique(true) }
     it { should have_db_index(:author_id).unique(true) }
-    it { should have_db_index(:title).unique(true) }
-    it { should have_db_index(:published).unique(true) }
-    it { should have_db_index(:to_homepage).unique(true) }
+    it { should have_db_index(:admin_author_id).unique(true) }
   end
   context 'check associations' do
     it { should belong_to(:school) }
