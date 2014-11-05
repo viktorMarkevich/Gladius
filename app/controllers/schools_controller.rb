@@ -7,12 +7,13 @@ class SchoolsController < ApplicationController
 
   def index
     @search = if params[:user_id].present?
-                Sunspot.search(User.find(params[:user_id]).schools) do
+                School.solr_search do
+                   with(:creator_id, params[:user_id])
                    fulltext params[:search]
                    facet (:name)
-                 end
+                end
               else
-                School.solr_search do
+                  School.solr_search do
                   fulltext params[:search]
                   facet (:name)
                   facet (:the_number_of_members)
@@ -76,6 +77,10 @@ class SchoolsController < ApplicationController
     columns = School.column_names.map(&:to_sym)
     sort = params[:sort].present? ? params[:sort].to_sym : :name
     columns.push(:the_number_of_members).include?(sort) ? sort : :name
+  end
+
+  def current_creator
+    User.find(params[:user_id])
   end
 
 end

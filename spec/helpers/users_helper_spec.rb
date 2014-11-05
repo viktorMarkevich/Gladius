@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UsersHelper do
   it 'should receive a sex' do

@@ -8,7 +8,7 @@ class MembersController < ApplicationController
     @members = @school.members
     add_breadcrumb 'schools', school_path(@school)
     add_breadcrumb @school.id, school_path(@school)
-    add_breadcrumb 'members', school_members_path(@school.id, @members)
+    add_breadcrumb 'members', school_members_path(@school.id)
   end
 
   def show

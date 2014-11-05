@@ -4,10 +4,10 @@ SimpleCov.start
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'factory_girl'
 require 'shoulda/matchers'
 require 'paperclip/matchers'
+require 'sunspot_test/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -51,4 +51,8 @@ RSpec.configure do |config|
 
   config.include Paperclip::Shoulda::Matchers
   config.include Warden::Test::Helpers
+
+  RSpec.configure do |config|
+    config.infer_spec_type_from_file_location!
+  end
 end
