@@ -15,9 +15,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user.build_contact_info
   end
 
   def update
+    @user.build_image unless user_params[:image_attributes]
     if @user.update_attributes(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else

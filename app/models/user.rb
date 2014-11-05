@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [ :login ]
 
-  has_one :image, dependent: :destroy
+  has_one :image, dependent: :destroy, foreign_key: 'user_id'
   has_one  :contact_info, as: :info_for, dependent: :destroy
   has_many :schools, foreign_key: 'creator_id'
   has_many :articles, foreign_key: 'author_id'
