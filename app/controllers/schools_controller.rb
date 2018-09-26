@@ -6,23 +6,28 @@ class SchoolsController < ApplicationController
   before_filter :find_school, only: [:show, :edit, :update]
 
   def index
+    # @search = if params[:user_id].present?
+    #             School.solr_search do
+    #                with(:creator_id, params[:user_id])
+    #                fulltext params[:search]
+    #                facet (:name)
+    #             end
+    #           else
+    #               School.solr_search do
+    #               fulltext params[:search]
+    #               facet (:name)
+    #               facet (:the_number_of_members)
+    #               facet (:status)
+    #               order_by sort_column , sort_direction
+    #               paginate page: params[:page] || 1, per_page: 5
+    #             end
+    #           end
+    # @schools = @search.results
     @search = if params[:user_id].present?
-                School.solr_search do
-                   with(:creator_id, params[:user_id])
-                   fulltext params[:search]
-                   facet (:name)
-                end
+                School.where(user_id: params[:user_id])
               else
-                  School.solr_search do
-                  fulltext params[:search]
-                  facet (:name)
-                  facet (:the_number_of_members)
-                  facet (:status)
-                  order_by sort_column , sort_direction
-                  paginate page: params[:page] || 1, per_page: 5
-                end
+                School.all
               end
-    @schools = @search.results
     add_breadcrumb 'schools', schools_path
   end
 

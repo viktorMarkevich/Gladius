@@ -16,10 +16,10 @@ gem 'pg'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails'
 gem 'sass-rails'
-gem 'sunspot_rails'
+# gem 'sunspot_rails'
 
 group :development do
-  gem 'sunspot_solr'
+  # gem 'sunspot_solr'
 end
 
 group :assets do
@@ -28,7 +28,7 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'sunspot_test'
+  # gem 'sunspot_test'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end

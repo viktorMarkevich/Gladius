@@ -11,7 +11,7 @@
                   password_confirmation: '123456', role: 'manager' )
   user.build_contact_info
   user.build_image
-  user.save!
+  user.save
 end
 
   school_last_numb = School.count
@@ -19,6 +19,6 @@ end
     (0..9).each do |n|
       school = School.new( creator_id: user.id , name: "School of #{user.login} with number #{n + school_last_numb}")
       school.user_school_relations.build(member_id: user.id)
-      school.save!
+      school.save
     end
   end
